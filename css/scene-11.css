@@ -1,0 +1,53 @@
+/* ---- scene 11 only: the delayed shower ----
+   The shell (palette, cards, chips, sliders, type) comes from base.css. What is
+   left here is what only this scene has: its temperature colours, the dial, the
+   falling water, and the scald overlay. */
+
+#scene-11{
+  /* temperature is this scene's own colour language, not a site wide role */
+  --cold:#2E6FB7;
+  --good:#2E9E67;
+  --hot:#E0552F;
+  --scald:#CB3220;
+  --flight:#7E62BC;   /* what you asked for but have not yet been given */
+}
+
+/* ---------- the dial ---------- */
+.dial-wrap{display:flex;justify-content:center;padding:2px 0 4px}
+#s11-dial{
+  width:min(268px,74vw);
+  touch-action:none;
+  cursor:grab;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;
+}
+#s11-dial:active{cursor:grabbing}
+#s11-dial:focus{outline:none}
+#s11-dial:focus-visible{outline:3px solid var(--flight);outline-offset:4px;border-radius:50%}
+
+/* ---------- scoreboard tints ---------- */
+#scene-11 .stat.bad .v{color:var(--scald)}
+#scene-11 .stat.good .v{color:var(--good)}
+
+/* ---------- the scald flash ----------
+   Fixed to the viewport, so scene 11 clears it in onPause rather than letting it
+   follow the reader down the page. */
+#s11-flash{
+  position:fixed;inset:0;pointer-events:none;z-index:9;
+  background:radial-gradient(120% 90% at 50% 40%, rgba(203,50,32,0) 38%, rgba(203,50,32,.55) 100%);
+  opacity:0;transition:opacity .5s ease-out;
+}
+#s11-flash.on{opacity:1;transition:opacity .06s linear}
+
+/* ---------- falling water and shivering ----------
+   scene-loop.js pauses these automatically while the scene is off screen. */
+.drop{animation:fall .42s linear infinite}
+@keyframes fall{from{transform:translateY(0)}to{transform:translateY(46px)}}
+.shiver{animation:shiver .13s steps(2,end) infinite}
+@keyframes shiver{from{transform:translateX(-1.4px)}to{transform:translateX(1.4px)}}
+
+@media (prefers-reduced-motion: reduce){
+  .drop{animation:none}
+  .shiver{animation:none}
+  #s11-flash{display:none}
+}

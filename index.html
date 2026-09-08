@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Standard Reserve, explained</title>
+<meta name="description" content="A picture book explanation of The Standard Reserve, a protocol with one currency, one market, one signal and no governance. Independent educational project, not affiliated with the protocol.">
+<meta name="color-scheme" content="light">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/scene-10.css">
+<link rel="stylesheet" href="css/scene-11.css">
+<link rel="stylesheet" href="css/scene-12.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <p class="kicker">An independent explainer</p>
+  <h1 class="page-title">A bank with nobody in it.</h1>
+  <p class="standfirst">The Standard Reserve is one currency, one market, one signal, and about four thousand lines of code that nobody can vote to change. This is a picture book about how that machine behaves. Every idea here has one thing you can touch.</p>
+  <p class="disclaimer"><strong>Independent educational project.</strong> Not affiliated with or endorsed by The Standard Reserve. Not financial advice. This page never connects to a wallet and never asks you for anything. For anything real, see <a href="https://www.standardreserve.xyz" rel="noopener noreferrer" target="_blank">standardreserve.xyz</a>.</p>
+  <p class="progress">Three of the thirteen scenes are built so far: the locked money, the delay, and the overhang. The rest are on the way.</p>
+</header>
+
+<section class="scene" id="scene-10">
+
+<header>
+  <p class="kicker">Scene 10 of 13 &middot; The locked money</p>
+  <h2 class="scene-title">You cannot reach your own earnings.</h2>
+  <p class="standfirst">Everything you earn piles up inside the system. The only way to take it out is to retire the Branch that earns it, and a retired Branch is gone for good.</p>
+</header>
+
+<!-- ============ STAGE ============ -->
+<section class="card stage-card">
+  <svg id="s10-stage" viewBox="0 0 360 300" role="img"
+       aria-label="A locked glass vault with four columns of earnings rising inside it, one column for each open Branch. The vault has no tap and no door.">
+
+    <!-- glass -->
+    <rect x="30" y="40" width="300" height="218" rx="18" fill="#FFFDF6" stroke="#241E18" stroke-width="4"/>
+    <line x1="30" y1="246" x2="330" y2="246" stroke="#241E18" stroke-width="3" opacity=".35"/>
+
+    <!-- columns, one per branch -->
+    <g id="s10-cols"></g>
+
+    <!-- lid and padlock, drawn over the glass -->
+    <rect x="20" y="18" width="320" height="26" rx="12" fill="#241E18"/>
+    <path d="M168 46 v-9 a12 12 0 0 1 24 0 v9" fill="none" stroke="#241E18" stroke-width="6"/>
+    <rect x="162" y="44" width="36" height="28" rx="7" fill="#241E18"/>
+    <circle cx="180" cy="56" r="4" fill="#FBF2E2"/>
+
+    <!-- feeds coming up from the Branches below -->
+    <g id="s10-feeds"></g>
+    <text x="180" y="292" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+          font-size="10" fill="#6E6053" letter-spacing="1.4">NO TAP. NO DOOR.</text>
+  </svg>
+</section>
+
+<!-- ============ READOUTS ============ -->
+<div class="readouts">
+  <div class="chip locked">
+    <span class="lab">Locked in the system</span>
+    <span class="val" id="s10-rLocked">0</span>
+    <span class="sub">not counted in supply</span>
+  </div>
+  <div class="chip circ">
+    <span class="lab">In your wallet</span>
+    <span class="val" id="s10-rWallet">0</span>
+    <span class="sub">counted in supply</span>
+  </div>
+</div>
+
+<!-- ============ THE BRANCHES ============ -->
+<section class="card">
+  <h3>Your four Branches</h3>
+  <div class="branches" id="s10-branches"></div>
+  <p class="hint" id="s10-hint" aria-live="polite">Press and hold a Branch to retire it. That is the only way to be paid.</p>
+  <div class="stats">
+    <div class="stat"><span class="v" id="s10-sRate">36</span><span class="k">earning per second</span></div>
+    <div class="stat"><span class="v" id="s10-sOpen">4</span><span class="k">Branches open</span></div>
+    <div class="stat"><span class="v" id="s10-sGone">0</span><span class="k">gone for good</span></div>
+  </div>
+  <p class="rm-note">Each Branch fills its own column in the vault. Holding a Branch cracks it open: its column drains into your wallet, the Branch is destroyed, and the earning rate falls by a quarter. Retire all four and the vault is empty, your wallet is full, and nothing earns again.</p>
+  <div class="foot-row">
+    <button class="quiet" id="s10-reset" type="button">reset the toy</button>
+    <span style="font-size:11px;color:var(--ink-soft)">amounts are illustrative</span>
+  </div>
+</section>
+
+<!-- ============ LESSON ============ -->
+<section class="card lesson">
+  <p class="plain">Taking your money out means destroying the thing that makes it.</p>
+  <p>That is why circulation can stay quiet for a long time. Nobody is holding back out of loyalty. Claiming simply costs more than it pays, until the day it does not.</p>
+  <p class="term">In the protocol: earned $STANDARD accrues inside the system and is claimed only when a Banker closes, or retires, a Branch. A retired Branch cannot be reopened. Until that moment the balance is a real claim that is not counted in totalSupply.</p>
+</section>
+
+</section>
+
+<section class="scene" id="scene-11">
+  <div id="s11-flash" aria-hidden="true"></div>
+
+
+<header>
+  <p class="kicker">Scene 11 of 13 &middot; The delay</p>
+  <h2 class="scene-title">You turn the tap. Nothing happens.</h2>
+  <p class="standfirst">So you turn it further. The water you asked for is still crawling down a very long pipe. When it finally arrives, it arrives all at once.</p>
+</header>
+
+<!-- ============ STAGE ============ -->
+<section class="card stage-card">
+  <svg id="s11-stage" viewBox="0 0 360 420" role="img"
+       aria-label="A shower fed by a long coiled pipe. Water ordered at the tap must travel the whole pipe before it reaches the person standing under the shower head.">
+
+    <rect x="0" y="392" width="360" height="4" rx="2" fill="#E0CFAF"/>
+
+    <!-- pipe -->
+    <path id="s11-pipeCase" d="" fill="none" stroke="#241E18" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+    <path id="s11-pipeBore" d="" fill="none" stroke="#FFF8E9" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+    <g id="s11-slugs"></g>
+
+    <!-- tap at the bottom of the pipe -->
+    <circle cx="44" cy="392" r="17" fill="#F3E4CA" stroke="#241E18" stroke-width="4"/>
+    <path d="M44 383 v-9" stroke="#241E18" stroke-width="5" stroke-linecap="round"/>
+    <path d="M36 397 h16" stroke="#241E18" stroke-width="5" stroke-linecap="round"/>
+    <text x="44" y="416" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="#6E6053" letter-spacing="1.2">THE TAP</text>
+
+    <!-- shower head -->
+    <path d="M224 96 h52 l9 17 h-70 z" fill="#241E18" stroke="#241E18" stroke-width="5" stroke-linejoin="round"/>
+
+    <!-- steam -->
+    <g id="s11-steam" opacity="0" stroke="#E0552F" stroke-width="4" stroke-linecap="round" fill="none">
+      <path d="M212 178 c6 -8 -6 -14 0 -22"/>
+      <path d="M292 168 c6 -8 -6 -14 0 -22"/>
+      <path d="M302 204 c6 -8 -6 -14 0 -22"/>
+    </g>
+
+    <!-- falling water -->
+    <g id="s11-water"></g>
+
+    <!-- bather -->
+    <g id="s11-bather">
+      <rect x="228" y="228" width="44" height="118" rx="21" fill="#F3E4CA" stroke="#241E18" stroke-width="4"/>
+      <circle cx="250" cy="204" r="25" fill="#F3E4CA" stroke="#241E18" stroke-width="4"/>
+      <circle cx="241" cy="200" r="3.4" fill="#241E18"/>
+      <circle cx="259" cy="200" r="3.4" fill="#241E18"/>
+      <path id="s11-mouth" d="M242 211 q8 8 16 0" fill="none" stroke="#241E18" stroke-width="3.4" stroke-linecap="round"/>
+      <circle id="s11-mouthO" cx="250" cy="214" r="6" fill="#241E18" opacity="0"/>
+      <g id="s11-brows" opacity="0" stroke="#241E18" stroke-width="3.4" stroke-linecap="round">
+        <path d="M234 188 l12 5"/><path d="M266 188 l-12 5"/>
+      </g>
+    </g>
+
+    <!-- tub -->
+    <path d="M192 330 h116 a12 12 0 0 1 12 12 v22 a16 16 0 0 1 -16 16 h-108 a16 16 0 0 1 -16 -16 v-22 a12 12 0 0 1 12 -12 z"
+          fill="#F3E4CA" stroke="#241E18" stroke-width="4" stroke-linejoin="round"/>
+    <rect id="s11-pool" x="190" y="348" width="120" height="15" rx="7.5" fill="#2E6FB7"/>
+    <text x="250" y="398" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="#6E6053" letter-spacing="1.2">YOU</text>
+  </svg>
+</section>
+
+<!-- ============ READOUTS ============ -->
+<div class="readouts">
+  <div class="chip">
+    <span class="lab">You asked for</span>
+    <span class="val" id="s11-rAsked">10.0&deg;</span>
+  </div>
+  <div class="chip">
+    <span class="lab">Landing on you</span>
+    <span class="val" id="s11-rWater">10.0&deg;</span>
+  </div>
+</div>
+
+<!-- ============ DIAL ============ -->
+<section class="card">
+  <h3>The dial</h3>
+  <div class="dial-wrap">
+    <svg id="s11-dial" viewBox="0 0 200 200" tabindex="0" role="slider"
+         aria-label="Temperature dial"
+         aria-valuemin="10" aria-valuemax="52" aria-valuenow="10" aria-valuetext="10 degrees requested">
+      <circle cx="100" cy="100" r="92" fill="#FFF8E9" stroke="#241E18" stroke-width="3"/>
+      <path id="s11-track" d="" fill="none" stroke="#E5D6B8" stroke-width="13" stroke-linecap="round"/>
+      <path id="s11-band" d="" fill="none" stroke="#2E9E67" stroke-width="13"/>
+      <path id="s11-flightArc" d="" fill="none" stroke="#7E62BC" stroke-width="9" stroke-linecap="round" opacity="0"/>
+      <g id="s11-ticks"></g>
+      <circle id="s11-ghost" cx="100" cy="53" r="7.5" fill="#2E6FB7" stroke="#241E18" stroke-width="2.6"/>
+      <line id="s11-needle" x1="100" y1="100" x2="100" y2="42" stroke="#241E18" stroke-width="9" stroke-linecap="round"/>
+      <circle id="s11-grip" cx="100" cy="34" r="12" fill="#241E18"/>
+      <circle cx="100" cy="100" r="35" fill="#FFF8E9" stroke="#241E18" stroke-width="3.5"/>
+      <text id="s11-dialNum" x="100" y="105" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="25" font-weight="700" fill="#241E18">10&deg;</text>
+      <text x="100" y="120" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="8.5" fill="#6E6053" letter-spacing="1">ASKED</text>
+    </svg>
+  </div>
+  <p class="hint" id="s11-hint" aria-live="polite">Drag the dial. Try to hold the green band.</p>
+</section>
+
+<!-- ============ DELAY ============ -->
+<section class="card">
+  <h3>Length of pipe</h3>
+  <div class="rowlab">
+    <span class="big" id="s11-delayWord">A fair walk</span>
+    <span class="num" id="s11-delayNum">1.8 s</span>
+  </div>
+  <input id="s11-delay" type="range" min="0.4" max="6" step="0.1" value="1.8"
+         aria-label="Length of pipe, in seconds of delay" aria-valuetext="1.8 seconds of pipe">
+  <div class="scale"><span>Short</span><span>Long</span></div>
+  <p class="hint" style="min-height:0;margin-top:8px">Once you can hold the green band, make the pipe longer and try again.</p>
+</section>
+
+<!-- ============ TRACE ============ -->
+<section class="card">
+  <h3>The last 14 seconds</h3>
+  <svg id="s11-trace" viewBox="0 0 340 152" role="img"
+       aria-label="A rolling chart comparing the temperature you asked for, drawn as a dashed line, with the temperature actually landing on you, drawn as a solid line. The solid line copies the dashed line but arrives late and swings further.">
+    <defs>
+      <!-- the trace is coloured by height, so every part of the curve reads as a temperature -->
+      <linearGradient id="s11-tempGrad" gradientUnits="userSpaceOnUse" x1="0" y1="14" x2="0" y2="138">
+        <stop offset="0" stop-color="#CB3220"/>
+        <stop offset="0.143" stop-color="#E0552F"/>
+        <stop offset="0.262" stop-color="#2E9E67"/>
+        <stop offset="0.357" stop-color="#2E9E67"/>
+        <stop offset="0.476" stop-color="#2E6FB7"/>
+        <stop offset="1" stop-color="#2E6FB7"/>
+      </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="340" height="152" rx="10" fill="#FFF8E9"/>
+    <rect id="s11-bandRect" x="6" y="0" width="328" height="0" fill="#2E9E67" opacity=".17"/>
+    <line id="s11-scaldLine" x1="6" x2="334" y1="0" y2="0" stroke="#CB3220" stroke-width="2" stroke-dasharray="6 5"/>
+    <polyline id="s11-lineAsked" fill="none" stroke="#241E18" stroke-width="2.4" stroke-dasharray="5 5" stroke-linejoin="round" stroke-linecap="round" points=""/>
+    <polyline id="s11-lineWater" fill="none" stroke="url(#s11-tempGrad)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" points=""/>
+    <circle id="s11-dotWater" cx="-20" cy="0" r="5.5" fill="#2E6FB7" stroke="#241E18" stroke-width="2.4"/>
+    <text id="s11-scaldTxt" x="10" y="0" font-family="ui-monospace,Consolas,monospace" font-size="9" fill="#CB3220" letter-spacing=".8"
+          stroke="#FFF8E9" stroke-width="3.5" stroke-linejoin="round" paint-order="stroke">SCALDING</text>
+    <text id="s11-bandTxt" x="10" y="0" font-family="ui-monospace,Consolas,monospace" font-size="9" fill="#1F7A4D" letter-spacing=".8"
+          stroke="#FFF8E9" stroke-width="3.5" stroke-linejoin="round" paint-order="stroke">JUST RIGHT</text>
+  </svg>
+  <p class="rm-note">Static example shown above: the dial is raised once, the water arrives late, the hand raises it again, and the water then overshoots past the scalding line before swinging back cold. That swing is the whole idea of this scene.</p>
+  <div class="stats">
+    <div class="stat good"><span class="v" id="s11-sBest">0.0s</span><span class="k">best steady spell</span></div>
+    <div class="stat"><span class="v" id="s11-sNow">0.0s</span><span class="k">holding now</span></div>
+    <div class="stat bad"><span class="v" id="s11-sScald">0</span><span class="k">times scalded</span></div>
+  </div>
+</section>
+
+<!-- ============ LESSON ============ -->
+<section class="card lesson">
+  <p class="plain">The system is not reacting to what you just did. It is reacting to what you did a while ago.</p>
+  <p>Every correction you make while waiting is a correction you did not need. They all arrive together, and they arrive too hot.</p>
+  <p class="term">In the protocol: issuance does not respond instantly. It reacts on a lag, on the order of a couple of epochs after the flow that caused it. Nobody has to be greedy or stupid for this to happen. The overshoot is built into the pipe.</p>
+</section>
+
+</section>
+
+<section class="scene" id="scene-12">
+
+<header>
+  <p class="kicker">Scene 12 of 13 &middot; The overhang</p>
+  <h2 class="scene-title">Supply you cannot see.</h2>
+  <p class="standfirst">The number everyone watches counts tokens in circulation. Earned but unclaimed balances are real claims on the same supply, and they are not in that number until a Banker retires a Branch.</p>
+</header>
+
+<!-- ============ STAGE ============ -->
+<section class="card stage-card">
+  <svg id="s12-stage" viewBox="0 0 360 380" role="img"
+       aria-label="Blocks of supply above a waterline and a larger mass of accrued claims below it. Moving the control lifts claims through the line, where they turn from locked violet into circulating coral.">
+
+    <g id="s12-baseBricks"></g>
+    <g id="s12-claimBricks"></g>
+
+    <!-- the water sits over anything below the line -->
+    <rect id="s12-water" x="0" y="200" width="360" height="180" fill="#2E6FB7" opacity="0.92"/>
+    <line x1="0" y1="200" x2="360" y2="200" stroke="#241E18" stroke-width="2.5" stroke-dasharray="7 5"/>
+
+    <text x="18" y="17" font-family="ui-monospace,Consolas,monospace" font-size="10"
+          fill="#6E6053" letter-spacing="1.3">COUNTED IN SUPPLY</text>
+
+    <!-- the calm number, sitting in the space the overhang will eventually fill -->
+    <g id="s12-calm">
+      <text x="180" y="74" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+            font-size="10" fill="#6E6053" letter-spacing="1.4">THE NUMBER EVERYONE WATCHES</text>
+      <text id="s12-calmNum" x="180" y="112" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+            font-size="36" font-weight="700" fill="#241E18">120M</text>
+    </g>
+    <text id="s12-deepLabel" x="18" y="330" font-family="ui-monospace,Consolas,monospace" font-size="10"
+          fill="#123B60" letter-spacing="1.3" opacity="0">ACCRUED CLAIMS. NOT COUNTED HERE.</text>
+    <text id="s12-deepLabel2" x="18" y="346" font-family="ui-monospace,Consolas,monospace" font-size="10"
+          fill="#123B60" letter-spacing="1.3" opacity="0">THEY ARE REAL, AND THEY ARE OWED.</text>
+  </svg>
+</section>
+
+<!-- ============ READOUTS ============ -->
+<div class="readouts">
+  <div class="chip circ">
+    <span class="lab">Counted in supply</span>
+    <span class="val" id="s12-rCounted">120M</span>
+    <span class="sub">of a 1 billion hard cap</span>
+  </div>
+  <div class="chip locked">
+    <span class="lab">Not counted</span>
+    <span class="val" id="s12-rClaims">180M</span>
+    <span class="sub">accrued, waiting</span>
+  </div>
+</div>
+
+<!-- ============ THE CONTROL ============ -->
+<section class="card">
+  <h3>The exit window</h3>
+  <div class="rowlab">
+    <span class="big" id="s12-exitWord">Nobody is leaving</span>
+    <span class="num" id="s12-exitNum">0%</span>
+  </div>
+  <input id="s12-exit" type="range" min="0" max="100" step="1" value="0"
+         aria-label="Share of accrued claims that convert and are sold" aria-valuetext="0 percent, nobody is leaving">
+  <div class="scale"><span>A trickle</span><span>Everyone at once</span></div>
+  <p class="hint" id="s12-hint" aria-live="polite">Nothing has converted. The supply number looks small and steady.</p>
+
+  <div class="seg-wrap">
+    <p class="seg-lab" id="s12-depthLab">How deep is the pool they sell into</p>
+    <div class="seg" role="radiogroup" aria-labelledby="s12-depthLab">
+      <button type="button" role="radio" data-d="0" aria-checked="false">Thin</button>
+      <button type="button" role="radio" data-d="1" aria-checked="true">Middling</button>
+      <button type="button" role="radio" data-d="2" aria-checked="false">Deep</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICE ============ -->
+<section class="card">
+  <h3>What the pool does about it</h3>
+  <p class="bignum" id="s12-priceNum">0%<span class="unit"> vs today</span></p>
+  <svg id="s12-chart" viewBox="0 0 340 132" role="img"
+       aria-label="A curve showing the price after the converted claims are sold, against how many of them convert. The curve falls away faster as more convert, and falls much faster when the pool is thin.">
+    <rect x="0" y="0" width="340" height="132" rx="10" fill="#FFF8E9"/>
+    <line x1="6" y1="16" x2="334" y2="16" stroke="#241E18" stroke-width="1.6" stroke-dasharray="5 5" opacity=".5"/>
+    <polyline id="s12-curve" fill="none" stroke="#CB3220" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" points=""/>
+    <line id="s12-mark" x1="6" y1="16" x2="6" y2="118" stroke="#241E18" stroke-width="1.6" stroke-dasharray="3 4" opacity=".55"/>
+    <circle id="s12-dot" cx="6" cy="16" r="5.5" fill="#CB3220" stroke="#241E18" stroke-width="2.4"/>
+    <text x="10" y="12" font-family="ui-monospace,Consolas,monospace" font-size="9" fill="#6E6053" letter-spacing=".8"
+          stroke="#FFF8E9" stroke-width="3.5" stroke-linejoin="round" paint-order="stroke">TODAY</text>
+  </svg>
+  <p class="note">Illustrative only. The pool is modelled as a plain constant product pool and assumes the converted claims are sold into it. The real market is a Uniswap v4 pool with a hook, and none of its parameters are public.</p>
+  <p class="rm-note">Static reading: at nobody leaving, the counted supply is 120M and the price is unchanged. Lift the exit share and claims cross the waterline, turning from violet into coral: the counted supply climbs toward 300M without a single new token being minted, and the price falls away along the curve, gently in a deep pool and steeply in a thin one.</p>
+</section>
+
+<!-- ============ LESSON ============ -->
+<section class="card lesson">
+  <p class="plain">Nothing new is created. It was always owed. It simply was not counted.</p>
+  <p>This is not a forecast, and it is not a flaw anyone is hiding. It is the thing worth watching: how much has quietly accrued, how few hands hold it, and how deep the pool is on the day they decide to leave.</p>
+  <p class="term">Verified: unminted balances are not counted in totalSupply, and convert into circulating supply when a Banker retires a Branch. The protocol does buy back, but slowly. The whitepaper describes buybacks as throttled to at most the smaller of 10 percent of the vault balance and 0.2 percent of pool reserves per hour, roughly no more than 5 percent of pool depth per day under launch parameters. Support that arrives at that rate cannot meet a rush in an afternoon.</p>
+  <p class="term">Still unknown: how much has accrued, how concentrated it is, and how deep the pool will be. Those three numbers decide whether any of this matters.</p>
+</section>
+
+</section>
+
+<footer>
+  <p><strong>Independent educational project.</strong> Not affiliated with or endorsed by The Standard Reserve, and not financial advice. Nothing here connects to a wallet or asks you for anything, and no number on this page is a protocol parameter unless it is marked as verified. Official site: <a href="https://www.standardreserve.xyz" rel="noopener noreferrer" target="_blank">standardreserve.xyz</a>.</p>
+</footer>
+
+</div>
+
+<script src="js/scene-loop.js"></script>
+<script src="js/scene-10.js"></script>
+<script src="js/scene-11.js"></script>
+<script src="js/scene-12.js"></script>
+</body>
+</html>
