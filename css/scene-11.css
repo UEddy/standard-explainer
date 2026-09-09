@@ -6,9 +6,9 @@
 #scene-11{
   /* temperature is this scene's own colour language, not a site wide role */
   --cold:#2E6FB7;
-  --good:#2E9E67;
-  --hot:#E0552F;
-  --scald:#CB3220;
+  --good:#0E9B9B;   /* calm water, not the expansion green */
+  --hot:#CC7000;    /* amber, not the circulating supply coral */
+  --scald:#A3123F;  /* deep crimson, not the contraction red */
   --flight:#7E62BC;   /* what you asked for but have not yet been given */
 }
 
@@ -34,7 +34,7 @@
    follow the reader down the page. */
 #s11-flash{
   position:fixed;inset:0;pointer-events:none;z-index:9;
-  background:radial-gradient(120% 90% at 50% 40%, rgba(203,50,32,0) 38%, rgba(203,50,32,.55) 100%);
+  background:radial-gradient(120% 90% at 50% 40%, rgba(163,18,63,0) 38%, rgba(163,18,63,.55) 100%);
   opacity:0;transition:opacity .5s ease-out;
 }
 #s11-flash.on{opacity:1;transition:opacity .06s linear}

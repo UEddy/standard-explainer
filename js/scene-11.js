@@ -39,7 +39,7 @@
   function mix(c1,c2,t){
     return 'rgb('+Math.round(lerp(c1[0],c2[0],t))+','+Math.round(lerp(c1[1],c2[1],t))+','+Math.round(lerp(c1[2],c2[2],t))+')';
   }
-  var C_COLD=[46,111,183], C_GOOD=[46,158,103], C_HOT=[224,85,47], C_SCALD=[203,50,32];
+  var C_COLD=[46,111,183], C_GOOD=[14,155,155], C_HOT=[204,112,0], C_SCALD=[163,18,63];
   function tempColor(t){
     if(t <= CHILL) return 'rgb(46,111,183)';
     if(t < COMFORT_LO) return mix(C_COLD, C_GOOD, (t-CHILL)/(COMFORT_LO-CHILL));

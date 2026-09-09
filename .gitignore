@@ -1,1 +1,4 @@
 standard-reserve-explainer-prompt.md
+
+.vercel/
+node_modules/

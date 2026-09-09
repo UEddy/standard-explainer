@@ -25,3 +25,24 @@
   color:var(--ink-soft);margin:0 0 8px;
 }
 #scene-7 .seg button{font-size:12.5px;padding:11px 3px}
+
+/* A vertical list, not a segmented control. Scene 12 four scenes later uses a
+   three-up segmented control for pool depth, and two identical widgets a short
+   scroll apart read as the same knob doing the same job. This one is a list of
+   states of the world, so it names the Branch count that goes with each. */
+#scene-7 .crowd{display:grid;gap:7px;margin:0 0 4px}
+#scene-7 .crowd button{
+  display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+  font:inherit;cursor:pointer;text-align:left;width:100%;
+  padding:11px 13px;border:2.5px solid var(--hair);border-radius:13px;
+  background:transparent;color:var(--ink-soft);
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+}
+#scene-7 .crowd .who{font-size:14.5px;font-weight:700}
+#scene-7 .crowd .howmany{font-family:var(--mono);font-size:11.5px}
+#scene-7 .crowd button[aria-checked="true"]{
+  border-color:var(--ink);background:var(--paper);color:var(--ink);
+  box-shadow:3px 3px 0 var(--ink);
+}
+#scene-7 .crowd button[aria-checked="true"] .howmany{color:var(--locked);font-weight:700}
+#scene-7 .crowd button:focus-visible{outline:3px solid var(--locked);outline-offset:3px}

@@ -84,7 +84,7 @@ illustrative on screen.
 - **Standfirst:** New issuance is divided across every open Branch in the system. Open more and you take more of it. So does everybody else, and the slice gets thinner for all of you.
 - **Stage labels:** YOUR SHARE / ALL NEW ISSUANCE
 - **Chips:** Your Branches, one to ten · Each Branch gets, of all new issuance
-- **Controls:** ten Branch slots, tapped open one at a time (slot one is always open) · How busy is the rest of the system: Quiet / Busy / Everyone expanding
+- **Controls:** ten Branch slots, tapped open one at a time (slot one is always open) · How busy is the rest of the system, as a vertical list naming the count: A quiet system 40 Branches / Busy 120 Branches / Everyone expanding 400 Branches. Deliberately not the three-up segmented control scene 12 uses, so the two do not read as the same knob.
 - **Hints (js):**
   - Issuance is divided across every open Branch. The pie does not grow when you open one.
   - More Branches, more of the pie. Every one you open also makes each Branch worth a little less.
@@ -140,6 +140,8 @@ illustrative on screen.
 
 ## Scene 11: The delay
 
+*Temperature colours are this scene's own language and no longer borrow the site roles: cold #2E6FB7, calm #0E9B9B, hot #CC7000, scalding #A3123F.*
+
 - **Kicker:** Scene 11 of 13 · The delay
 - **Headline:** You turn the tap. Nothing happens.
 - **Standfirst:** So you turn it further. The water you asked for is still crawling down a very long pipe. When it finally arrives, it arrives all at once.
@@ -150,13 +152,13 @@ illustrative on screen.
 - **Chart labels:** SCALDING / JUST RIGHT / TODAY
 - **Stats:** best steady spell · holding now · times scalded
 - **Hints (js):**
-  - Drag the dial. Try to hold the green band.
+  - Drag the dial. Try to hold the calm band.
   - Still travelling. Your last change reaches you in N s.
   - Too hot. That is the water you asked for N seconds ago.
   - Just right. Hold still. Anything you change now lands in N s.
   - Cold. Everything you have asked for has already arrived.
   - Nearly warm enough. / A bit too warm.
-- **Under the slider:** Once you can hold the green band, make the pipe longer and try again.
+- **Under the slider:** Once you can hold the calm band, make the pipe longer and try again.
 - **Lesson:** The system is not reacting to what you just did. It is reacting to what you did a while ago. / Every correction you make while waiting is a correction you did not need. They all arrive together, and they arrive too hot. / In the protocol: issuance does not respond instantly. It reacts on a lag, on the order of a couple of epochs after the flow that caused it. Nobody has to be greedy or stupid for this to happen. The overshoot is built into the pipe.
 
 ## Scene 12: The overhang

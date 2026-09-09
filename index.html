@@ -295,10 +295,13 @@ Whatever the code says, happens.</div>
   <div class="slots" id="s7-slots" role="group" aria-label="Your ten Branch slots. Open or close them one at a time."></div>
 
   <p class="seg-lab" id="s7-elseLab">How busy is the rest of the system</p>
-  <div class="seg" role="radiogroup" aria-labelledby="s7-elseLab">
-    <button type="button" role="radio" data-others="40" aria-checked="false">Quiet</button>
-    <button type="button" role="radio" data-others="120" aria-checked="true">Busy</button>
-    <button type="button" role="radio" data-others="400" aria-checked="false">Everyone expanding</button>
+  <div class="crowd" role="radiogroup" aria-labelledby="s7-elseLab">
+    <button type="button" role="radio" data-others="40" aria-checked="false">
+      <span class="who">A quiet system</span><span class="howmany">40 Branches</span></button>
+    <button type="button" role="radio" data-others="120" aria-checked="true">
+      <span class="who">Busy</span><span class="howmany">120 Branches</span></button>
+    <button type="button" role="radio" data-others="400" aria-checked="false">
+      <span class="who">Everyone expanding</span><span class="howmany">400 Branches</span></button>
   </div>
 
   <p class="hint" id="s7-hint" aria-live="polite">Issuance is divided across every open Branch. The pie does not grow when you open one.</p>
@@ -535,7 +538,7 @@ Whatever the code says, happens.</div>
     <path d="M224 96 h52 l9 17 h-70 z" fill="#241E18" stroke="#241E18" stroke-width="5" stroke-linejoin="round"/>
 
     <!-- steam -->
-    <g id="s11-steam" opacity="0" stroke="#E0552F" stroke-width="4" stroke-linecap="round" fill="none">
+    <g id="s11-steam" opacity="0" stroke="#CC7000" stroke-width="4" stroke-linecap="round" fill="none">
       <path d="M212 178 c6 -8 -6 -14 0 -22"/>
       <path d="M292 168 c6 -8 -6 -14 0 -22"/>
       <path d="M302 204 c6 -8 -6 -14 0 -22"/>
@@ -586,7 +589,7 @@ Whatever the code says, happens.</div>
          aria-valuemin="10" aria-valuemax="52" aria-valuenow="10" aria-valuetext="10 degrees requested">
       <circle cx="100" cy="100" r="92" fill="#FFF8E9" stroke="#241E18" stroke-width="3"/>
       <path id="s11-track" d="" fill="none" stroke="#E5D6B8" stroke-width="13" stroke-linecap="round"/>
-      <path id="s11-band" d="" fill="none" stroke="#2E9E67" stroke-width="13"/>
+      <path id="s11-band" d="" fill="none" stroke="#0E9B9B" stroke-width="13"/>
       <path id="s11-flightArc" d="" fill="none" stroke="#7E62BC" stroke-width="9" stroke-linecap="round" opacity="0"/>
       <g id="s11-ticks"></g>
       <circle id="s11-ghost" cx="100" cy="53" r="7.5" fill="#2E6FB7" stroke="#241E18" stroke-width="2.6"/>
@@ -597,7 +600,7 @@ Whatever the code says, happens.</div>
       <text x="100" y="120" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="8.5" fill="#6E6053" letter-spacing="1">ASKED</text>
     </svg>
   </div>
-  <p class="hint" id="s11-hint" aria-live="polite">Drag the dial. Try to hold the green band.</p>
+  <p class="hint" id="s11-hint" aria-live="polite">Drag the dial. Try to hold the calm band.</p>
 </section>
 
 <!-- ============ DELAY ============ -->
@@ -610,7 +613,7 @@ Whatever the code says, happens.</div>
   <input id="s11-delay" type="range" min="0.4" max="6" step="0.1" value="1.8"
          aria-label="Length of pipe, in seconds of delay" aria-valuetext="1.8 seconds of pipe">
   <div class="scale"><span>Short</span><span>Long</span></div>
-  <p class="hint" style="min-height:0;margin-top:8px">Once you can hold the green band, make the pipe longer and try again.</p>
+  <p class="hint" style="min-height:0;margin-top:8px">Once you can hold the calm band, make the pipe longer and try again.</p>
 </section>
 
 <!-- ============ TRACE ============ -->
@@ -621,23 +624,23 @@ Whatever the code says, happens.</div>
     <defs>
       <!-- the trace is coloured by height, so every part of the curve reads as a temperature -->
       <linearGradient id="s11-tempGrad" gradientUnits="userSpaceOnUse" x1="0" y1="14" x2="0" y2="138">
-        <stop offset="0" stop-color="#CB3220"/>
-        <stop offset="0.143" stop-color="#E0552F"/>
-        <stop offset="0.262" stop-color="#2E9E67"/>
-        <stop offset="0.357" stop-color="#2E9E67"/>
+        <stop offset="0" stop-color="#A3123F"/>
+        <stop offset="0.143" stop-color="#CC7000"/>
+        <stop offset="0.262" stop-color="#0E9B9B"/>
+        <stop offset="0.357" stop-color="#0E9B9B"/>
         <stop offset="0.476" stop-color="#2E6FB7"/>
         <stop offset="1" stop-color="#2E6FB7"/>
       </linearGradient>
     </defs>
     <rect x="0" y="0" width="340" height="152" rx="10" fill="#FFF8E9"/>
-    <rect id="s11-bandRect" x="6" y="0" width="328" height="0" fill="#2E9E67" opacity=".17"/>
-    <line id="s11-scaldLine" x1="6" x2="334" y1="0" y2="0" stroke="#CB3220" stroke-width="2" stroke-dasharray="6 5"/>
+    <rect id="s11-bandRect" x="6" y="0" width="328" height="0" fill="#0E9B9B" opacity=".17"/>
+    <line id="s11-scaldLine" x1="6" x2="334" y1="0" y2="0" stroke="#A3123F" stroke-width="2" stroke-dasharray="6 5"/>
     <polyline id="s11-lineAsked" fill="none" stroke="#241E18" stroke-width="2.4" stroke-dasharray="5 5" stroke-linejoin="round" stroke-linecap="round" points=""/>
     <polyline id="s11-lineWater" fill="none" stroke="url(#s11-tempGrad)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" points=""/>
     <circle id="s11-dotWater" cx="-20" cy="0" r="5.5" fill="#2E6FB7" stroke="#241E18" stroke-width="2.4"/>
-    <text id="s11-scaldTxt" x="10" y="0" font-family="ui-monospace,Consolas,monospace" font-size="9" fill="#CB3220" letter-spacing=".8"
+    <text id="s11-scaldTxt" x="10" y="0" font-family="ui-monospace,Consolas,monospace" font-size="9" fill="#A3123F" letter-spacing=".8"
           stroke="#FFF8E9" stroke-width="3.5" stroke-linejoin="round" paint-order="stroke">SCALDING</text>
-    <text id="s11-bandTxt" x="10" y="0" font-family="ui-monospace,Consolas,monospace" font-size="9" fill="#1F7A4D" letter-spacing=".8"
+    <text id="s11-bandTxt" x="10" y="0" font-family="ui-monospace,Consolas,monospace" font-size="9" fill="#0B6E6E" letter-spacing=".8"
           stroke="#FFF8E9" stroke-width="3.5" stroke-linejoin="round" paint-order="stroke">JUST RIGHT</text>
   </svg>
   <p class="rm-note">Static example shown above: the dial is raised once, the water arrives late, the hand raises it again, and the water then overshoots past the scalding line before swinging back cold. That swing is the whole idea of this scene.</p>

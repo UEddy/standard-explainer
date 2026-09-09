@@ -57,7 +57,7 @@
     }
   })();
 
-  var segBtns = ROOT.querySelectorAll('.seg button');
+  var segBtns = ROOT.querySelectorAll('.crowd button');
   Array.prototype.forEach.call(segBtns, function(b){
     b.addEventListener('click', function(){
       others = parseInt(b.getAttribute('data-others'), 10);
