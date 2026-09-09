@@ -39,6 +39,7 @@ index.html            the whole page: masthead, one <section> per scene, footer
 css/base.css          palette, type, cards, controls. Shared by every scene
 css/scene-NN.css      only what that one scene needs
 js/presentation.js    scroll-snap navigation, entrances, progress marks
+js/poke.js            shared ambient touch: drag, press, SVG coordinates
 js/scene-loop.js      one shared rAF loop for the page
 js/scene-NN.js        one IIFE per scene
 ```
@@ -136,6 +137,37 @@ scene 7's Branch slots and scene 9's lever, lets paging through. If a new contro
 needs a key, declare it in `consumesKey`; do not call `preventDefault` in the
 scene.
 
+## Ambient touch
+
+`js/poke.js` is the shared half of piece 2, for the same reason the scene loop is
+shared: four scenes needed the same gesture handling and the page snaps, so a
+scene that got it wrong would trap the reader inside itself.
+
+**Nothing in it ever calls `preventDefault`.** A draggable declares its axis and
+the browser keeps the other one. `Poke.drag` sets `touch-action: pan-y`, so a
+vertical swipe scrolls the page and never reaches the scene at all, and the
+moment the browser claims a gesture as a scroll it sends `pointercancel`, which
+ends the drag cleanly. There is no free-axis drag in the API on purpose: the only
+way to get one on a phone is `touch-action: none`, which is a scroll trap sitting
+in the middle of a scene.
+
+`Poke.press` is a pressed state and nothing else. Scene 5 depends on the nothing
+else.
+
+Coordinates come back in SVG user space, so a scene compares them against the
+numbers already in its own markup rather than against screen pixels.
+
+**No tab stops, no keyboard equivalents.** These are pokes. Nothing built on them
+may gate understanding, and every one of these scenes still teaches its idea to
+someone who only scrolls, so six focusable decorations would only clutter the
+keyboard path piece 1 built for the reader who needs it.
+
+**One trap worth knowing about.** A render pass that skips writing when an offset
+is zero drops the final write, the one that puts a settled thing back where it
+belongs. The simulation then believes it is home while the screen keeps the last
+displaced frame forever. Scene 2 hit this and now compares against the last value
+written, not against zero.
+
 ## Ground rules for content
 
 - No wallet connection, no Web3 libraries, no `window.ethereum`. The site never
@@ -155,8 +187,9 @@ gives the page a breath between two animated scenes and the first toy, and it
 costs nothing to run. Not every scene needs a clock.
 
 Scenes 4, 7, 8, 9, 10, 11 and 12 carry an interaction and earn their extra
-weight. Scenes 1, 2 and 6 are play-once animations. Scenes 3 and 13 have no
-script at all.
+weight. Scenes 1, 2 and 6 open on a play-once animation and then answer a finger
+without ever requiring one. Scenes 3 and 13 have no script at all, which is the
+one thing about them that must not change.
 
 ## Testing
 
@@ -179,6 +212,17 @@ hardware is settled by reasoning and by keeping to safe ground: `dvh` rather tha
 `vh`, no reliance on iOS-only behaviour, and no gestures that fight Android
 Chrome's back-swipe from the left edge.
 
+## Known untested
+
+- **Proximity snapping has not been re-checked with real wheel events since the
+  `padding-block` fix.** CDP wheel events route to the top frame, so they hit the
+  harness page rather than the iframe, and the same test at desktop width is not
+  representative of a phone. What is checked: parking at scene 11's last
+  screenful, a full viewport short of scene 12's snap point, produces zero drift,
+  and the real-wheel version passed before the padding change. Removing the
+  padding moved the snap points but not the snap strength. Worth one pass on real
+  hardware if the chance comes up.
+
 ## Still outstanding
 
 ### The queue, in order
@@ -191,8 +235,11 @@ preferences: piece 1 changes the layout every later piece sits in.
    over pinned horizontal because only 6 of 14 sections fit one screen at
    412 x 780 and the three tentpoles run to roughly two and a half each. See
    "The presentation layer" above.
-2. **Piece 2, ambient interactivity** (same file). No new controls. Scene 6 gains
-   a real drag. Scenes 3 and 13 stay static and script free.
+2. ~~**Piece 2, ambient interactivity**~~ (same file). Done. No new controls.
+   Scene 1 has a probe the reader drags along the chart, scene 2's stack shoves
+   and its lid refuses, scene 5's removed controls depress and do nothing, and
+   scene 6 is a real drag with a saturating tether. Scenes 3 and 13 remain
+   static and script free. See "Ambient touch" above.
 3. **Piece 3, the end quiz** (same file, plus the amendment at its foot).
    Fifteen questions, five variants per slot, drawn and shuffled per run.
 4. **Piece 4, the narrator** (`narrator-prompt.md`, plus the amendment at its

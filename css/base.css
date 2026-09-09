@@ -147,6 +147,27 @@ html{scroll-snap-type:y proximity}
 }
 .disclaimer a{color:var(--ink)}
 
+/* ---------- ambient touch ----------
+   One quiet line saying a stage answers a finger. It goes the first time that
+   stage is touched and keeps its space, so nothing reflows under the reader.
+   Kept small on purpose: scenes 2 and 6 have under 40px of headroom against a
+   780px screen and this line has to fit inside it.
+
+   The cursors live here rather than in a per-scene file because they belong to
+   the shared poke system, not to any one scene. */
+.poke-hint{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-soft);text-align:center;
+  margin:-10px 0 12px;
+  transition:opacity .35s ease-out;
+}
+.poke-hint[data-done="true"]{opacity:0}
+#s1-grab,#s2-grab{cursor:ew-resize}
+#s2-lidHit{cursor:pointer}
+#s6-grab{cursor:grab}
+#s6-grab:active{cursor:grabbing}
+@media (prefers-reduced-motion: reduce){ .poke-hint{transition:none} }
+
 /* ---------- cards ---------- */
 .card{
   background:var(--card);border:3px solid var(--ink);border-radius:22px;

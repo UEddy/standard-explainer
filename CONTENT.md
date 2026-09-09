@@ -31,6 +31,8 @@ illustrative on screen.
 - **Standfirst:** Almost every token picks its emission number in advance and then prints it forever. The market moves underneath, and the schedule does not notice.
 - **Stage labels:** THE EMISSION SCHEDULE / THE MARKET / IT NEVER LOOKS UP.
 - **Term line:** Plain words: how much new supply appears is decided in advance and never revisited. The real term is a **fixed emission schedule**.
+- **Poke hint (fades on first touch):** Drag across the chart
+- **Probe readouts (ambient):** the market word under the finger is one of RIPPING · CLIMBING · DRIFTING · SLIDING · CRASHING, chosen from the local slope of the drawn line. The schedule readout is the single word UNCHANGED and never says anything else at any point on the chart. Both are descriptions of the drawn illustration, not protocol figures.
 
 ## Scene 2: One currency
 
@@ -39,6 +41,8 @@ illustrative on screen.
 - **Standfirst:** $STANDARD has a hard cap written into the code. One row of it exists from day one and is locked in the pool forever. Everything above that row is the entire issuance budget, for all time.
 - **Stage labels:** HARD CAP (on the lid) / GENESIS 100M, LOCKED IN THE POOL / AND BURNING ONLY EVER LOWERS IT
 - **Counter (js):** counts to 1,000,000,000 and stops there.
+- **Poke hint (fades on first touch):** Nudge the blocks. Push the lid.
+- **Ambient behaviour:** dragging across the stack shoves blocks aside and they spring back into the same slots. Pressing the lid compresses the stack against it, most at the top, and the lid does not move. The counter reads 1,000,000,000 throughout and nothing a finger does changes it.
 - **Term line:** **Verified:** a hard cap of 1,000,000,000 $STANDARD. 100,000,000 of that is the genesis position, the only pre-mint, locked into the pool and never withdrawable. The remaining 900,000,000 is the whole issuance budget, and when it runs out base issuance stops permanently. Because burned tokens never come back, the maximum supply that can ever exist only falls.
 
 ## Scene 3: One market
@@ -67,6 +71,9 @@ illustrative on screen.
 - **Card label:** Governance panel
 - **Rows (description / control):** Suggest a rule change / Propose · Decide it by token vote / Vote · Halt the system / Pause · Replace the contract / Upgrade · Change the issuance / Set rate · Freeze withdrawals / Pause exits
 - **What is left (appears after the panel empties):** WHAT IS LEFT. **Roughly 4,000 lines of immutable code.** No DAO. No proposals. No votes. Whatever the code says, happens.
+- **Poke hint, before any tap:** Try the controls
+- **Poke hint, after the first tap (replaces it, permanently):** Nothing. They are not disabled, they are gone.
+- **Ambient behaviour:** a removed control depresses under a thumb and produces no result at all. Nothing changes: not the row, not the panel, not the code block. That is the intended outcome, and the line above is the only acknowledgement.
 - **Term line:** **Verified:** roughly 4,000 lines of immutable code, no DAO and no governance votes, and withdrawals are never paused or queued at any fee level. It is not quite nobody at the wheel, though: the whitepaper describes an admin-set reserve price on the Charter auction, a number of Charters per day that is policy-controlled and starts at zero, the one-way transfer switch from the last scene, and a 15 percent team share of protocol revenue.
 
 ## Scene 6: You are the bank
@@ -75,6 +82,8 @@ illustrative on screen.
 - **Headline:** Bound to you, for now.
 - **Standfirst:** A Charter is a banking licence, issued as an NFT that is bound to whoever holds it. Try to take it away and it snaps back. That is how it launches, and the whitepaper is clear that it will not always be that way.
 - **Stage labels:** YOU / CHARTER / BANKING LICENCE / BANKER / SOULBOUND AT LAUNCH.
+- **Poke hint (fades on first touch):** Drag the card away
+- **Ambient behaviour:** the card can be grabbed and dragged. The tether resists on a curve that saturates, so the card reaches its limit and stops there however far the finger goes: dragging 40 units moves it 34, dragging 240 moves it 54, and dragging 1,010 still moves it 54. Releasing snaps it back past centre and settles it home. The one-shot tug still plays on arrival for a reader who never touches it.
 - **Term line:** **Verified:** a Charter is an **initially** soulbound NFT, and holders are called Bankers. 1,000 Founding Charters are free at genesis; after that they are sold at a daily Dutch auction in ETH. The whitepaper describes a one-way switch that enables transfers later, at which point selling a Charter becomes a second way out, and one that puts no sell pressure on $STANDARD at all.
 
 ## Scene 7: Branches

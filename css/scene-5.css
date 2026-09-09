@@ -32,6 +32,14 @@
   background:transparent;color:transparent;border-color:var(--hair);border-style:dashed;
 }
 
+/* Pressed, and nothing else. Every other rule in this file is about a control
+   being removed; this one is about a removed control acknowledging a thumb and
+   then producing no result whatsoever, which is the point of the scene. */
+#scene-5 .gov-row{transition:transform .07s ease-out, background .22s ease-out, border-color .22s ease-out}
+#scene-5 .gov-row[data-pressed="true"]{transform:scale(.982)}
+#scene-5 .gov-row[data-pressed="true"] .pill{border-color:var(--ink-soft)}
+#scene-5 .gov-row{cursor:pointer}
+
 #scene-5 .gov-code{
   margin-top:12px;padding:12px;border-radius:14px;
   background:var(--ink);color:#F6E9D2;
@@ -44,6 +52,7 @@
 #scene-5 .gov-code b{color:#FFF;font-weight:700}
 
 @media (prefers-reduced-motion: reduce){
+  #scene-5 .gov-row,
   #scene-5 .gov-row .lab,
   #scene-5 .gov-row .pill,
   #scene-5 .gov-code{transition:none}

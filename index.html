@@ -44,6 +44,25 @@
     <path id="s1-market" d="" fill="none" stroke="#8FA5B8" stroke-width="3.5"
           stroke-linecap="round" stroke-linejoin="round"/>
     <path id="s1-flat" d="" fill="none" stroke="#241E18" stroke-width="7" stroke-linecap="round"/>
+    <!-- ambient: a probe the reader drags along the chart. The market readout
+         swings with the line under it; the schedule readout says the same word
+         at every single x, which is the whole point of the scene. -->
+    <g id="s1-probe" opacity="0">
+      <line id="s1-pLine" x1="180" x2="180" y1="24" y2="212" stroke="#241E18"
+            stroke-width="1.5" stroke-dasharray="3 4" opacity=".5"/>
+      <text id="s1-pFlatWord" x="338" y="106" text-anchor="end"
+            font-family="ui-monospace,Consolas,monospace" font-size="10" font-weight="700"
+            fill="#241E18" letter-spacing="1.2" stroke="#FFF8E9" stroke-width="3.5"
+            stroke-linejoin="round" paint-order="stroke">UNCHANGED</text>
+      <circle id="s1-pMarket" cx="180" cy="120" r="6.5" fill="#8FA5B8"
+              stroke="#241E18" stroke-width="2.5"/>
+      <circle id="s1-pFlat" cx="180" cy="120" r="6.5" fill="#241E18"
+              stroke="#FFF8E9" stroke-width="2.5"/>
+      <text id="s1-pWord" x="180" y="100" text-anchor="middle"
+            font-family="ui-monospace,Consolas,monospace" font-size="10" font-weight="700"
+            fill="#4A5A68" letter-spacing="1.2" stroke="#FFF8E9" stroke-width="3.5"
+            stroke-linejoin="round" paint-order="stroke"></text>
+    </g>
     <text id="s1-tagFlat" x="22" y="28" opacity="0"
           font-family="ui-monospace,Consolas,monospace" font-size="10" fill="#241E18"
           letter-spacing="1.3" stroke="#FFF8E9" stroke-width="3.5" stroke-linejoin="round"
@@ -55,8 +74,13 @@
           font-family="ui-monospace,Consolas,monospace" font-size="11" fill="#241E18"
           font-weight="700" letter-spacing="1.4" stroke="#FFF8E9" stroke-width="3.5"
           stroke-linejoin="round" paint-order="stroke">IT NEVER LOOKS UP.</text>
+    <!-- on top, so a finger anywhere in the plot moves the probe rather than
+         only where it lands exactly on a stroke -->
+    <rect id="s1-grab" x="8" y="16" width="344" height="204" fill="transparent"/>
   </svg>
 </section>
+
+<p class="poke-hint" id="s1-poke">Drag across the chart</p>
 
 <p class="term-line">Plain words: how much new supply appears is decided in advance and never revisited. The real term is a <b>fixed emission schedule</b>.</p>
 
@@ -90,8 +114,16 @@
           letter-spacing="1.3">AND BURNING ONLY EVER LOWERS IT</text>
     <text x="180" y="194" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
           font-size="8" fill="#241E18" letter-spacing="1.1">GENESIS 100M, LOCKED IN THE POOL</text>
+    <!-- ambient: two surfaces on top. Drag across the stack and the blocks
+         scatter out of the way and settle back into the same slots. Press the
+         lid and the stack compresses against it, because the lid does not move
+         and the counter does not change. -->
+    <rect id="s2-grab" x="52" y="56" width="256" height="146" fill="transparent"/>
+    <rect id="s2-lidHit" x="44" y="28" width="272" height="26" fill="transparent"/>
   </svg>
 </section>
+
+<p class="poke-hint" id="s2-poke">Nudge the blocks. Push the lid.</p>
 
 <p class="term-line"><b>Verified:</b> a hard cap of 1,000,000,000 $STANDARD. 100,000,000 of that is the genesis position, the only pre-mint, locked into the pool and never withdrawable. The remaining 900,000,000 is the whole issuance budget, and when it runs out base issuance stops permanently. Because burned tokens never come back, the maximum supply that can ever exist only falls.</p>
 
@@ -204,6 +236,8 @@ No DAO. No proposals. No votes.
 Whatever the code says, happens.</div>
 </section>
 
+<p class="poke-hint" id="s5-poke">Try the controls</p>
+
 <p class="term-line"><b>Verified:</b> roughly 4,000 lines of immutable code, no DAO and no governance votes, and withdrawals are never paused or queued at any fee level. It is not quite nobody at the wheel, though: the whitepaper describes an admin-set reserve price on the Charter auction, a number of Charters per day that is policy-controlled and starts at zero, the one-way transfer switch from the last scene, and a 15 percent team share of protocol revenue.</p>
 
 </section>
@@ -241,6 +275,9 @@ Whatever the code says, happens.</div>
         <path d="M114 157 v-6 a7 7 0 0 1 14 0 v6" fill="none" stroke="#CB3220" stroke-width="3"/>
         <rect x="110" y="157" width="22" height="16" rx="4" fill="#CB3220"/>
       </g>
+      <!-- ambient: the grab surface is inside the card group so it travels with
+           it, and a finger anywhere on the card counts as a hand on the card -->
+      <rect id="s6-grab" x="96" y="62" width="188" height="116" rx="14" fill="transparent"/>
     </g>
 
     <text id="s6-bound" x="180" y="212" opacity="0" text-anchor="middle"
@@ -248,6 +285,8 @@ Whatever the code says, happens.</div>
           fill="#241E18" letter-spacing="1.6">SOULBOUND AT LAUNCH.</text>
   </svg>
 </section>
+
+<p class="poke-hint" id="s6-poke">Drag the card away</p>
 
 <p class="term-line"><b>Verified:</b> a Charter is an <b>initially</b> soulbound NFT, and holders are called Bankers. 1,000 Founding Charters are free at genesis; after that they are sold at a daily Dutch auction in ETH. The whitepaper describes a one-way switch that enables transfers later, at which point selling a Charter becomes a second way out, and one that puts no sell pressure on $STANDARD at all.</p>
 
@@ -825,6 +864,7 @@ Whatever the code says, happens.</div>
 
 <script src="js/presentation.js"></script>
 <script src="js/scene-loop.js"></script>
+<script src="js/poke.js"></script>
 <script src="js/scene-1.js"></script>
 <script src="js/scene-2.js"></script>
 <!-- scene 3 is a still diagram: no script, no clock, nothing to run -->
