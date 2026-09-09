@@ -71,9 +71,9 @@ illustrative on screen.
 - **Card label:** Governance panel
 - **Rows (description / control):** Suggest a rule change / Propose · Decide it by token vote / Vote · Halt the system / Pause · Replace the contract / Upgrade · Change the issuance / Set rate · Freeze withdrawals / Pause exits
 - **What is left (appears after the panel empties):** WHAT IS LEFT. **Roughly 4,000 lines of immutable code.** No DAO. No proposals. No votes. Whatever the code says, happens.
-- **Poke hint, before any tap:** Try the controls
-- **Poke hint, after the first tap (replaces it, permanently):** Nothing. They are not disabled, they are gone.
-- **Ambient behaviour:** a removed control depresses under a thumb and produces no result at all. Nothing changes: not the row, not the panel, not the code block. That is the intended outcome, and the line above is the only acknowledgement.
+- **Hint, while the panel is emptying:** Try the controls
+- **Hint, once the panel has emptied (replaces it, permanently):** They are not disabled. They are gone.
+- **Ambient behaviour:** a removed control depresses under a thumb and produces no result at all. Nothing changes: not the row, not the panel, not the code block. The second line arrives on its own about a second and a half after the panel finishes emptying, so a reader who never presses anything still gets it; pressing only brings it forward.
 - **Term line:** **Verified:** roughly 4,000 lines of immutable code, no DAO and no governance votes, and withdrawals are never paused or queued at any fee level. It is not quite nobody at the wheel, though: the whitepaper describes an admin-set reserve price on the Charter auction, a number of Charters per day that is policy-controlled and starts at zero, the one-way transfer switch from the last scene, and a 15 percent team share of protocol revenue.
 
 ## Scene 6: You are the bank

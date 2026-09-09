@@ -26,20 +26,26 @@
 
   /* ---------- ambient ---------- */
   var hint = el('poke');
-  var pressed = false;
+  var told = false;
+
+  /* The second line is owed to every reader, not only the ones who press.
+     Whether a control was removed or merely switched off is part of what this
+     scene is for, so it cannot sit behind an interaction: a reader who only
+     scrolls would be left with an instruction and no answer to it. It arrives
+     on its own once the panel has finished emptying, and a press only brings it
+     forward. */
+  var SETTLED = FIRST + rows.length * GAP + 1.5;
+
+  function tell(){
+    if(told) return;
+    told = true;
+    if(hint) hint.textContent = 'They are not disabled. They are gone.';
+  }
 
   Array.prototype.forEach.call(rows, function(row){
-    Poke.press(row, {
-      onDown: function(){
-        /* Deliberately empty of consequence. The pressed state lives in CSS and
-           nothing here changes data-gone, the code panel, or anything else.
-           The one thing that does happen is the line below the panel saying
-           what just failed to happen, once. */
-        if(pressed) return;
-        pressed = true;
-        if(hint) hint.textContent = 'Nothing. They are not disabled, they are gone.';
-      }
-    });
+    /* Deliberately empty of consequence. The pressed state lives in CSS and
+       nothing here changes data-gone, the code panel, or anything else. */
+    Poke.press(row, { onDown: tell });
   });
 
   function render(){
@@ -54,10 +60,11 @@
     if(done !== (codeEl.getAttribute('data-on') === 'true')){
       codeEl.setAttribute('data-on', done ? 'true' : 'false');
     }
+    if(t >= SETTLED) tell();
   }
 
   render();
   sim = SceneLoop.register({ root: ROOT, render: render });
-  if(REDUCED){ startT = -99; render(); }
+  if(REDUCED){ startT = -99; render(); }   /* -99 is past SETTLED, so the line is already there */
   else sim.playOnce(el('stage'), 0.3, function(){ startT = sim.elapsed; });
 })();
