@@ -23,7 +23,7 @@
      which is the period the whitepaper states the buyback limits over. */
   var REVENUE = 260;         /* protocol revenue per hour, before the 70/15/15 split */
   var TO_VAULT = 0.70;       /* verified: 70 percent goes to whichever vault is active */
-  var POOL = 900000;         /* pool reserves */
+  var POOL = 60000;          /* pool reserves, sized so both limits are reachable */
   var CAP_VAULT = 0.10;      /* verified: at most 10 percent of the vault balance per hour */
   var CAP_POOL = 0.002;      /* verified: at most 0.2 percent of pool reserves per hour */
 
@@ -51,17 +51,20 @@
   function fmt(n){ return Math.round(n).toLocaleString('en-US'); }
   function clamp(v,a,b){ return v<a?a:(v>b?b:v); }
 
-  var slider = el('flow');
-  slider.addEventListener('input', function(){
-    flow = parseInt(slider.value, 10) / 100;
-    slider.setAttribute('aria-valuetext', flowWord());
+  /* A lever, not a slider. Scene 4 already established the flow as a reading, so
+     this scene does not ask the reader to dial it again: it asks them to pick a
+     side. A gradient would invite them to explore magnitude, and magnitude is not
+     the lesson here. Direction and speed are. */
+  var lever = ROOT.querySelectorAll('.lever button');
+  Array.prototype.forEach.call(lever, function(b){
+    b.addEventListener('click', function(){
+      flow = parseFloat(b.getAttribute('data-flow'));
+      Array.prototype.forEach.call(lever, function(o){
+        o.setAttribute('aria-checked', o === b ? 'true' : 'false');
+      });
+      render();
+    });
   });
-
-  function flowWord(){
-    if(flow > 0.15) return 'money coming in, expansion';
-    if(flow < -0.15) return 'money going out, contraction';
-    return 'level, neither regime';
-  }
 
   function simulate(step){
     var rev = REVENUE * Math.abs(flow) * TO_VAULT * step;
@@ -81,8 +84,9 @@
   }
 
   var expandCard = el('expand'), contractCard = el('contract');
-  var reserveNum = el('reserveNum'), flowNum = el('flowNum'), burnedNum = el('burnedNum');
+  var reserveNum = el('reserveNum'), burnedNum = el('burnedNum');
   var throttleEl = el('throttle'), fillEl = el('vaultFill'), wordEl = el('word');
+  var rateEl = el('rate');
   var lastThrottle = '', lastWord = '';
 
   function render(){
@@ -91,7 +95,7 @@
     expandCard.setAttribute('opacity', expanding ? 1 : 0.32);
     contractCard.setAttribute('opacity', contracting || vault > 1 ? 1 : 0.32);
 
-    var shown = Math.min(INGOTS, Math.floor(reserves / 900));
+    var shown = Math.min(INGOTS, Math.floor(reserves / 400));
     for(var i = 0; i < INGOTS; i++) ingots[i].setAttribute('opacity', i < shown ? 1 : 0);
 
     var h = clamp(vault / 4000, 0, 1) * 86;
@@ -100,7 +104,6 @@
 
     reserveNum.textContent = fmt(reserves);
     burnedNum.textContent = fmt(burned);
-    flowNum.textContent = (flow > 0 ? '+' : '') + Math.round(flow * 100) + '%';
 
     /* which of the two verified limits is actually binding right now */
     var msg;
@@ -113,6 +116,13 @@
     }
     msg = 'vault ' + fmt(vault) + ', ' + msg;
     if(msg !== lastThrottle){ throttleEl.textContent = msg; lastThrottle = msg; }
+
+    /* the asymmetry, stated as a rate, because it is the whole point */
+    var inRate = REVENUE * TO_VAULT;
+    var outRate = vault > 0 ? Math.min(CAP_VAULT * vault, CAP_POOL * POOL) : 0;
+    rateEl.textContent = expanding
+      ? 'stacking ' + fmt(inRate) + ' an hour'
+      : (vault > 0 ? 'burning ' + fmt(outRate) + ' an hour' : 'idle');
 
     var w = expanding ? 'Expansion' : (contracting ? 'Contraction' : 'Neither');
     if(w !== lastWord){

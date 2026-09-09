@@ -67,7 +67,7 @@
 <header>
   <p class="kicker">Scene 2 of 13 &middot; One currency</p>
   <h2 class="scene-title">One billion, and no more.</h2>
-  <p class="standfirst">$STANDARD has a hard cap written into the code. The container fills, and then there is no mechanism anywhere that can make another one.</p>
+  <p class="standfirst">$STANDARD has a hard cap written into the code. One row of it exists from day one and is locked in the pool forever. Everything above that row is the entire issuance budget, for all time.</p>
 </header>
 
 <section class="card stage-card">
@@ -87,11 +87,13 @@
           fill="#E0552F">0</text>
     <text id="s2-stop" x="180" y="252" opacity="0" text-anchor="middle"
           font-family="ui-monospace,Consolas,monospace" font-size="10" fill="#6E6053"
-          letter-spacing="1.3">NO MECHANISM TO MAKE MORE</text>
+          letter-spacing="1.3">AND BURNING ONLY EVER LOWERS IT</text>
+    <text x="180" y="194" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+          font-size="8" fill="#241E18" letter-spacing="1.1">GENESIS 100M, LOCKED IN THE POOL</text>
   </svg>
 </section>
 
-<p class="term-line"><b>Verified:</b> a hard cap of 1,000,000,000 $STANDARD.</p>
+<p class="term-line"><b>Verified:</b> a hard cap of 1,000,000,000 $STANDARD. 100,000,000 of that is the genesis position, the only pre-mint, locked into the pool and never withdrawable. The remaining 900,000,000 is the whole issuance budget, and when it runs out base issuance stops permanently. Because burned tokens never come back, the maximum supply that can ever exist only falls.</p>
 
 </section>
 
@@ -183,7 +185,7 @@
 <header>
   <p class="kicker">Scene 5 of 13 &middot; One authority</p>
   <h2 class="scene-title">There is no vote.</h2>
-  <p class="standfirst">No DAO, no governance votes, no human discretion. Watch the panel empty itself, and see what is left holding the wheel.</p>
+  <p class="standfirst">No DAO, no proposals, no votes. Watch the panel empty itself, and see what is left holding the wheel.</p>
 </header>
 
 <section class="card" id="s5-stage">
@@ -194,15 +196,15 @@
     <div class="gov-row" data-gone="false"><span class="lab">Halt the system</span><span class="pill">Pause</span></div>
     <div class="gov-row" data-gone="false"><span class="lab">Replace the contract</span><span class="pill">Upgrade</span></div>
     <div class="gov-row" data-gone="false"><span class="lab">Change the issuance</span><span class="pill">Set rate</span></div>
-    <div class="gov-row" data-gone="false"><span class="lab">Spend the treasury</span><span class="pill">Withdraw</span></div>
+    <div class="gov-row" data-gone="false"><span class="lab">Freeze withdrawals</span><span class="pill">Pause exits</span></div>
   </div>
   <div class="gov-code" id="s5-code" data-on="false">WHAT IS LEFT
 <b>Roughly 4,000 lines of immutable code.</b>
-No DAO. No votes. No discretion.
+No DAO. No proposals. No votes.
 Whatever the code says, happens.</div>
 </section>
 
-<p class="term-line"><b>Verified:</b> roughly 4,000 lines of immutable code, no DAO and no governance votes.</p>
+<p class="term-line"><b>Verified:</b> roughly 4,000 lines of immutable code, no DAO and no governance votes, and withdrawals are never paused or queued at any fee level. It is not quite nobody at the wheel, though: the whitepaper describes an admin-set reserve price on the Charter auction, a number of Charters per day that is policy-controlled and starts at zero, the one-way transfer switch from the last scene, and a 15 percent team share of protocol revenue.</p>
 
 </section>
 
@@ -210,8 +212,8 @@ Whatever the code says, happens.</div>
 
 <header>
   <p class="kicker">Scene 6 of 13 &middot; You are the bank</p>
-  <h2 class="scene-title">A licence you cannot sell.</h2>
-  <p class="standfirst">A Charter is a banking licence, issued as an NFT that is bound to whoever holds it. Watch what happens when somebody tries to take it away.</p>
+  <h2 class="scene-title">Bound to you, for now.</h2>
+  <p class="standfirst">A Charter is a banking licence, issued as an NFT that is bound to whoever holds it. Try to take it away and it snaps back. That is how it launches, and the whitepaper is clear that it will not always be that way.</p>
 </header>
 
 <section class="card stage-card">
@@ -243,11 +245,11 @@ Whatever the code says, happens.</div>
 
     <text id="s6-bound" x="180" y="212" opacity="0" text-anchor="middle"
           font-family="ui-monospace,Consolas,monospace" font-size="11" font-weight="700"
-          fill="#241E18" letter-spacing="1.6">SOULBOUND. IT DOES NOT MOVE.</text>
+          fill="#241E18" letter-spacing="1.6">SOULBOUND AT LAUNCH.</text>
   </svg>
 </section>
 
-<p class="term-line"><b>Verified:</b> a Charter is a banking licence issued as a soulbound NFT, and holders are called Bankers. 1,000 Genesis Charters are distributed free. After genesis, Charters cost ETH.</p>
+<p class="term-line"><b>Verified:</b> a Charter is an <b>initially</b> soulbound NFT, and holders are called Bankers. 1,000 Founding Charters are free at genesis; after that they are sold at a daily Dutch auction in ETH. The whitepaper describes a one-way switch that enables transfers later, at which point selling a Charter becomes a second way out, and one that puts no sell pressure on $STANDARD at all.</p>
 
 </section>
 
@@ -279,7 +281,7 @@ Whatever the code says, happens.</div>
   <div class="chip locked">
     <span class="lab">Your Branches</span>
     <span class="val" id="s7-mineNum">1</span>
-    <span class="sub">one to ten</span>
+    <span class="sub">tap a slot to open one</span>
   </div>
   <div class="chip">
     <span class="lab">Each Branch gets</span>
@@ -289,20 +291,16 @@ Whatever the code says, happens.</div>
 </div>
 
 <section class="card">
-  <div class="dials">
-    <div class="dial-row">
-      <div class="rowlab"><span class="big">Your Branches</span><span class="num" id="s7-mineLbl">1</span></div>
-      <input id="s7-mineSlider" type="range" min="1" max="10" step="1" value="1"
-             aria-label="How many Branches you have open" aria-valuetext="1 Branch">
-      <div class="scale"><span>One</span><span>Ten, the maximum</span></div>
-    </div>
-    <div class="dial-row">
-      <div class="rowlab"><span class="big">Everyone else</span><span class="num" id="s7-otherNum">120</span></div>
-      <input id="s7-otherSlider" type="range" min="20" max="400" step="10" value="120"
-             aria-label="How many Branches every other Banker has open" aria-valuetext="120 Branches held by everyone else">
-      <div class="scale"><span>A quiet system</span><span>Everyone expanding</span></div>
-    </div>
+  <div class="rowlab"><span class="big">Your Branches</span><span class="num" id="s7-mineLbl">1</span></div>
+  <div class="slots" id="s7-slots" role="group" aria-label="Your ten Branch slots. Open or close them one at a time."></div>
+
+  <p class="seg-lab" id="s7-elseLab">How busy is the rest of the system</p>
+  <div class="seg" role="radiogroup" aria-labelledby="s7-elseLab">
+    <button type="button" role="radio" data-others="40" aria-checked="false">Quiet</button>
+    <button type="button" role="radio" data-others="120" aria-checked="true">Busy</button>
+    <button type="button" role="radio" data-others="400" aria-checked="false">Everyone expanding</button>
   </div>
+
   <p class="hint" id="s7-hint" aria-live="polite">Issuance is divided across every open Branch. The pie does not grow when you open one.</p>
 </section>
 
@@ -315,7 +313,7 @@ Whatever the code says, happens.</div>
 <header>
   <p class="kicker">Scene 8 of 13 &middot; The Dutch auction</p>
   <h2 class="scene-title">The price falls until someone blinks.</h2>
-  <p class="standfirst">Opening a Branch needs an Expansion Licence, sold once a day at a falling price and paid for in $STANDARD. Wait, and it gets cheaper. Wait too long, and another Banker takes it.</p>
+  <p class="standfirst">Opening a Branch needs an Expansion Licence. A hundred go on sale each day at a price that starts high and decays, paid for in $STANDARD. Wait, and it gets cheaper. Wait too long, and the day is sold out.</p>
 </header>
 
 <section class="card stage-card">
@@ -334,6 +332,10 @@ Whatever the code says, happens.</div>
     <path d="M186 150 l-9 -6 v12 z" fill="#241E18"/>
     <text x="145" y="140" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
           font-size="9" fill="#6E6053" letter-spacing="1">WHAT YOU PAY</text>
+    <text x="145" y="182" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+          font-size="9" fill="#6E6053" letter-spacing="1">LEFT TODAY</text>
+    <text id="s8-left" x="145" y="206" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+          font-size="19" font-weight="700" fill="#241E18">100</text>
 
     <rect x="212" y="120" width="120" height="86" rx="12" fill="#FFFDF6" stroke="#241E18" stroke-width="4"/>
     <rect id="s8-pile" x="218" y="206" width="108" height="0" fill="#CB3220"/>
@@ -354,7 +356,7 @@ Whatever the code says, happens.</div>
 <button type="button" class="go" id="s8-go">Start the auction</button>
 <p class="hint" id="s8-hint" aria-live="polite">The price starts high and falls every second until somebody buys.</p>
 
-<p class="term-line"><b>Verified:</b> Expansion Licences are sold at a daily Dutch auction, paid for in $STANDARD, and 100 percent of what is spent is burned outright. The prices and the rival bidder here are illustrative.</p>
+<p class="term-line"><b>Verified:</b> Expansion Licences are sold at a daily Dutch auction, paid for in $STANDARD, and 100 percent of what is spent is burned outright. Initially 100 go on sale per day, one Charter can buy at most three of them in a day, the price decays exponentially from the open toward a floor across 24 hours, and unsold licences do not roll over. The prices here, and how fast the other Bankers step in, are illustrative.</p>
 
 </section>
 
@@ -363,7 +365,7 @@ Whatever the code says, happens.</div>
 <header>
   <p class="kicker">Scene 9 of 13 &middot; Two regimes</p>
   <h2 class="scene-title">Two regimes, one switch.</h2>
-  <p class="standfirst">The same signal from scene four decides everything. Money coming in, and the protocol buys hard assets. Money going out, and it buys its own token back and burns it, slowly.</p>
+  <p class="standfirst">The same signal from scene four decides everything. Money in is spent on hard assets the moment it arrives. Money out piles into a vault first and leaves in small capped steps, so the defence can never be fired in one shot.</p>
 </header>
 
 <section class="card stage-card">
@@ -414,10 +416,13 @@ Whatever the code says, happens.</div>
 </div>
 
 <section class="card">
-  <div class="rowlab"><span class="big">The flow</span><span class="num" id="s9-flowNum">0%</span></div>
-  <input id="s9-flow" type="range" min="-100" max="100" step="1" value="0"
-         aria-label="Net flow of ETH, from money going out to money coming in" aria-valuetext="level, neither regime">
-  <div class="scale"><span>Money out</span><span>Money in</span></div>
+  <div class="rowlab"><span class="big">Which way is the money going</span></div>
+  <div class="lever" role="radiogroup" aria-label="Which way the money is going">
+    <button type="button" role="radio" data-flow="-1" aria-checked="false" class="out">Going out</button>
+    <button type="button" role="radio" data-flow="0" aria-checked="true">Level</button>
+    <button type="button" role="radio" data-flow="1" aria-checked="false" class="in">Coming in</button>
+  </div>
+  <p class="rate" id="s9-rate">idle</p>
   <p class="throttle" id="s9-throttle">nothing to spend</p>
 </section>
 
@@ -493,7 +498,7 @@ Whatever the code says, happens.</div>
 <section class="card lesson">
   <p class="plain">Taking your money out means destroying the thing that makes it.</p>
   <p>That is why circulation can stay quiet for a long time. Nobody is holding back out of loyalty. Claiming simply costs more than it pays, until the day it does not.</p>
-  <p class="term">In the protocol: earned $STANDARD accrues inside the system and is claimed only when a Banker closes, or retires, a Branch. A retired Branch cannot be reopened. Until that moment the balance is a real claim that is not counted in totalSupply.</p>
+  <p class="term">In the protocol: earned $STANDARD accrues inside the system and is claimed only when a Banker closes, or retires, a Branch. The balance is held by the Charter, not by each Branch, so retiring one Branch of ten liquidates a tenth of everything, and retiring the last one burns the Charter. A retired Branch cannot be reopened. Until that moment the balance is a real claim that is not counted in totalSupply, and what is finally released arrives minus a resolution fee.</p>
 </section>
 
 </section>
@@ -748,6 +753,7 @@ Whatever the code says, happens.</div>
   <p class="plain">Nothing new is created. It was always owed. It simply was not counted.</p>
   <p>This is not a forecast, and it is not a flaw anyone is hiding. It is the thing worth watching: how much has quietly accrued, how few hands hold it, and how deep the pool is on the day they decide to leave.</p>
   <p class="term">Verified: unminted balances are not counted in totalSupply, and convert into circulating supply when a Banker retires a Branch. The protocol does buy back, but slowly. The whitepaper describes buybacks as throttled to at most the smaller of 10 percent of the vault balance and 0.2 percent of pool reserves per hour, roughly no more than 5 percent of pool depth per day under launch parameters. Support that arrives at that rate cannot meet a rush in an afternoon.</p>
+  <p class="term">There is a second defence this toy does not draw. Every withdrawal pays a resolution fee that rises with how much of the bank tried to leave in the past week, half of it burned and half paid to the Bankers who stayed. It is designed to invert the usual bank run, where leaving first is always right. Whether it is enough is a question about numbers nobody has yet.</p>
   <p class="term">Still unknown: how much has accrued, how concentrated it is, and how deep the pool will be. Those three numbers decide whether any of this matters.</p>
 </section>
 

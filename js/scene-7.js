@@ -30,20 +30,42 @@
   }
 
   var mineEl = el('mine'), shareEl = el('share'), perEl = el('per');
-  var mineNum = el('mineNum'), mineLbl = el('mineLbl');
-  var otherNum = el('otherNum'), hintEl = el('hint');
-  var mineSlider = el('mineSlider'), otherSlider = el('otherSlider');
+  var mineNum = el('mineNum'), mineLbl = el('mineLbl'), hintEl = el('hint');
   var lastHint = '';
 
-  mineSlider.addEventListener('input', function(){
-    mine = parseInt(mineSlider.value, 10);
-    mineSlider.setAttribute('aria-valuetext', mine + (mine === 1 ? ' Branch' : ' Branches'));
-    draw();
-  });
-  otherSlider.addEventListener('input', function(){
-    others = parseInt(otherSlider.value, 10);
-    otherSlider.setAttribute('aria-valuetext', others + ' Branches held by everyone else');
-    draw();
+  /* Ten slots, tapped open one at a time. A Charter always has at least its
+     first Branch, so slot one cannot be closed. Tapping an open slot closes
+     everything above it, which is how retirement works in scene 10 too. */
+  var slots = [];
+  (function buildSlots(){
+    var host = el('slots');
+    for(var i = 0; i < 10; i++){
+      (function(n){
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = n + 1;
+        b.setAttribute('aria-pressed', n === 0 ? 'true' : 'false');
+        b.setAttribute('aria-label', 'Branch ' + (n + 1) +
+          (n === 0 ? ', always open' : ', tap to open or close'));
+        b.addEventListener('click', function(){
+          mine = (n + 1 === mine) ? Math.max(1, n) : n + 1;
+          draw();
+        });
+        host.appendChild(b);
+        slots.push(b);
+      })(i);
+    }
+  })();
+
+  var segBtns = ROOT.querySelectorAll('.seg button');
+  Array.prototype.forEach.call(segBtns, function(b){
+    b.addEventListener('click', function(){
+      others = parseInt(b.getAttribute('data-others'), 10);
+      Array.prototype.forEach.call(segBtns, function(o){
+        o.setAttribute('aria-checked', o === b ? 'true' : 'false');
+      });
+      draw();
+    });
   });
 
   function draw(){
@@ -59,14 +81,16 @@
     perEl.textContent = (per * 100).toFixed(2) + '%';
     mineNum.textContent = mine;
     mineLbl.textContent = mine;
-    otherNum.textContent = others.toLocaleString('en-US');
+    for(var k = 0; k < slots.length; k++){
+      slots[k].setAttribute('aria-pressed', k < mine ? 'true' : 'false');
+    }
 
     var msg;
-    if(mine === 10 && others >= 300){
+    if(mine === 10 && others >= 400){
       msg = 'You opened every Branch you are allowed. So did everyone else, and your slice is thinner than when you had one.';
     } else if(mine >= 6){
       msg = 'More Branches, more of the pie. Every one you open also makes each Branch worth a little less.';
-    } else if(others >= 300){
+    } else if(others >= 400){
       msg = 'You did nothing. Everyone else expanded, and your share fell anyway.';
     } else {
       msg = 'Issuance is divided across every open Branch. The pie does not grow when you open one.';

@@ -14,10 +14,14 @@
   var REDUCED = SceneLoop.reducedMotion;
   var sim, startT = null;
 
-  var CAP = 1000000000;
-  var COLS = 6, ROWS = 9, N = COLS * ROWS;
-  var BW = 36, BH = 12, GX = 4, ROWP = 16;
-  var X0 = 62, FLOOR = 196;   /* bottom row sits just clear of the vessel floor */
+  /* 50 bricks of 20,000,000 each. The bottom row is the 100,000,000 genesis
+     position, which is the only pre-mint and is locked in the pool forever. The
+     45 above it are the entire issuance budget, and that is all there is. */
+  var CAP = 1000000000, PER_BRICK = 20000000;
+  var COLS = 5, ROWS = 10, N = COLS * ROWS;
+  var GENESIS = COLS;                  /* one row, 100,000,000 */
+  var BW = 44, BH = 11, GX = 4, ROWP = 14;
+  var X0 = 62, FLOOR = 196;
   var FILL_TIME = 1.9;
 
   var bricks = [];
@@ -30,10 +34,11 @@
       r.setAttribute('width', BW);
       r.setAttribute('height', BH);
       r.setAttribute('rx', 3);
-      r.setAttribute('fill', '#E0552F');
+      /* the genesis row is drawn differently: it was never issued to anyone */
+      r.setAttribute('fill', i < GENESIS ? '#F0B49E' : '#E0552F');
       r.setAttribute('stroke', '#241E18');
       r.setAttribute('stroke-width', 1.6);
-      r.setAttribute('opacity', 0);
+      r.setAttribute('opacity', i < GENESIS ? 1 : 0);
       g.appendChild(r);
       bricks.push(r);
     }
@@ -48,12 +53,12 @@
   function render(){
     var t = (startT === null) ? 0 : (sim.elapsed - startT);
     var p = ease(clamp01(t / FILL_TIME));
-    var filled = Math.round(p * N);
+    var filled = GENESIS + Math.round(p * (N - GENESIS));
 
-    for(var i = 0; i < N; i++) bricks[i].setAttribute('opacity', i < filled ? 1 : 0);
+    for(var i = GENESIS; i < N; i++) bricks[i].setAttribute('opacity', i < filled ? 1 : 0);
 
     /* the counter lands on the real number, not near it */
-    counter.textContent = (filled >= N) ? fmt(CAP) : fmt(CAP * filled / N);
+    counter.textContent = (filled >= N) ? fmt(CAP) : fmt(filled * PER_BRICK);
 
     /* one thunk as it hits the ceiling, then nothing ever again */
     var hit = clamp01((t - FILL_TIME) / 0.16);

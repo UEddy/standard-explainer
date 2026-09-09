@@ -36,10 +36,10 @@ illustrative on screen.
 
 - **Kicker:** Scene 2 of 13 · One currency
 - **Headline:** One billion, and no more.
-- **Standfirst:** $STANDARD has a hard cap written into the code. The container fills, and then there is no mechanism anywhere that can make another one.
-- **Stage labels:** HARD CAP (on the lid) / NO MECHANISM TO MAKE MORE
+- **Standfirst:** $STANDARD has a hard cap written into the code. One row of it exists from day one and is locked in the pool forever. Everything above that row is the entire issuance budget, for all time.
+- **Stage labels:** HARD CAP (on the lid) / GENESIS 100M, LOCKED IN THE POOL / AND BURNING ONLY EVER LOWERS IT
 - **Counter (js):** counts to 1,000,000,000 and stops there.
-- **Term line:** **Verified:** a hard cap of 1,000,000,000 $STANDARD.
+- **Term line:** **Verified:** a hard cap of 1,000,000,000 $STANDARD. 100,000,000 of that is the genesis position, the only pre-mint, locked into the pool and never withdrawable. The remaining 900,000,000 is the whole issuance budget, and when it runs out base issuance stops permanently. Because burned tokens never come back, the maximum supply that can ever exist only falls.
 
 ## Scene 3: One market
 
@@ -63,19 +63,19 @@ illustrative on screen.
 
 - **Kicker:** Scene 5 of 13 · One authority
 - **Headline:** There is no vote.
-- **Standfirst:** No DAO, no governance votes, no human discretion. Watch the panel empty itself, and see what is left holding the wheel.
+- **Standfirst:** No DAO, no proposals, no votes. Watch the panel empty itself, and see what is left holding the wheel.
 - **Card label:** Governance panel
-- **Rows (description / control):** Suggest a rule change / Propose · Decide it by token vote / Vote · Halt the system / Pause · Replace the contract / Upgrade · Change the issuance / Set rate · Spend the treasury / Withdraw
-- **What is left (appears after the panel empties):** WHAT IS LEFT. **Roughly 4,000 lines of immutable code.** No DAO. No votes. No discretion. Whatever the code says, happens.
-- **Term line:** **Verified:** roughly 4,000 lines of immutable code, no DAO and no governance votes.
+- **Rows (description / control):** Suggest a rule change / Propose · Decide it by token vote / Vote · Halt the system / Pause · Replace the contract / Upgrade · Change the issuance / Set rate · Freeze withdrawals / Pause exits
+- **What is left (appears after the panel empties):** WHAT IS LEFT. **Roughly 4,000 lines of immutable code.** No DAO. No proposals. No votes. Whatever the code says, happens.
+- **Term line:** **Verified:** roughly 4,000 lines of immutable code, no DAO and no governance votes, and withdrawals are never paused or queued at any fee level. It is not quite nobody at the wheel, though: the whitepaper describes an admin-set reserve price on the Charter auction, a number of Charters per day that is policy-controlled and starts at zero, the one-way transfer switch from the last scene, and a 15 percent team share of protocol revenue.
 
 ## Scene 6: You are the bank
 
 - **Kicker:** Scene 6 of 13 · You are the bank
-- **Headline:** A licence you cannot sell.
-- **Standfirst:** A Charter is a banking licence, issued as an NFT that is bound to whoever holds it. Watch what happens when somebody tries to take it away.
-- **Stage labels:** YOU / CHARTER / BANKING LICENCE / BANKER / SOULBOUND. IT DOES NOT MOVE.
-- **Term line:** **Verified:** a Charter is a banking licence issued as a soulbound NFT, and holders are called Bankers. 1,000 Genesis Charters are distributed free. After genesis, Charters cost ETH.
+- **Headline:** Bound to you, for now.
+- **Standfirst:** A Charter is a banking licence, issued as an NFT that is bound to whoever holds it. Try to take it away and it snaps back. That is how it launches, and the whitepaper is clear that it will not always be that way.
+- **Stage labels:** YOU / CHARTER / BANKING LICENCE / BANKER / SOULBOUND AT LAUNCH.
+- **Term line:** **Verified:** a Charter is an **initially** soulbound NFT, and holders are called Bankers. 1,000 Founding Charters are free at genesis; after that they are sold at a daily Dutch auction in ETH. The whitepaper describes a one-way switch that enables transfers later, at which point selling a Charter becomes a second way out, and one that puts no sell pressure on $STANDARD at all.
 
 ## Scene 7: Branches
 
@@ -84,7 +84,7 @@ illustrative on screen.
 - **Standfirst:** New issuance is divided across every open Branch in the system. Open more and you take more of it. So does everybody else, and the slice gets thinner for all of you.
 - **Stage labels:** YOUR SHARE / ALL NEW ISSUANCE
 - **Chips:** Your Branches, one to ten · Each Branch gets, of all new issuance
-- **Controls:** Your Branches (One → Ten, the maximum) · Everyone else (A quiet system → Everyone expanding)
+- **Controls:** ten Branch slots, tapped open one at a time (slot one is always open) · How busy is the rest of the system: Quiet / Busy / Everyone expanding
 - **Hints (js):**
   - Issuance is divided across every open Branch. The pie does not grow when you open one.
   - More Branches, more of the pie. Every one you open also makes each Branch worth a little less.
@@ -96,10 +96,10 @@ illustrative on screen.
 
 - **Kicker:** Scene 8 of 13 · The Dutch auction
 - **Headline:** The price falls until someone blinks.
-- **Standfirst:** Opening a Branch needs an Expansion Licence, sold once a day at a falling price and paid for in $STANDARD. Wait, and it gets cheaper. Wait too long, and another Banker takes it.
-- **Stage labels:** PRICE NOW / WHAT YOU PAY / BURNED / NOT BANKED / TOTAL THIS SESSION
-- **Status (js):** READY · FALLING · YOU BOUGHT IT · SOMEONE ELSE TOOK IT
-- **Button (js):** Start the auction · Buy the licence · Run another auction
+- **Standfirst:** Opening a Branch needs an Expansion Licence. A hundred go on sale each day at a price that starts high and decays, paid for in $STANDARD. Wait, and it gets cheaper. Wait too long, and the day is sold out.
+- **Stage labels:** PRICE NOW / WHAT YOU PAY / LEFT TODAY / BURNED / NOT BANKED / TOTAL THIS SESSION
+- **Status (js):** READY · FALLING · YOU BOUGHT ONE · SOLD OUT
+- **Button (js):** Start the auction · Buy a licence · Run another day
 - **Hints (js):**
   - The price starts high and falls every second until somebody buys.
   - Wait, and it gets cheaper. Wait too long, and it is gone.
@@ -111,11 +111,12 @@ illustrative on screen.
 
 - **Kicker:** Scene 9 of 13 · Two regimes
 - **Headline:** Two regimes, one switch.
-- **Standfirst:** The same signal from scene four decides everything. Money coming in, and the protocol buys hard assets. Money going out, and it buys its own token back and burns it, slowly.
+- **Standfirst:** The same signal from scene four decides everything. Money in is spent on hard assets the moment it arrives. Money out piles into a vault first and leaves in small capped steps, so the defence can never be fired in one shot.
 - **Stage labels:** EXPANSION / CONTRACTION / HARD RESERVES / VAULT / BURN
 - **Regime word (js):** Expansion · Contraction · Neither
 - **Chips:** Hard reserves, bought during expansion · $STANDARD burned, bought back and destroyed
-- **Control:** The flow (Money out → Money in)
+- **Control:** a three position lever, Going out / Level / Coming in. Not a slider: scene 4 already owns the flow as a reading, and magnitude is not the lesson here.
+- **Rate line (js):** stacking N an hour · burning N an hour · idle
 - **Throttle line (js):** vault N, nothing to spend · vault N, held back by the 10% of vault limit · vault N, held back by the 0.2% of pool depth limit
 - **Term line:** **Verified:** protocol revenue is split 70 / 15 / 15 each epoch, and the 70 percent goes to whichever vault is active. Buybacks are throttled to at most the smaller of 10 percent of the vault balance and 0.2 percent of pool reserves per hour. Revenue, pool size and the clock here are illustrative: one second stands for one hour.
 
@@ -212,16 +213,17 @@ Independent educational project. Not affiliated with or endorsed by The Standard
 Everything below is stated in public material and is safe to keep. Anything not on
 this list is illustrative and must stay labelled as such on screen.
 
-- Hard cap of 1,000,000,000 $STANDARD.
+- Hard cap of 1,000,000,000 $STANDARD, of which 100,000,000 is the genesis position (the only pre-mint, locked in the pool) and 900,000,000 is the issuance budget. Max supply is strictly non-increasing because burns are permanent.
 - One ETH to $STANDARD pool on Uniswap v4, with a hook.
 - Net flow of ETH into or out of that pool is the only input to policy.
-- Roughly 4,000 lines of immutable code. No DAO, no governance votes, no human discretion.
-- A Charter is a soulbound NFT. Holders are Bankers. 1,000 Genesis Charters are free; after genesis they cost ETH.
+- Roughly 4,000 lines of immutable code. No DAO and no governance votes. Not zero discretion: there is an admin-set Charter auction reserve, a policy-controlled Charter count starting at zero, a one-way transfer switch, and a 15 percent team share.
+- A Charter is an **initially** soulbound NFT. Holders are Bankers. 1,000 Founding Charters are free at genesis; after that they are sold at a daily Dutch auction in ETH. A one-way switch enables transfers later.
 - Every Charter opens with one Branch and can grow to a maximum of ten.
 - New issuance is divided across all open Branches.
-- Expansion Licences are sold at a daily Dutch auction, paid in $STANDARD, and 100 percent of what is spent is burned.
+- Expansion Licences are sold at a daily Dutch auction, paid in $STANDARD, and 100 percent of what is spent is burned. Initially 100 per day, at most 3 per Charter per day, price decaying exponentially from the open to a floor over 24 hours, unsold licences do not roll over.
 - Issuance reacts on a lag, on the order of a couple of epochs after the flow that caused it.
 - Protocol ETH revenue is split 70 / 15 / 15 each epoch; the 70 percent goes to the active vault.
 - Buybacks are throttled to at most the smaller of 10 percent of the vault balance and 0.2 percent of pool reserves per hour, described as roughly no more than 5 percent of pool depth per day under launch parameters.
 - Earned $STANDARD accrues inside the system and is claimed only by retiring a Branch, which cannot be reopened. Those balances are not counted in totalSupply until they convert.
+- Withdrawals are never paused or queued at any fee level. Every withdrawal pays a resolution fee that rises with 7-day system-wide exit pressure, half burned and half paid to Bankers who stayed.
 - Status as of early September 2026: no token, no NFT, whitepaper v0.1, eligibility checking live, audits underway with Uniswap Foundation funding, no public addresses or repository, no surprise launch, copycats circulating.

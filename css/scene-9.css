@@ -10,3 +10,20 @@
 }
 #scene-9 .scale span:first-child{color:var(--contract)}
 #scene-9 .scale span:last-child{color:var(--expand)}
+
+/* the lever: three positions, no gradient. Magnitude is not the lesson. */
+#scene-9 .lever{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:8px;margin:0 0 10px}
+#scene-9 .lever button{
+  font:inherit;font-size:14.5px;font-weight:800;cursor:pointer;
+  padding:14px 4px;border:3px solid var(--ink);border-radius:14px;
+  background:var(--card);color:var(--ink);
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+}
+#scene-9 .lever button:focus-visible{outline:3px solid var(--locked);outline-offset:3px}
+#scene-9 .lever button[aria-checked="true"]{background:var(--ink);color:var(--paper)}
+#scene-9 .lever button.out[aria-checked="true"]{background:var(--contract);border-color:var(--contract)}
+#scene-9 .lever button.in[aria-checked="true"]{background:var(--expand);border-color:var(--expand)}
+#scene-9 .rate{
+  text-align:center;font-family:var(--mono);font-size:13px;font-weight:700;
+  color:var(--ink);margin:0;min-height:1.4em;
+}

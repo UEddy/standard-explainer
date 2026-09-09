@@ -1,5 +1,27 @@
-/* ---- scene 7 only: Branches and dilution ---- */
+/* ---- scene 7 only: Branches and dilution ----
+   Ten slots you tap open, rather than a slider. Opening a Branch is a discrete
+   act with a hard ceiling of ten, and a slider hid both of those. */
 
-#scene-7 .dials{display:grid;gap:14px;margin:0 0 4px}
-#scene-7 .dial-row .rowlab{margin-bottom:6px}
 #scene-7 .figures{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 14px}
+
+#scene-7 .slots{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:0 0 16px;
+}
+#scene-7 .slots button{
+  font:inherit;font-size:13px;font-weight:800;cursor:pointer;
+  aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;
+  border:3px dashed var(--hair);border-radius:14px;
+  background:transparent;color:var(--hair);
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+}
+#scene-7 .slots button[aria-pressed="true"]{
+  border-style:solid;border-color:var(--ink);
+  background:var(--locked);color:#FFF;box-shadow:2px 2px 0 var(--ink);
+}
+#scene-7 .slots button:focus-visible{outline:3px solid var(--locked);outline-offset:3px}
+
+#scene-7 .seg-lab{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-soft);margin:0 0 8px;
+}
+#scene-7 .seg button{font-size:12.5px;padding:11px 3px}
