@@ -137,11 +137,25 @@ Chrome's back-swipe from the left edge.
 
 ## Still outstanding
 
-- `presentation-quiz-prompt.md`: three pieces of work, not started. Piece 1
-  changes the layout every scene sits in, so it goes first.
-- `video-capture-prompt.md` plus `video-capture-amendment.md`: a capture script
-  with a simulated touch indicator and a phone frame. Explicitly waits for piece
-  1 to ship, because the shot list assumes vertical scrolling.
+### The queue, in order
+
+Each brief stops for review before the next. The dependencies are real, not
+preferences: piece 1 changes the layout every later piece sits in.
+
+1. **Piece 1, presentation feel** (`presentation-quiz-prompt.md`). Vertical
+   scroll-snap recommended over pinned horizontal, on the evidence that only 5 of
+   13 scenes fit one screen at 412 x 780 and the three tentpoles run to roughly
+   two and a half screens each. Not started.
+2. **Piece 2, ambient interactivity** (same file). No new controls. Scene 6 gains
+   a real drag. Scenes 3 and 13 stay static and script free.
+3. **Piece 3, the end quiz** (same file, plus the amendment at its foot).
+   Fifteen questions, five variants per slot, drawn and shuffled per run.
+4. **Piece 4, the narrator** (`narrator-prompt.md`). Depends on the layout piece
+   1 settles. Stop point is the system plus lines for scenes 10, 11 and 12 only.
+5. **Video capture** (`video-capture-prompt.md` plus
+   `video-capture-amendment.md`). Explicitly waits for piece 1 to ship, because
+   the shot list assumes vertical scrolling and would need rewriting as scene
+   advances if scenes end up snapping.
 - Scene 11 predates `base.css` and still carries a little duplicated shell CSS in
   `css/scene-11.css`. Harmless, worth tidying.
 - Scene 12 has its own copy of the play-once arming logic, written before
