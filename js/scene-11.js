@@ -39,12 +39,22 @@
   function mix(c1,c2,t){
     return 'rgb('+Math.round(lerp(c1[0],c2[0],t))+','+Math.round(lerp(c1[1],c2[1],t))+','+Math.round(lerp(c1[2],c2[2],t))+')';
   }
-  var C_COLD=[46,111,183], C_GOOD=[14,155,155], C_HOT=[204,112,0], C_SCALD=[163,18,63];
+  /* C_WARM is a neutral waypoint between calm and hot. Blending teal straight to
+     amber in RGB runs through olive, because the blue channel collapses while red
+     is still climbing and the result lands where all three are close. Routing via
+     a warm neutral keeps blue up across the cool half and red up across the warm
+     half, so the sweep never grazes green. */
+  var C_COLD=[46,111,183], C_GOOD=[14,155,155], C_WARM=[214,200,186],
+      C_HOT=[204,112,0], C_SCALD=[163,18,63];
+
   function tempColor(t){
-    if(t <= CHILL) return 'rgb(46,111,183)';
+    if(t <= CHILL) return mix(C_COLD, C_COLD, 0);
     if(t < COMFORT_LO) return mix(C_COLD, C_GOOD, (t-CHILL)/(COMFORT_LO-CHILL));
-    if(t <= COMFORT_HI) return 'rgb(46,158,103)';
-    if(t < SCALD) return mix(C_GOOD, C_HOT, (t-COMFORT_HI)/(SCALD-COMFORT_HI));
+    if(t <= COMFORT_HI) return mix(C_GOOD, C_GOOD, 0);
+    if(t < SCALD){
+      var u = (t-COMFORT_HI)/(SCALD-COMFORT_HI);
+      return u < 0.5 ? mix(C_GOOD, C_WARM, u*2) : mix(C_WARM, C_HOT, (u-0.5)*2);
+    }
     return mix(C_HOT, C_SCALD, clamp((t-SCALD)/4, 0, 1));
   }
   /* This scene owns one section of a shared page, so every lookup is namespaced

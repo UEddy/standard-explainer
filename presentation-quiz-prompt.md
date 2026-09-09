@@ -129,3 +129,26 @@ storage, no analytics, no network.
 
 Stop and show me after piece 1. Stop and show me after piece 2. Stop and show me after
 piece 3. Do not run them together.
+
+---
+
+## Amendment to piece 3, added 2026-09-09 by the user
+
+The three questions must be randomised so two readers rarely get the same set.
+
+- Keep one question per tentpole, in the order locked money, delay, overhang.
+- Write **five variants per slot**, and draw one variant per slot at random per run.
+  That is 125 possible sets before option shuffling.
+- Shuffle the option order within each question.
+- Across the bank, the correct answer must not sit disproportionately in any one
+  authored position.
+- **Quality beats count.** Every wrong option must be a real misconception a
+  first-time reader would hold, not filler. If a slot cannot support five strong
+  variants, write four and say so rather than shipping a weak one.
+- Fifteen questions means fifteen explanations. Every explanation may only assert
+  things in the verified list in `CONTENT.md`. Illustrative numbers stay labelled
+  illustrative.
+- Put the whole bank in `CONTENT.md`, grouped by slot, so it can be read and
+  revised in one place.
+- Nothing is stored, so a reload draws a fresh set. That is intended: make
+  replaying obvious with a "try three more" option at the end.

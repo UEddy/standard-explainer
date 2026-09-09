@@ -21,12 +21,16 @@ To stop the server, press Ctrl+C in that window.
 
 ## Deploy
 
-The repo is the site, so both of these need no configuration:
+The repo is the site. It is deployed on **GitHub Pages** and that is the only
+target: push to `main` and it goes live at
+<https://ueddy.github.io/standard-explainer/>. No build command, no output
+directory, nothing to configure. Vercel was considered and dropped.
 
-- **Vercel:** `vercel --prod` from the repo root, or connect the repo and accept
-  the defaults. There is no build command and no output directory.
-- **GitHub Pages:** push to `main`, then Settings, Pages, deploy from branch
-  `main` and folder `/ (root)`.
+**A caching note.** GitHub Pages serves assets with a ten minute max-age, so
+after a push a returning reader can run new HTML against an old `js/scene-NN.js`
+for a few minutes. This bit repeatedly during development and produced changes
+that appeared not to work. If you are checking a change and it looks like it did
+not land, hard reload before believing it.
 
 ## Layout
 
@@ -119,15 +123,29 @@ Scenes 4, 7, 8, 9, 10, 11 and 12 carry an interaction and earn their extra
 weight. Scenes 1, 2 and 6 are play-once animations. Scenes 3 and 13 have no
 script at all.
 
+## Testing
+
+Development and checking is done in desktop Chrome, plus an iframe harness at
+390px and 320px for portrait layout. Add `?debug` to the URL for the on-page
+readout of the shared loop, each scene's clock and the largest frame gap seen.
+
+**The target phone is a Samsung S24, Android Chrome.** There is no iOS device in
+play and no device testing is being done, so anything that can only be settled on
+hardware is settled by reasoning and by keeping to safe ground: `dvh` rather than
+`vh`, no reliance on iOS-only behaviour, and no gestures that fight Android
+Chrome's back-swipe from the left edge.
+
 ## Still outstanding
 
-- A polish pass across the whole page: pacing, copy edit, and a look at the
-  scenes side by side rather than one at a time.
+- `presentation-quiz-prompt.md`: three pieces of work, not started. Piece 1
+  changes the layout every scene sits in, so it goes first.
+- `video-capture-prompt.md` plus `video-capture-amendment.md`: a capture script
+  with a simulated touch indicator and a phone frame. Explicitly waits for piece
+  1 to ship, because the shot list assumes vertical scrolling.
 - Scene 11 predates `base.css` and still carries a little duplicated shell CSS in
   `css/scene-11.css`. Harmless, worth tidying.
 - Scene 12 has its own copy of the play-once arming logic, written before
   `sim.playOnce` existed. It works; it could adopt the shared helper.
-- The iPhone test from earlier has not been run against the finished page.
 
 Copy lives in `CONTENT.md`, including which numbers are verified and which are
 illustrative. Edit there first.

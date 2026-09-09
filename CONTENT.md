@@ -140,7 +140,7 @@ illustrative on screen.
 
 ## Scene 11: The delay
 
-*Temperature colours are this scene's own language and no longer borrow the site roles: cold #2E6FB7, calm #0E9B9B, hot #CC7000, scalding #A3123F.*
+*Temperature colours are this scene's own language and no longer borrow the site roles: cold #2E6FB7, calm #0E9B9B, hot #CC7000, scalding #A3123F, with a neutral waypoint #D6C8BA between calm and hot so the blend never passes through green.*
 
 - **Kicker:** Scene 11 of 13 · The delay
 - **Headline:** You turn the tap. Nothing happens.
