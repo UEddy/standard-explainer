@@ -195,8 +195,12 @@ preferences: piece 1 changes the layout every later piece sits in.
    a real drag. Scenes 3 and 13 stay static and script free.
 3. **Piece 3, the end quiz** (same file, plus the amendment at its foot).
    Fifteen questions, five variants per slot, drawn and shuffled per run.
-4. **Piece 4, the narrator** (`narrator-prompt.md`). Depends on the layout piece
-   1 settles. Stop point is the system plus lines for scenes 10, 11 and 12 only.
+4. **Piece 4, the narrator** (`narrator-prompt.md`, plus the amendment at its
+   foot). Depends on the layout piece 1 settles. Stop point is the system plus
+   lines for scenes 10, 11 and 12 only. Settled in advance: one line of height,
+   no character; silent during the quiz apart from a handover line as it opens
+   and one at the very end; scene 11 gets arrival and departure only, because its
+   hint line is already narrating.
 5. **Video capture** (`video-capture-prompt.md` plus
    `video-capture-amendment.md`). Explicitly waits for piece 1 to ship, because
    the shot list assumes vertical scrolling and would need rewriting as scene

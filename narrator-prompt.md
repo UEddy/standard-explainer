@@ -95,3 +95,43 @@ needs three is trying to do the scene's job for it.
 Build the narrator system plus the lines for scenes 10, 11 and 12 only. Those are the three
 tentpoles and they will tell us whether the voice is working. Stop and show me before writing
 lines for the other ten.
+
+---
+
+## Amendment, added 2026-09-09 by the user
+
+Three decisions taken in advance. They are settled, not open for a case to be
+re-argued when the work starts.
+
+### The narrator is silent during the quiz
+
+The quiz is where the reader speaks, so the narrator gets out of the way. Two
+lines only:
+
+- One as the quiz opens, handing over.
+- One at the very end.
+
+Nothing between questions. No reaction to a right answer, no consolation for a
+wrong one. The quiz already gives per-question feedback and an explanation, and a
+second voice on top of that is exactly the "second set of captions" this brief
+forbids.
+
+### Form is a single line of height
+
+Not a portrait, not a character with a face. A character competing with a scene
+that runs to 2.68 screens on a phone is a bad trade, and the space argument is
+already accepted. Build it as one line unless something in the shipped piece 1
+layout genuinely changes the picture, in which case say what changed.
+
+### Scene 11 gets arrival and departure only
+
+Scene 11's hint line already narrates continuously: it prints the water
+temperature, the delay, and "That is the water you asked for 6.0 seconds ago."
+The narrator has almost nothing left to say there that would not be restatement.
+One line on arrival, one on leaving.
+
+The general rule behind that: **resist the pull to put the most commentary on the
+best scene.** The strongest scenes are the ones already doing the teaching, so
+they need the narrator least. The lines that earn their place are the ones
+carrying the argument between scenes, not the ones sitting on top of a scene that
+is working.
