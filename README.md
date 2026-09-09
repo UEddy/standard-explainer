@@ -43,6 +43,8 @@ js/poke.js            shared ambient touch: drag, press, SVG coordinates
 js/scene-loop.js      one shared rAF loop for the page
 js/scene-NN.js        one IIFE per scene
 js/quiz.js            the end check: question bank, draw, shuffle
+js/narrator.js        the narrator: lines, triggers, the bar
+css/narrator.css      the narrator only
 tools/bank-to-content.js   regenerates the bank section of CONTENT.md
 css/quiz.css          the end check only
 ```
@@ -218,6 +220,43 @@ picked fold away, and the standfirst folds on the first answer. All 60
 combinations of 15 questions by 4 picks now fit one screen at 412 x 780 and at
 320 x 780.
 
+## The narrator
+
+One line fixed at the foot of the screen, in `js/narrator.js`. No character and
+no face, because a portrait competing with a scene that runs to two and a half
+screens on a phone costs more space than it earns.
+
+**It does not touch scenes 10, 11 or 12, and it must not need to.** SceneLoop
+keeps one scene object per root element, so registering a second scene on the
+same root would clobber the first. The narrator instead reads the handle those
+scenes already publish on their roots and borrows their clocks, so its timers
+pause off screen like everything else. Reader actions come from state the scenes
+already write to the DOM: scene 10's "gone for good" counter, scene 12's slider
+value. Adding a scene to the narrator should stay a matter of adding lines and a
+watcher, never of editing the scene.
+
+**Only the scenes with lines reserve room for the bar.** `narrator.js` marks
+them `data-narrated="true"` and the CSS keys off that, so scenes 2 and 6 keep the
+one screen fit piece 1 bought them, and the reserved space follows the lines when
+the other ten get written. On any scene without lines the bar is hushed, and
+hushed means `visibility:hidden` rather than just faded, so its live region does
+not leave a stale line for a screen reader to find.
+
+**There are no departure lines and there should not be.** Leaving one scene and
+arriving at the next resolve in the same observer callback, so a parting line is
+always overwritten by the arrival line of wherever the reader went. Skim lines
+survive because they fire on the way into another narrated scene and take
+precedence there. If a parting thought is worth keeping, it belongs to the next
+scene as an arrival line.
+
+**Every line fits one row at 412px**, roughly 45 characters, with two rows as the
+hard ceiling for a narrow screen or large text. Copy lives in `CONTENT.md` with
+its triggers; there is no generator, so change both.
+
+Voice is optional, off by default, and uses the browser's own `speechSynthesis`,
+so it costs no bytes and no key. The toggle is not rendered at all where
+`speechSynthesis` is missing. The choice is memory only.
+
 ## Ground rules for content
 
 - No wallet connection, no Web3 libraries, no `window.ethereum`. The site never
@@ -293,12 +332,10 @@ preferences: piece 1 changes the layout every later piece sits in.
 3. ~~**Piece 3, the end quiz**~~ (same file, plus the amendment at its foot).
    Done. Fifteen questions, five variants per slot, drawn and shuffled per run.
    See "The end check" above.
-4. **Piece 4, the narrator** (`narrator-prompt.md`, plus the amendment at its
-   foot). Depends on the layout piece 1 settles. Stop point is the system plus
-   lines for scenes 10, 11 and 12 only. Settled in advance: one line of height,
-   no character; silent during the quiz apart from a handover line as it opens
-   and one at the very end; scene 11 gets arrival and departure only, because its
-   hint line is already narrating.
+4. ~~**Piece 4, the narrator**~~ (`narrator-prompt.md`, plus the amendment at
+   its foot). System done, with lines for scenes 10, 11 and 12 and the two the
+   quiz gets. The other ten scenes are silent and their lines are the next piece
+   of writing. See "The narrator" above.
 5. **Video capture** (`video-capture-prompt.md` plus
    `video-capture-amendment.md`). Explicitly waits for piece 1 to ship, because
    the shot list assumes vertical scrolling and would need rewriting as scene

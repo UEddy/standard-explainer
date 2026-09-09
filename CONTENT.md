@@ -219,6 +219,85 @@ Independent educational project. Not affiliated with or endorsed by The Standard
 
 ---
 
+## The narrator
+
+A single line fixed at the foot of the screen, in the same place on every scene.
+No character and no face: on a portrait phone a scene that runs to two and a half
+screens needs every pixel, and a portrait costs more space than it earns.
+
+Hand written and safe to edit here, but the lines also live in `js/narrator.js`
+and the two have to be changed together. There is no generator for these.
+
+**The rule every line is written under: it may not say what the scene already
+says.** Scene 11 prints "That is the water you asked for 6.0 seconds ago", so the
+narrator has nothing to add while the reader is in it. The lines that earn their
+place connect one scene to the next, name what the reader just did, or say what
+somebody skipped.
+
+Every line must fit one row at 412px, which is about 45 characters. Two rows is
+the hard ceiling on a narrow screen.
+
+**This pass covers scenes 10, 11 and 12 only, plus the quiz.** The other ten
+scenes are silent on purpose and their lines are not written yet.
+
+### Scene 10, the locked money
+
+| Trigger | Line |
+| --- | --- |
+| Arriving | Scene 9 was money leaving. This has not. |
+| Nine seconds on the scene with nothing touched, once | It accrues whether you decide or not. |
+| First Branch retired | That was a decision, not a withdrawal. |
+| Second and third | Twice. The rate on the left is the cost. |
+| All four retired | Fully paid, permanently out. |
+| Left inside seven seconds having touched nothing | Skipped: getting paid closes the Branch. |
+
+### Scene 11, the delay
+
+Arrival and departure only, and after the change below, arrival only. The hint
+line in this scene narrates continuously already and a second voice over the top
+of it is noise.
+
+| Trigger | Line |
+| --- | --- |
+| Arriving | That was a choice. This one is not. |
+
+### Scene 12, the overhang
+
+| Trigger | Line |
+| --- | --- |
+| Arriving, having retired nothing in scene 10 | What scene 10 cost one Banker, now at scale. |
+| Arriving, having retired a Branch in scene 10 | You closed one to get paid. Now everyone. |
+| Nine seconds with the slider untouched, once | Nothing converts until somebody decides to. |
+| Slider taken past 45 percent, once | Buybacks exist, at under a percent an hour. |
+| Slider swept across 60 percent of its range, once | Both ends are guesses. So is the middle. |
+| Left inside seven seconds having touched nothing | Skipped: the number leaves out real claims. |
+
+### The quiz
+
+Silent throughout, apart from these two. Nothing between questions: no reaction
+to a right answer, no consolation for a wrong one. The handover line fades out
+by itself after six seconds so the questions have the screen.
+
+| Trigger | Line |
+| --- | --- |
+| The quiz coming into view, and again on "try three more" | Your turn. The wrong ones teach more. |
+| The close card appearing | Check the source. This page included. |
+
+### Why there are no departure lines
+
+There were three, and they could not be seen. Leaving one scene and arriving at
+the next resolve in the same observer callback, so a parting line is always
+overwritten by the arrival line of wherever the reader went; and leaving the
+narrated stretch has to hush the bar rather than park a line over scenes that
+reserve no room for it. Skim lines survive because they fire on the way into
+another narrated scene, and win precedence there.
+
+One line was worth keeping and has nowhere to live yet: **"Three numbers decide
+it. None are public."** It belongs to scene 13 as an arrival line, and should be
+written there when the other ten scenes are done.
+
+---
+
 ## The end check
 
 Three questions after scene 13, one per tentpole, always in the order the page

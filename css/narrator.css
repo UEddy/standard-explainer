@@ -1,0 +1,66 @@
+/* ---- the narrator ----
+   One line, fixed at the foot of the screen, in the same place on every scene.
+   No character and no face: on a portrait phone a scene that runs to two and a
+   half screens needs every pixel it has, and a portrait would cost more space
+   than it earns.
+
+   It overlays, so the sections reserve its height. --narrator-h is measured from
+   the bar itself in narrator.js and re-read whenever a line changes, which
+   matters because a long line wraps to two on a narrow screen. Turning the
+   narrator off removes the attribute and the reserved space with it. */
+
+html[data-narrator="on"] .scene[data-narrated="true"]{
+  padding-bottom:calc(var(--narrator-h, 34px) + 6px);
+}
+
+.narrator{
+  position:fixed;left:0;right:0;z-index:14;
+  bottom:calc(env(safe-area-inset-bottom));
+  display:flex;align-items:center;gap:8px;
+  padding:7px calc(10px + env(safe-area-inset-right)) 7px calc(10px + env(safe-area-inset-left));
+  background:var(--ink);color:#F6E9D2;
+  border-top:2px solid var(--hair);
+  opacity:0;transform:translateY(4px);
+  /* visibility, not just opacity: a faded bar is still in the accessibility
+     tree, and its live region would leave a stale line for a screen reader to
+     find on a scene the narrator has nothing to say about. Delayed so it only
+     takes effect once the fade has finished. */
+  visibility:hidden;
+  transition:opacity .28s ease-out, transform .28s ease-out, visibility 0s linear .28s;
+  pointer-events:none;      /* nothing to click while it has nothing to say */
+}
+.narrator[data-on="true"]{
+  opacity:1;transform:none;visibility:visible;pointer-events:auto;
+  transition:opacity .28s ease-out, transform .28s ease-out, visibility 0s;
+}
+
+.narrator-line{
+  flex:1 1 auto;margin:0;min-width:0;
+  font-size:13px;line-height:1.32;
+  /* Every line in the bank is written to fit this on a 412px screen. Two rows is
+     the hard ceiling, for a narrow phone or a large text setting; a line that
+     needs three is doing the scene's job for it. */
+  max-height:2.7em;overflow:hidden;
+}
+
+.narrator-tools{display:flex;gap:6px;flex:0 0 auto}
+.narrator-btn{
+  font:inherit;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;
+  line-height:1.2;text-transform:uppercase;cursor:pointer;
+  padding:3px 6px;border-radius:7px;
+  background:transparent;color:#C9B79A;
+  border:1.5px solid #5A4C3D;
+}
+.narrator-btn:hover{color:#F6E9D2;border-color:#8A7864}
+.narrator-btn[aria-pressed="true"]{background:#F6E9D2;color:var(--ink);border-color:#F6E9D2}
+.narrator-btn:focus-visible{outline:3px solid var(--paper-2);outline-offset:2px}
+
+/* the progress marks step up above the bar rather than sitting behind it */
+html[data-narrator="on"] .progress-marks{
+  bottom:calc(var(--narrator-h, 34px) + 5px + env(safe-area-inset-bottom));
+}
+
+@media (prefers-reduced-motion: reduce){
+  .narrator{transition:none;transform:none}
+  .narrator[data-on="true"]{transition:none;transform:none}
+}
