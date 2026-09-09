@@ -164,6 +164,15 @@ input[type=range]:focus-visible{outline:3px solid var(--locked);outline-offset:4
   border-left:4px solid var(--locked);padding-left:10px;line-height:1.5;
 }
 
+/* ---------- the light scenes ----------
+   Connective tissue between the tentpoles. One stage, one line of vocabulary,
+   no lesson card. The animation is meant to carry it. */
+.term-line{
+  font-family:var(--mono);font-size:12.5px;line-height:1.55;color:var(--ink-soft);
+  border-left:4px solid var(--hair);padding-left:10px;margin:14px 2px 4px;
+}
+.term-line b{color:var(--ink);font-weight:700}
+
 /* ---------- footer ---------- */
 footer{padding:4px 2px 10px;font-size:12px;color:var(--ink-soft);line-height:1.5}
 footer a{color:var(--ink)}

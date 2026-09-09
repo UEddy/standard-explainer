@@ -1,0 +1,50 @@
+/* ---- scene 5 only: one authority ----
+   Each row is a governance control being taken out of the panel. The filled pill
+   becomes an empty dashed socket, which reads as removed rather than merely
+   disabled. */
+
+#scene-5 .gov{display:grid;gap:8px}
+#scene-5 .gov-row{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:9px 12px;border:2.5px solid var(--ink);border-radius:14px;
+  background:var(--paper);
+}
+/* A real line-through rather than a drawn bar, because at narrow widths these
+   labels wrap and a single positioned bar only crosses the first line. The
+   colour is what animates, so removal still reads as an action. */
+#scene-5 .gov-row .lab{
+  font-size:14.5px;font-weight:700;
+  text-decoration:line-through;
+  text-decoration-thickness:2.5px;
+  text-decoration-color:transparent;
+  transition:text-decoration-color .22s ease-out, color .22s ease-out;
+}
+#scene-5 .gov-row .pill{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 12px;border-radius:9px;border:2.5px solid var(--ink);
+  background:var(--ink);color:var(--paper);white-space:nowrap;
+  transition:background .22s ease-out, color .22s ease-out, border-color .22s ease-out;
+}
+#scene-5 .gov-row[data-gone="true"]{background:transparent;border-color:var(--hair);border-style:dashed}
+#scene-5 .gov-row[data-gone="true"] .lab{color:var(--ink-soft)}
+#scene-5 .gov-row[data-gone="true"] .lab{text-decoration-color:var(--ink)}
+#scene-5 .gov-row[data-gone="true"] .pill{
+  background:transparent;color:transparent;border-color:var(--hair);border-style:dashed;
+}
+
+#scene-5 .gov-code{
+  margin-top:12px;padding:12px;border-radius:14px;
+  background:var(--ink);color:#F6E9D2;
+  font-family:var(--mono);font-size:12.5px;line-height:1.55;
+  white-space:pre-line;   /* the four statements are four lines, not a paragraph */
+  opacity:0;transform:translateY(6px);
+  transition:opacity .4s ease-out, transform .4s ease-out;
+}
+#scene-5 .gov-code[data-on="true"]{opacity:1;transform:none}
+#scene-5 .gov-code b{color:#FFF;font-weight:700}
+
+@media (prefers-reduced-motion: reduce){
+  #scene-5 .gov-row .lab,
+  #scene-5 .gov-row .pill,
+  #scene-5 .gov-code{transition:none}
+}

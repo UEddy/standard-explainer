@@ -1,0 +1,17 @@
+/* ---- scene 4 only: one signal ---- */
+
+#scene-4 .flow-word{
+  text-align:center;font-size:19px;font-weight:800;letter-spacing:-.01em;
+  margin:0 0 12px;min-height:1.3em;
+}
+#scene-4 .pushers{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#scene-4 .pushers button{
+  font:inherit;font-size:15px;font-weight:800;cursor:pointer;
+  padding:14px 6px;border:3px solid var(--ink);border-radius:16px;
+  background:var(--card);color:var(--ink);box-shadow:3px 3px 0 var(--ink);
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+}
+#scene-4 .pushers button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+#scene-4 .pushers button:focus-visible{outline:3px solid var(--locked);outline-offset:3px}
+#scene-4 .pushers .in{background:#E7F5ED}
+#scene-4 .pushers .out{background:#FBE9E6}

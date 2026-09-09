@@ -4,8 +4,9 @@ An independent, animated explainer for The Standard Reserve. Static site, vanill
 HTML, CSS and JavaScript. No build step, no dependencies, no network calls beyond
 the page's own files. Not affiliated with or endorsed by the protocol.
 
-**Status:** 3 of 13 scenes built. Scene 10 (the locked money), scene 11 (the delay),
-scene 12 (the overhang).
+**Status:** 8 of 13 scenes built. Scenes 1 to 5 (the problem, one currency, one
+market, one signal, one authority) and scenes 10 to 12 (the locked money, the
+delay, the overhang). Scenes 6 to 9 and 13 remain.
 
 ## Preview locally
 
@@ -73,6 +74,22 @@ Use `sim.after(seconds, fn)` rather than `setTimeout`, so timers cannot fire at 
 scene nobody is looking at. `SceneLoop.reducedMotion` is resolved once and shared.
 See the header of `js/scene-loop.js` for the full contract.
 
+**3. A play-once beat uses `sim.playOnce`.** It arms off the stage rather than the
+scene, waits on the scene clock, and defers rather than firing at a stage that has
+scrolled out of view:
+
+```js
+sim.playOnce(el('stage'), 0.3, function(){ startT = sim.elapsed; });
+```
+
+The animation should be a pure function of time since that fires, so there is no
+state to keep in step and no way to end up half played. Under reduced motion, set
+the start time into the past and render once immediately, so the finished picture
+is there without waiting to be scrolled to.
+
+Add `?debug` to the URL for an on-page readout of the loop, each scene's clock and
+the largest frame gap seen. It is the only way to check any of this on a phone.
+
 Two traps worth knowing, both already hit once:
 
 - Anything drawn outside the scene root, such as a fixed position overlay, must be
@@ -93,9 +110,18 @@ Two traps worth knowing, both already hit once:
 - Portrait phone first, no horizontal scrolling.
 - `prefers-reduced-motion` gets a still fallback that still teaches the idea.
 
+## Scene weights
+
+Scenes 1, 2, 3 and 5 are connective tissue: one stage, one term line, no lesson
+card. Scene 3 is a still diagram with no script at all, which is deliberate. It
+gives the page a breath between two animated scenes and the first toy, and it
+costs nothing to run. Not every scene needs a clock.
+
+Scenes 4, 10, 11 and 12 carry an interaction and earn their extra weight.
+
 ## Still outstanding
 
-- Scenes 1 to 9 and 13.
+- Scenes 6 to 9 and 13.
 - `CONTENT.md`, holding every line of user facing copy in one place.
 - Scene 11 predates `base.css` and still carries a little duplicated shell CSS in
   `css/scene-11.css`. Harmless, worth tidying.

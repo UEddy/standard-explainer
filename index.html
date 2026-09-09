@@ -7,6 +7,8 @@
 <meta name="description" content="A picture book explanation of The Standard Reserve, a protocol with one currency, one market, one signal and no governance. Independent educational project, not affiliated with the protocol.">
 <meta name="color-scheme" content="light">
 <link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/scene-4.css">
+<link rel="stylesheet" href="css/scene-5.css">
 <link rel="stylesheet" href="css/scene-10.css">
 <link rel="stylesheet" href="css/scene-11.css">
 <link rel="stylesheet" href="css/scene-12.css">
@@ -19,8 +21,186 @@
   <h1 class="page-title">A bank with nobody in it.</h1>
   <p class="standfirst">The Standard Reserve is one currency, one market, one signal, and about four thousand lines of code that nobody can vote to change. This is a picture book about how that machine behaves. Every idea here has one thing you can touch.</p>
   <p class="disclaimer"><strong>Independent educational project.</strong> Not affiliated with or endorsed by The Standard Reserve. Not financial advice. This page never connects to a wallet and never asks you for anything. For anything real, see <a href="https://www.standardreserve.xyz" rel="noopener noreferrer" target="_blank">standardreserve.xyz</a>.</p>
-  <p class="progress">Three of the thirteen scenes are built so far: the locked money, the delay, and the overhang. The rest are on the way.</p>
+  <p class="progress">Eight of the thirteen scenes are built so far. Scenes 6 to 9, on becoming a banker, and scene 13, on where this actually stands today, are still to come.</p>
 </header>
+
+<section class="scene" id="scene-1">
+
+<header>
+  <p class="kicker">Scene 1 of 13 &middot; The problem</p>
+  <h2 class="scene-title">The schedule never looks up.</h2>
+  <p class="standfirst">Almost every token picks its emission number in advance and then prints it forever. The market moves underneath, and the schedule does not notice.</p>
+</header>
+
+<section class="card stage-card">
+  <svg id="s1-stage" viewBox="0 0 360 250" role="img"
+       aria-label="A wildly moving market line, with a perfectly flat emission schedule drawn straight through it, unchanged by any of it.">
+    <!-- always drawn, so the card is never an empty box before the beat plays -->
+    <line x1="20" y1="212" x2="340" y2="212" stroke="#E0CFAF" stroke-width="2"/>
+    <path id="s1-market" d="" fill="none" stroke="#8FA5B8" stroke-width="3.5"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <path id="s1-flat" d="" fill="none" stroke="#241E18" stroke-width="7" stroke-linecap="round"/>
+    <text id="s1-tagFlat" x="22" y="28" opacity="0"
+          font-family="ui-monospace,Consolas,monospace" font-size="10" fill="#241E18"
+          letter-spacing="1.3" stroke="#FFF8E9" stroke-width="3.5" stroke-linejoin="round"
+          paint-order="stroke">THE EMISSION SCHEDULE</text>
+    <text id="s1-tagMarket" x="22" y="230" opacity="0" font-family="ui-monospace,Consolas,monospace"
+          font-size="10" fill="#6E6053" letter-spacing="1.3" stroke="#FFF8E9" stroke-width="3.5"
+          stroke-linejoin="round" paint-order="stroke">THE MARKET</text>
+    <text id="s1-punch" x="338" y="230" opacity="0" text-anchor="end"
+          font-family="ui-monospace,Consolas,monospace" font-size="11" fill="#241E18"
+          font-weight="700" letter-spacing="1.4" stroke="#FFF8E9" stroke-width="3.5"
+          stroke-linejoin="round" paint-order="stroke">IT NEVER LOOKS UP.</text>
+  </svg>
+</section>
+
+<p class="term-line">Plain words: how much new supply appears is decided in advance and never revisited. The real term is a <b>fixed emission schedule</b>.</p>
+
+</section>
+
+<section class="scene" id="scene-2">
+
+<header>
+  <p class="kicker">Scene 2 of 13 &middot; One currency</p>
+  <h2 class="scene-title">One billion, and no more.</h2>
+  <p class="standfirst">$STANDARD has a hard cap written into the code. The container fills, and then there is no mechanism anywhere that can make another one.</p>
+</header>
+
+<section class="card stage-card">
+  <svg id="s2-stage" viewBox="0 0 360 264" role="img"
+       aria-label="A container filling with blocks of supply up to a heavy lid, with a counter running up to one billion and stopping there.">
+    <rect x="52" y="44" width="256" height="160" rx="14" fill="#FFFDF6" stroke="#241E18" stroke-width="4"/>
+    <g id="s2-bricks"></g>
+    <g id="s2-lid">
+      <rect x="44" y="30" width="272" height="22" rx="9" fill="#241E18"/>
+      <text x="180" y="45" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+            font-size="10" fill="#FBF2E2" letter-spacing="1.6">HARD CAP</text>
+    </g>
+    <line id="s2-capLine" x1="52" y1="56" x2="308" y2="56" opacity="0"
+          stroke="#241E18" stroke-width="2" stroke-dasharray="6 5"/>
+    <text id="s2-counter" x="180" y="232" text-anchor="middle"
+          font-family="ui-monospace,Consolas,monospace" font-size="23" font-weight="700"
+          fill="#E0552F">0</text>
+    <text id="s2-stop" x="180" y="252" opacity="0" text-anchor="middle"
+          font-family="ui-monospace,Consolas,monospace" font-size="10" fill="#6E6053"
+          letter-spacing="1.3">NO MECHANISM TO MAKE MORE</text>
+  </svg>
+</section>
+
+<p class="term-line"><b>Verified:</b> a hard cap of 1,000,000,000 $STANDARD.</p>
+
+</section>
+
+<section class="scene" id="scene-3">
+
+<header>
+  <p class="kicker">Scene 3 of 13 &middot; One market</p>
+  <h2 class="scene-title">One pool. That is the market.</h2>
+  <p class="standfirst">ETH on one side, $STANDARD on the other, and a single pool between them. Everything the protocol knows about the world, it learns in this one place.</p>
+</header>
+
+<section class="card stage-card">
+  <svg id="s3-stage" viewBox="0 0 360 200" role="img"
+       aria-label="ETH on the left, a single Uniswap v4 pool with a hook in the middle, and $STANDARD on the right, with trade flowing both ways.">
+    <rect x="146" y="14" width="68" height="24" rx="8" fill="#241E18"/>
+    <text x="180" y="31" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+          font-size="10" fill="#FBF2E2" letter-spacing="1.3">HOOK</text>
+    <line x1="180" y1="38" x2="180" y2="52" stroke="#241E18" stroke-width="3"/>
+
+    <rect x="132" y="52" width="96" height="76" rx="20" fill="#FFF8E9" stroke="#241E18" stroke-width="4"/>
+    <text x="180" y="86" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+          font-size="11" font-weight="700" fill="#241E18" letter-spacing=".6">THE POOL</text>
+    <text x="180" y="103" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+          font-size="8.5" fill="#6E6053" letter-spacing="1">UNISWAP V4</text>
+
+    <circle cx="52" cy="90" r="34" fill="#E9EEF3" stroke="#241E18" stroke-width="4"/>
+    <path d="M52 74 L62 90 L52 100 L42 90 Z" fill="#241E18"/>
+    <text x="52" y="150" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+          font-size="11" font-weight="700" fill="#241E18">ETH</text>
+
+    <circle cx="308" cy="90" r="34" fill="#FCEAE1" stroke="#241E18" stroke-width="4"/>
+    <rect x="292" y="83" width="32" height="14" rx="3.5" fill="#E0552F" stroke="#241E18" stroke-width="1.8"/>
+    <text x="308" y="150" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+          font-size="11" font-weight="700" fill="#241E18">$STANDARD</text>
+
+    <path d="M92 90 H124" stroke="#241E18" stroke-width="3"/>
+    <path d="M92 90 l8 -5 v10 z M124 90 l-8 -5 v10 z" fill="#241E18"/>
+    <path d="M236 90 H268" stroke="#241E18" stroke-width="3"/>
+    <path d="M236 90 l8 -5 v10 z M268 90 l-8 -5 v10 z" fill="#241E18"/>
+
+    <text x="180" y="176" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+          font-size="10" fill="#6E6053" letter-spacing="1.3">NO OTHER VENUE. NO OTHER FEED.</text>
+  </svg>
+</section>
+
+<p class="term-line"><b>Verified:</b> one ETH to $STANDARD pool on Uniswap v4, with a hook.</p>
+
+</section>
+
+<section class="scene" id="scene-4">
+
+<header>
+  <p class="kicker">Scene 4 of 13 &middot; One signal</p>
+  <h2 class="scene-title">Money in, money out.</h2>
+  <p class="standfirst">Push ETH into the pool, or take some out. This needle is the protocol's entire sense of the world. There is nothing else on the instrument because there is nothing else it reads.</p>
+</header>
+
+<section class="card stage-card">
+  <svg id="s4-stage" viewBox="0 0 360 200" role="img"
+       aria-label="A single gauge with one needle, resting at level, swinging left when ETH leaves the pool and right when ETH arrives.">
+    <text x="180" y="46" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+          font-size="9.5" fill="#6E6053" letter-spacing="1.3">LEVEL</text>
+    <path id="s4-arcOut" d="" fill="none" stroke="#CB3220" stroke-width="12" stroke-linecap="round" opacity=".18"/>
+    <path id="s4-arcIn" d="" fill="none" stroke="#2E9E67" stroke-width="12" stroke-linecap="round" opacity=".18"/>
+    <g id="s4-ticks"></g>
+    <text x="26" y="156" font-family="ui-monospace,Consolas,monospace" font-size="10"
+          fill="#CB3220" letter-spacing="1.2">MONEY OUT</text>
+    <text x="334" y="156" text-anchor="end" font-family="ui-monospace,Consolas,monospace"
+          font-size="10" fill="#2E9E67" letter-spacing="1.2">MONEY IN</text>
+    <circle id="s4-pulse" cx="180" cy="176" r="7" fill="#241E18" opacity=".22"/>
+    <line id="s4-needle" x1="180" y1="176" x2="180" y2="80" stroke="#241E18" stroke-width="7" stroke-linecap="round"/>
+    <circle id="s4-hub" cx="180" cy="176" r="12" fill="#241E18"/>
+  </svg>
+</section>
+
+<p class="flow-word" id="s4-word">level</p>
+
+<div class="pushers">
+  <button type="button" class="out" id="s4-out">Take ETH out</button>
+  <button type="button" class="in" id="s4-in">Push ETH in</button>
+</div>
+
+<p class="term-line">Plain words: money coming in versus money going out. The real term is <b>net flow</b>. No price target, no oracle, no committee.</p>
+
+</section>
+
+<section class="scene" id="scene-5">
+
+<header>
+  <p class="kicker">Scene 5 of 13 &middot; One authority</p>
+  <h2 class="scene-title">There is no vote.</h2>
+  <p class="standfirst">No DAO, no governance votes, no human discretion. Watch the panel empty itself, and see what is left holding the wheel.</p>
+</header>
+
+<section class="card" id="s5-stage">
+  <h3>Governance panel</h3>
+  <div class="gov">
+    <div class="gov-row" data-gone="false"><span class="lab">Suggest a rule change</span><span class="pill">Propose</span></div>
+    <div class="gov-row" data-gone="false"><span class="lab">Decide it by token vote</span><span class="pill">Vote</span></div>
+    <div class="gov-row" data-gone="false"><span class="lab">Halt the system</span><span class="pill">Pause</span></div>
+    <div class="gov-row" data-gone="false"><span class="lab">Replace the contract</span><span class="pill">Upgrade</span></div>
+    <div class="gov-row" data-gone="false"><span class="lab">Change the issuance</span><span class="pill">Set rate</span></div>
+    <div class="gov-row" data-gone="false"><span class="lab">Spend the treasury</span><span class="pill">Withdraw</span></div>
+  </div>
+  <div class="gov-code" id="s5-code" data-on="false">WHAT IS LEFT
+<b>Roughly 4,000 lines of immutable code.</b>
+No DAO. No votes. No discretion.
+Whatever the code says, happens.</div>
+</section>
+
+<p class="term-line"><b>Verified:</b> roughly 4,000 lines of immutable code, no DAO and no governance votes.</p>
+
+</section>
 
 <section class="scene" id="scene-10">
 
@@ -357,6 +537,11 @@
 </div>
 
 <script src="js/scene-loop.js"></script>
+<script src="js/scene-1.js"></script>
+<script src="js/scene-2.js"></script>
+<!-- scene 3 is a still diagram: no script, no clock, nothing to run -->
+<script src="js/scene-4.js"></script>
+<script src="js/scene-5.js"></script>
 <script src="js/scene-10.js"></script>
 <script src="js/scene-11.js"></script>
 <script src="js/scene-12.js"></script>

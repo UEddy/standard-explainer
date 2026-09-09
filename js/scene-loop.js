@@ -178,6 +178,21 @@
     for (var i = 0; i < scenes.length; i++) sync(scenes[i]);
   }
 
+  /* One observer for every scene's stage, shared the same way the root
+     observers are. Callbacks hang off the element. */
+  var stageOb = null;
+  function stageWatcher() {
+    if (!stageOb) {
+      stageOb = new global.IntersectionObserver(function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+          var cb = entries[i].target.__sceneLoopStage;
+          if (cb) cb(entries[i].intersectionRatio, entries[i].isIntersecting);
+        }
+      }, { threshold: [0, 0.4, 0.75] });
+    }
+    return stageOb;
+  }
+
   function observerFor(margin) {
     if (!canObserve) return null;
     if (!observers[margin]) {
@@ -233,6 +248,41 @@
         if (s.timers[i].id === id) { s.timers.splice(i, 1); return; }
       }
     };
+    /* A beat that plays once, owed to the reader rather than to the clock.
+       Armed by the stage coming properly into view, never by the scene
+       registering: a scene root is much taller than its stage, so arming on
+       activation fires the beat while the reader is still on the headline and
+       they arrive to a scene that has already given itself away. Then it waits
+       on the scene clock, so scrolling past spends only the time actually spent
+       looking, and if it comes due while the stage is out of view it waits
+       rather than firing blind. */
+    s.playOnce = function (stageEl, delay, fn) {
+      var armed = false, done = false, due = false, visible = false;
+
+      function fire() { if (!done) { done = true; fn(s); } }
+
+      function look() {
+        if (done) return;
+        if (due) { fire(); return; }
+        if (armed) return;
+        armed = true;
+        s.after(delay, function () {
+          if (done) return;
+          if (visible) fire(); else due = true;
+        });
+      }
+
+      if (!stageEl || !global.IntersectionObserver) {
+        s.after(delay, fire);      /* cannot tell what is on screen */
+        return;
+      }
+      stageEl.__sceneLoopStage = function (ratio, intersecting) {
+        visible = intersecting && ratio >= 0.4;
+        if (visible) look();
+      };
+      stageWatcher().observe(stageEl);
+    };
+
     s.pause = function () { s.held = true; sync(s); };
     s.resume = function () { s.held = false; sync(s); };
     s.destroy = function () {
