@@ -117,8 +117,10 @@ html{scroll-snap-type:y proximity}
 [data-entrances="on"] .scene > :nth-child(n+6){transition-delay:.25s}
 
 /* ---------- progress ----------
-   Thirteen marks, one per scene, so the reader knows how much is left. An
-   indicator, not a control: no tap targets this small. */
+   One mark per .scene, so the reader knows how much is left. Fourteen of them
+   since the end check was added, which is correct: there really is one more
+   thing after scene 13. An indicator, not a control: no tap targets this
+   small. */
 .progress-marks{
   position:fixed;left:0;right:0;z-index:12;
   bottom:calc(7px + env(safe-area-inset-bottom));

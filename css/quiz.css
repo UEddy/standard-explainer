@@ -1,0 +1,132 @@
+/* ---- the end check ----
+   Uses the card shell and the palette from base.css, so it reads as the last
+   part of the page rather than a form bolted onto it.
+
+   Two colour systems run here at once and they must not be confused for each
+   other. The slot accent is the site's meaning colour: violet is a claim that is
+   not counted in supply, coral is supply in circulation, which is exactly what
+   they mean in scenes 10 and 12. The answer states are a separate axis, drawn as
+   soft fills with a heavier border rather than as solid blocks, so a right
+   answer never reads as the expansion regime from scene 9. */
+
+#scene-quiz .quiz-card,
+#scene-quiz .qz-end{background:var(--card-2)}
+
+#scene-quiz .quiz-card > h3{
+  display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+}
+#scene-quiz .qz-tag{
+  font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;
+  font-weight:700;padding:3px 8px;border-radius:8px;white-space:nowrap;
+}
+/* the locked money: claims that have accrued and are not counted */
+#scene-quiz [data-slot="a"] .qz-tag{background:var(--locked-soft);color:var(--locked)}
+/* the delay: scene 11 has its own temperature language, so borrow nothing */
+#scene-quiz [data-slot="b"] .qz-tag{background:var(--paper-2);color:var(--ink)}
+/* the overhang: both halves of scene 12, violet claims against coral supply */
+#scene-quiz [data-slot="c"] .qz-tag{
+  background:var(--locked-soft);color:var(--locked);
+  box-shadow:inset 0 -3px 0 var(--circ);
+}
+
+#scene-quiz .qz-q{
+  font-size:17.5px;font-weight:800;line-height:1.3;letter-spacing:-.01em;
+  margin:0 0 12px;
+}
+#scene-quiz .qz-q:focus-visible{outline:3px solid var(--locked);outline-offset:4px;border-radius:8px}
+
+/* Spacing is a margin per option rather than a grid gap, because a gap is
+   charged for a folded-away option too and the fold needs to reclaim all of
+   its row, not most of it. */
+#scene-quiz .qz-options{display:grid;gap:0}
+#scene-quiz .qz-opt{margin:0 0 9px}
+#scene-quiz .qz-opt:last-child{margin-bottom:0}
+#scene-quiz .qz-opt{
+  font:inherit;font-size:15px;line-height:1.35;text-align:left;
+  min-height:46px;padding:10px 13px;cursor:pointer;
+  border:3px solid var(--ink);border-radius:16px;
+  background:var(--card);color:var(--ink);
+  box-shadow:3px 3px 0 var(--ink);
+  max-height:240px;    /* a real resting value, so the fold below can animate to 0 */
+  transition:background .18s ease-out, border-color .18s ease-out,
+             box-shadow .12s ease-out, opacity .2s ease-out,
+             max-height .28s ease-out, padding .28s ease-out,
+             border-width .28s ease-out, margin .28s ease-out;
+}
+#scene-quiz .qz-opt:focus-visible{outline:3px solid var(--locked);outline-offset:3px}
+#scene-quiz .qz-opt:not(:disabled):active{box-shadow:1px 1px 0 var(--ink);transform:translate(2px,2px)}
+#scene-quiz .qz-opt:disabled{cursor:default}
+
+#scene-quiz .qz-opt[data-state="right"]{
+  background:#E4F4EA;border-color:var(--expand);
+  box-shadow:3px 3px 0 var(--expand);font-weight:700;
+}
+#scene-quiz .qz-opt[data-state="wrong"]{
+  background:#FBE4E0;border-color:var(--contract);
+  box-shadow:3px 3px 0 var(--contract);
+}
+/* The options nobody picked fold away, leaving the pick beside the answer.
+   That is the comparison worth looking at, and it is also what buys the room
+   for the explanation and the Next button to sit above the fold on a phone. */
+#scene-quiz .qz-opt[data-state="gone"]{
+  max-height:0;min-height:0;padding-top:0;padding-bottom:0;
+  border-width:0;box-shadow:none;opacity:0;overflow:hidden;margin-bottom:0;
+}
+
+#scene-quiz .qz-why{
+  margin:12px 0 0;padding:10px 12px;border-radius:14px;
+  border-left:5px solid var(--expand);background:var(--card);
+  font-size:14.5px;line-height:1.5;
+}
+#scene-quiz .qz-why[data-right="false"]{border-left-color:var(--contract)}
+#scene-quiz .qz-why p{margin:0}
+#scene-quiz .qz-replay{margin:9px 0 0 !important}
+#scene-quiz .qz-replay a{
+  font-family:var(--mono);font-size:12px;letter-spacing:.05em;
+  color:var(--ink);text-underline-offset:3px;
+}
+
+#scene-quiz .qz-next{
+  font:inherit;font-size:15px;font-weight:800;cursor:pointer;
+  margin:12px 0 0;padding:10px 18px;
+  border:3px solid var(--ink);border-radius:16px;
+  background:var(--ink);color:var(--paper);box-shadow:3px 3px 0 var(--hair);
+}
+#scene-quiz .qz-next:focus-visible{outline:3px solid var(--locked);outline-offset:3px}
+#scene-quiz .qz-next:active{box-shadow:1px 1px 0 var(--hair);transform:translate(2px,2px)}
+
+#scene-quiz .qz-close{margin:0 0 12px;font-size:15.5px;line-height:1.5}
+#scene-quiz .official{
+  font-family:var(--mono);font-size:15px;font-weight:700;color:var(--ink);
+}
+
+/* these are toggled with the hidden attribute, and grid and flex would win */
+#scene-quiz [hidden]{display:none !important}
+
+@media (prefers-reduced-motion: reduce){
+  #scene-quiz .qz-opt{transition:none}
+  #scene-quiz .qz-opt:not(:disabled):active,
+  #scene-quiz .qz-next:active{transform:none}
+}
+
+/* The intro folds once the first answer is in. See answer() in quiz.js: it
+   reclaims height upwards, so the explanation moves toward the reader. */
+#scene-quiz .standfirst{
+  overflow:hidden;max-height:200px;
+  transition:max-height .3s ease-out, opacity .25s ease-out, margin .3s ease-out;
+}
+#scene-quiz[data-started="true"] .standfirst{max-height:0;opacity:0;margin-bottom:0}
+
+/* Narrow phones wrap everything to more lines, which is exactly where the
+   explanation and the way forward start falling off the bottom. */
+@media (max-width: 360px){
+  #scene-quiz .qz-q{font-size:16.5px;margin-bottom:10px}
+  #scene-quiz .qz-opt{font-size:14px;line-height:1.32;padding:9px 11px;min-height:42px;margin-bottom:8px}
+  #scene-quiz .qz-why{font-size:13.5px;line-height:1.45;padding:9px 11px;margin-top:10px}
+  #scene-quiz .qz-next{font-size:14.5px;padding:9px 15px;margin-top:10px}
+  #scene-quiz .qz-tag{font-size:9px;padding:2px 6px}
+}
+
+@media (prefers-reduced-motion: reduce){
+  #scene-quiz .standfirst{transition:none}
+}

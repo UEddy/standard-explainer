@@ -42,6 +42,8 @@ js/presentation.js    scroll-snap navigation, entrances, progress marks
 js/poke.js            shared ambient touch: drag, press, SVG coordinates
 js/scene-loop.js      one shared rAF loop for the page
 js/scene-NN.js        one IIFE per scene
+js/quiz.js            the end check: question bank, draw, shuffle
+css/quiz.css          the end check only
 ```
 
 ## Two conventions every new scene must follow
@@ -168,6 +170,45 @@ belongs. The simulation then believes it is home while the screen keeps the last
 displaced frame forever. Scene 2 hit this and now compares against the last value
 written, not against zero.
 
+## The end check
+
+Three questions after scene 13, in `js/quiz.js`. One per tentpole, always in the
+order the page taught them, five variants per slot, one drawn per slot per run
+with the options shuffled inside each question. 125 sets before shuffling.
+Nothing is stored anywhere, so a reload draws a fresh set, and "Try three more"
+redraws in place.
+
+**The bank is duplicated into `CONTENT.md` and the markdown there is generated
+from this file.** Edit both together. Fifteen explanations is a lot of surface
+for an unverified claim to creep in on, so every one of them may assert only
+what is on the verified list in `CONTENT.md`, and anything from a toy is named
+illustrative.
+
+**A wrong answer is not a failure state.** No score, no percentage, no retry
+gate, and the end card shows no total. The correct option is always revealed,
+including when the reader got it wrong, because being told only that you were
+wrong teaches nothing. A wrong answer additionally offers the scene that taught
+it; a right answer does not, since offering it anyway reads as a consolation
+prize.
+
+**Two colour systems run in the same card and must not merge.** The slot tag
+carries the site's meaning colours: violet for claims not counted in supply,
+violet under a coral rule for the overhang, and plain ink for the delay, since
+scene 11 has its own temperature language and nothing should borrow it. The
+answer states are a separate axis, drawn as soft fills so a right answer never
+reads as scene 9's expansion regime.
+
+**Height is the constraint that shaped the interaction.** The explanation is the
+payoff and it has to be on screen with the way forward, on a phone, without a
+scroll. Two things that do not work: keeping all four options visible, which put
+the explanation below the fold in 13 of 15 questions and the Next button below
+it in all 15; and calling `scrollIntoView` to fix that, which moves nothing at
+all, because the section sits on its own snap point and proximity snapping pulls
+the page straight back. What works is the card being shorter: the options nobody
+picked fold away, and the standfirst folds on the first answer. All 60
+combinations of 15 questions by 4 picks now fit one screen at 412 x 780 and at
+320 x 780.
+
 ## Ground rules for content
 
 - No wallet connection, no Web3 libraries, no `window.ethereum`. The site never
@@ -240,8 +281,9 @@ preferences: piece 1 changes the layout every later piece sits in.
    and its lid refuses, scene 5's removed controls depress and do nothing, and
    scene 6 is a real drag with a saturating tether. Scenes 3 and 13 remain
    static and script free. See "Ambient touch" above.
-3. **Piece 3, the end quiz** (same file, plus the amendment at its foot).
-   Fifteen questions, five variants per slot, drawn and shuffled per run.
+3. ~~**Piece 3, the end quiz**~~ (same file, plus the amendment at its foot).
+   Done. Fifteen questions, five variants per slot, drawn and shuffled per run.
+   See "The end check" above.
 4. **Piece 4, the narrator** (`narrator-prompt.md`, plus the amendment at its
    foot). Depends on the layout piece 1 settles. Stop point is the system plus
    lines for scenes 10, 11 and 12 only. Settled in advance: one line of height,

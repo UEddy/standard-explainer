@@ -219,6 +219,176 @@ Independent educational project. Not affiliated with or endorsed by The Standard
 
 ---
 
+## The end check
+
+Three questions after scene 13, one per tentpole, always in the order the page
+taught them: the locked money, then the delay, then the overhang. Five variants
+per slot, one drawn per slot per run, and the options shuffled inside each
+question. That is 125 possible sets before shuffling. Nothing is stored, so a
+reload draws a fresh set and the close says so.
+
+Every explanation below asserts only things on the verified list further down
+this file. Where a number belongs to a toy rather than to the protocol it is
+named as illustrative.
+
+Edit here and in `js/quiz.js` together. The markdown below is generated from
+that file, so if the two disagree the file is what readers get.
+
+- **Kicker:** A quick check · Three questions
+- **Headline:** Did any of it land?
+- **Standfirst:** One question for each of the three ideas worth keeping. Getting one wrong is the useful outcome: it opens the explanation, and the scene that taught it.
+- **On a wrong answer:** Replay scene 10, the locked money / Replay scene 11, the delay / Replay scene 12, the overhang
+- **Buttons:** Next question · Finish · Try three more
+- **Close heading:** That is the argument
+- **Close:** Money you can only reach by destroying the thing that earns it. A system that answers late, so corrections pile up and arrive together. And a supply number with claims behind it that are already owed. Everything else on this page is detail.
+- **Close, second line:** Nothing here was stored, so a reload draws three different questions out of fifteen.
+- **Close link:** standardreserve.xyz
+
+### Slot 1: the locked money (scene 10)
+
+**A1.** A Branch of yours has earned a balance. How do you get it into your wallet?
+
+- **(correct)** Retire the Branch. It pays out, and it can never be reopened.
+- Withdraw the balance and leave the Branch open to keep earning.
+- Wait for the lock-up to expire, then claim it.
+- Sell the Branch to somebody who wants the position.
+
+*Why:* Earned $STANDARD accrues inside the system and is claimed only by retiring a Branch, and a retired Branch cannot be reopened. There is no partial withdrawal and nothing that releases it on a timer.
+
+**A2.** Your Charter has four Branches earning. You retire one of them. What happens to the other three?
+
+- Nothing. Retiring a Branch retires the whole Charter.
+- **(correct)** They keep earning. Only the retired Branch is gone.
+- They pay out too, because the Charter has been claimed.
+- They stop earning until you open a replacement Branch.
+
+*Why:* New issuance is divided across all open Branches, so retiring one destroys that Branch and leaves the rest earning. A Charter opens with one Branch and can grow to ten.
+
+**A3.** Bankers are earning steadily, yet circulating supply stays quiet for a long time. Why?
+
+- There is a cap on how much can be claimed per day.
+- The protocol pauses claims while the price is falling.
+- **(correct)** Claiming costs you the Branch that earns, so it gets put off.
+- Earnings are released gradually on a vesting schedule.
+
+*Why:* The only way to claim is to retire the Branch permanently, so a balance can sit unclaimed indefinitely. It is a decision rather than a schedule: nothing releases it over time.
+
+**A4.** An accrued balance that nobody has claimed yet. Is it real?
+
+- No. It only exists once the Branch is retired and the tokens are minted.
+- Yes, and it is already included in the circulating supply figure.
+- Only up to whatever is left of the issuance budget.
+- **(correct)** Yes. It is a real claim, it is simply not counted in supply yet.
+
+*Why:* Those balances are real claims on the same supply, and they are not counted in totalSupply until they convert, which happens when a Banker retires a Branch. Nothing new is created at that moment.
+
+**A5.** What does taking your earnings out cost you?
+
+- **(correct)** The Branch itself. It is destroyed and cannot be reopened.
+- A percentage of the amount you claim.
+- A cooldown, after which that Branch earns again.
+- Your Charter, which is surrendered with the claim.
+
+*Why:* Retiring the Branch is what releases the balance, and a retired Branch cannot be reopened. That is the part that cannot be undone.
+
+### Slot 2: the delay (scene 11)
+
+**B1.** Issuance is not responding to what just happened. Why not?
+
+- It is waiting for enough votes to confirm the change.
+- **(correct)** It reacts on a lag, a couple of epochs after the flow that caused it.
+- It only responds once the price has moved far enough.
+- It ignores flows below a minimum size.
+
+*Why:* Issuance reacts on a lag, on the order of a couple of epochs after the flow that caused it. There is no DAO and no governance vote anywhere in that path.
+
+**B2.** You keep adjusting because nothing seems to be happening. What are you actually building up?
+
+- Nothing. Each new adjustment replaces the last one.
+- A penalty, because rapid changes get throttled.
+- **(correct)** A queue of corrections that will all land together, and land too hard.
+- A stronger response, because the system counts how insistent you are.
+
+*Why:* Every correction made while waiting is one that was not needed, and they arrive together. The response comes a couple of epochs late, so everything done in between is still on its way.
+
+**B3.** Who has to behave badly for the overshoot to happen?
+
+- Large holders timing the epoch boundary.
+- Bankers voting themselves higher issuance.
+- Anyone willing to pay enough to move the flow.
+- **(correct)** Nobody. The delay produces it on its own.
+
+*Why:* The overshoot comes from the lag itself, not from anybody deciding it should happen. There is no DAO and no governance vote, so there is nothing to vote for, and the only input to policy is net flow of ETH into or out of the pool.
+
+**B4.** What does the protocol actually read when it sets issuance?
+
+- **(correct)** Net flow of ETH into or out of the pool.
+- The price of $STANDARD against ETH.
+- A price oracle, averaged across the epoch.
+- The total value held across all open Branches.
+
+*Why:* Net flow of ETH into or out of the one Uniswap v4 pool is the only input to policy. No price target, no oracle and no committee, and it reacts on a lag of roughly a couple of epochs.
+
+**B5.** The delay between a flow and its effect gets longer. What happens to the overshoot?
+
+- It shrinks. The system has longer to average things out.
+- **(correct)** It gets worse, because more uncorrected corrections are in flight.
+- It is unchanged. A longer delay only moves when it arrives.
+- It disappears. The flow will have reversed before it lands.
+
+*Why:* A longer lag means more adjustments get made before any of them land, and they still land together. The lag in the protocol itself is on the order of a couple of epochs; the pipe lengths in the toy above are illustrative.
+
+### Slot 3: the overhang (scene 12)
+
+**C1.** A lot of accrued claims convert at once. Where do those tokens come from?
+
+- They are minted fresh, so supply ends up above what was planned.
+- They come out of the genesis position locked in the pool.
+- **(correct)** They already existed as claims. Nothing new is minted.
+- The protocol buys them back first, then releases them.
+
+*Why:* Those balances are real claims, just not counted in totalSupply until a Banker retires a Branch. Converting moves them into the counted number, and the hard cap of 1,000,000,000 is untouched.
+
+**C2.** Circulating supply looks low and steady. What does that tell you on its own?
+
+- That issuance has been conservative so far.
+- That holders are confident and are not selling.
+- That the buyback has been quietly absorbing supply.
+- **(correct)** Very little. Large claims may exist that it does not count yet.
+
+*Why:* Earned balances accrue inside the system and are not counted in totalSupply until they convert. The number can be low precisely because a great deal is waiting outside it.
+
+**C3.** Could the buybacks absorb a large conversion arriving all at once?
+
+- **(correct)** Not quickly. They are throttled to a sliver of the pool per hour.
+- Yes. That is exactly what the vault is for.
+- Yes, if the vault is large enough on the day.
+- No, because the protocol does not buy back at all.
+
+*Why:* Buybacks are throttled to at most the smaller of 10 percent of the vault balance and 0.2 percent of pool reserves per hour, roughly no more than 5 percent of pool depth per day at launch. Support at that rate cannot meet a rush in an afternoon.
+
+**C4.** Which three unknowns decide whether the overhang matters at all?
+
+- The hard cap, the burn rate and the epoch length.
+- **(correct)** How much has accrued, how few hands hold it, how deep the pool is.
+- The number of Charters issued and the price they went for.
+- The team share, the revenue split and the resolution fee.
+
+*Why:* Those three are the unknowns the page ends on, and none of them is public: how much has accrued, how concentrated it is, and how deep the pool will be on the day it converts.
+
+**C5.** Does the hard cap protect you from the overhang?
+
+- Yes. Nothing can push supply past 1,000,000,000.
+- No. Converting the claims pushes total supply above the cap.
+- **(correct)** No. The claims are already inside the cap. They are just not counted yet.
+- Yes. Burning has lowered the maximum below what has accrued.
+
+*Why:* The cap of 1,000,000,000 holds, and burns only ever lower it, so conversion never breaches it. The claims sit inside that cap already. What changes is how much of it counts as circulating.
+
+Authored position of the correct answer across the bank: 4 / 4 / 4 / 3 for positions 1, 2, 3 and 4. Options are shuffled again at run time, so this is the floor rather than what any reader sees.
+
+---
+
 ## Which numbers are real
 
 Everything below is stated in public material and is safe to keep. Anything not on
