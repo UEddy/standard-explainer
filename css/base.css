@@ -66,12 +66,79 @@ h1,.scene-title{
   font-size:12.5px;line-height:1.5;color:var(--ink-soft);margin:0 0 6px;
 }
 
-/* ---------- scenes on one page ----------
-   Each scene is its own SceneLoop root, so it needs to be a real element with a
-   boundary the reader can feel. The rule is a page turn, not decoration. */
-.scene{display:block}
-.scene + .scene{
-  margin-top:34px;padding-top:6px;border-top:2px dashed var(--hair);
+/* ---------- the presentation layer ----------
+   Scenes arrive one at a time and settle. Vertical snapping, never horizontal:
+   the horizontal axis belongs to the instruments, scene 11's dial and scene 12's
+   slider, and Android Chrome's back swipe owns the left edge.
+
+   Snapping is PROXIMITY, not mandatory. Four scenes are taller than a phone
+   screen, the tallest at about two and a half, so a reader must be able to stop
+   anywhere inside one and stay there. Proximity assists on approach and lets go
+   the rest of the time. dvh, so the Android URL bar collapsing does not resize a
+   scene mid scroll. */
+html{scroll-snap-type:y proximity}
+@media (prefers-reduced-motion: no-preference){ html{scroll-behavior:smooth} }
+
+.masthead,.scene{
+  min-height:100vh;
+  min-height:100dvh;
+  scroll-snap-align:start;
+  display:grid;
+  /* safe centring: a scene taller than the screen falls back to top aligned
+     rather than overflowing off both ends where the top becomes unreachable */
+  align-content:safe center;
+  /* No block padding, deliberately. min-height is border box, so every pixel of
+     padding here comes straight out of the content box, and scenes 2 and 6 carry
+     about 740px against a 780px screen. A 34px gutter was enough to push both of
+     them over. The breathing room they need already exists: every scene opens
+     with a header carrying 26px of its own top padding, and closes on a card
+     with 18px beneath it. Clearance from the progress marks is not this rule's
+     job either, since those are position:fixed and float over whatever is at the
+     bottom of the screen regardless. */
+  padding-block:0;
+}
+.scene{position:relative}
+
+/* Lateral entrance. Hidden only while scripting is on and the section has not
+   arrived yet, so a scripting failure leaves everything visible. One way: coming
+   back to a scene does not replay it. */
+[data-entrances="on"] .masthead:not([data-entered="true"]) > *,
+[data-entrances="on"] .scene:not([data-entered="true"]) > *{
+  opacity:0;transform:translateX(26px);
+}
+[data-entrances="on"] .masthead > *,
+[data-entrances="on"] .scene > *{
+  transition:opacity .42s ease-out, transform .52s cubic-bezier(.22,.61,.36,1);
+}
+[data-entrances="on"] .scene > :nth-child(2){transition-delay:.06s}
+[data-entrances="on"] .scene > :nth-child(3){transition-delay:.12s}
+[data-entrances="on"] .scene > :nth-child(4){transition-delay:.17s}
+[data-entrances="on"] .scene > :nth-child(5){transition-delay:.21s}
+[data-entrances="on"] .scene > :nth-child(n+6){transition-delay:.25s}
+
+/* ---------- progress ----------
+   Thirteen marks, one per scene, so the reader knows how much is left. An
+   indicator, not a control: no tap targets this small. */
+.progress-marks{
+  position:fixed;left:0;right:0;z-index:12;
+  bottom:calc(7px + env(safe-area-inset-bottom));
+  display:flex;justify-content:center;gap:4px;
+  pointer-events:none;
+}
+.progress-marks span{
+  width:10px;height:3px;border-radius:2px;background:var(--hair);
+  transition:background .25s ease-out, height .25s ease-out;
+}
+.progress-marks span[data-past="true"]{background:var(--ink-soft)}
+.progress-marks span[data-on="true"]{background:var(--ink);height:6px}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  [data-entrances="on"] .masthead:not([data-entered="true"]) > *,
+  [data-entrances="on"] .scene:not([data-entered="true"]) > *{opacity:1;transform:none}
+  [data-entrances="on"] .masthead > *,
+  [data-entrances="on"] .scene > *{transition:none}
+  .progress-marks span{transition:none}
 }
 .standfirst{margin:0 0 14px;font-size:16.5px;color:#4A4038}
 .disclaimer{

@@ -38,6 +38,7 @@ not land, hard reload before believing it.
 index.html            the whole page: masthead, one <section> per scene, footer
 css/base.css          palette, type, cards, controls. Shared by every scene
 css/scene-NN.css      only what that one scene needs
+js/presentation.js    scroll-snap navigation, entrances, progress marks
 js/scene-loop.js      one shared rAF loop for the page
 js/scene-NN.js        one IIFE per scene
 ```
@@ -101,6 +102,40 @@ Two traps worth knowing, both already hit once:
   activation fires the beat while the reader is still on the headline. Scene 12
   shows the pattern.
 
+## The presentation layer
+
+`js/presentation.js` and the presentation block in `base.css` turn the page into
+a sequence. Three things a new scene inherits automatically, and one it has to
+respect.
+
+**Inherited.** Every `.masthead` and `.scene` is `min-height:100dvh`, a grid with
+`align-content:safe center`, and a proximity snap point at its top. Its direct
+children get the lateral entrance the first time the section is seen, staggered
+by `nth-child`. A mark is added to the progress bar for every `.scene`, so a new
+scene needs no registration.
+
+**Snapping is `proximity`, never `mandatory`.** Eight of the fourteen sections
+are taller than a phone screen, scene 12 at about 2.7 of them. Mandatory snapping
+would make the bottom of those unreachable. Proximity assists on approach and
+lets go otherwise, which is also how a tall scene exempts itself: it simply never
+gets pulled.
+
+**`padding-block` on `.masthead, .scene` is 0 and must stay there.** `min-height`
+is border box, so padding comes straight out of the content box. Scenes 2 and 6
+carry about 740px against a 780px screen and a 34px gutter was enough to push
+both of them below the fold. Vertical breathing room comes from the scene's own
+`<header>` and from the trailing margin on its last card.
+
+**The one thing a new scene must respect: do not swallow navigation keys.**
+`presentation.js` moves between scenes on the arrows and Page Up / Page Down, and
+it steps out of the way of any control that genuinely uses the key pressed. A
+range input and scene 11's `role="slider"` dial claim the arrows, paging and
+Home / End. A `role="radio"` claims the arrows only, and gets roving within its
+`role="radiogroup"` in exchange. Everything else, including plain buttons like
+scene 7's Branch slots and scene 9's lever, lets paging through. If a new control
+needs a key, declare it in `consumesKey`; do not call `preventDefault` in the
+scene.
+
 ## Ground rules for content
 
 - No wallet connection, no Web3 libraries, no `window.ethereum`. The site never
@@ -126,8 +161,17 @@ script at all.
 ## Testing
 
 Development and checking is done in desktop Chrome, plus an iframe harness at
-390px and 320px for portrait layout. Add `?debug` to the URL for the on-page
-readout of the shared loop, each scene's clock and the largest frame gap seen.
+412px and 320px for portrait layout (`_phonetest.html`, gitignored so it never
+deploys). Add `?debug` to the URL for the on-page readout of the shared loop,
+each scene's clock and the largest frame gap seen.
+
+**Anything animated has to be checked with the Chrome window actually visible.**
+If the window is minimised or fully occluded, Chrome reports `document.hidden`
+as true, stops `requestAnimationFrame` entirely and throttles IntersectionObserver
+delivery. SceneLoop then correctly parks every scene, and a probe run against
+that state reads as "no animation fired" when nothing is wrong. Faking
+`document.hidden` does not help, because rAF still will not run. Check
+`document.hidden` first and raise the window before trusting a negative result.
 
 **The target phone is a Samsung S24, Android Chrome.** There is no iOS device in
 play and no device testing is being done, so anything that can only be settled on
@@ -142,10 +186,11 @@ Chrome's back-swipe from the left edge.
 Each brief stops for review before the next. The dependencies are real, not
 preferences: piece 1 changes the layout every later piece sits in.
 
-1. **Piece 1, presentation feel** (`presentation-quiz-prompt.md`). Vertical
-   scroll-snap recommended over pinned horizontal, on the evidence that only 5 of
-   13 scenes fit one screen at 412 x 780 and the three tentpoles run to roughly
-   two and a half screens each. Not started.
+1. ~~**Piece 1, presentation feel**~~ (`presentation-quiz-prompt.md`). Done.
+   Option A, vertical scroll-snap with proximity and a lateral entrance, chosen
+   over pinned horizontal because only 6 of 14 sections fit one screen at
+   412 x 780 and the three tentpoles run to roughly two and a half each. See
+   "The presentation layer" above.
 2. **Piece 2, ambient interactivity** (same file). No new controls. Scene 6 gains
    a real drag. Scenes 3 and 13 stay static and script free.
 3. **Piece 3, the end quiz** (same file, plus the amendment at its foot).

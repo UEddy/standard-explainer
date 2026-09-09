@@ -2,3 +2,8 @@ standard-reserve-explainer-prompt.md
 
 .vercel/
 node_modules/
+
+# Local test harnesses. Never deployed: GitHub Pages serves tracked files, so
+# keeping these untracked keeps them out of the published site.
+_phonetest.html
+_rmtest.html
