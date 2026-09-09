@@ -154,11 +154,11 @@
             'That the buyback has been quietly absorbing supply.',
             'Very little. Large claims may exist that it does not count yet.'],
         c: 3,
-        why: 'Earned balances accrue inside the system and are not counted in totalSupply until they convert. The number can be low precisely because a great deal is waiting outside it.'
+        why: 'Earned balances accrue inside the system and are not counted in totalSupply until they convert, so the number can be low precisely because claims are waiting outside it. How much is waiting is not public, so this is a thing to check rather than a thing to assume.'
       },
       {
         q: 'Could the buybacks absorb a large conversion arriving all at once?',
-        o: ['Not quickly. They are throttled to a sliver of the pool per hour.',
+        o: ['Not quickly. They are capped at a fraction of a percent of the pool per hour.',
             'Yes. That is exactly what the vault is for.',
             'Yes, if the vault is large enough on the day.',
             'No, because the protocol does not buy back at all.'],

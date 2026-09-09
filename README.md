@@ -43,6 +43,7 @@ js/poke.js            shared ambient touch: drag, press, SVG coordinates
 js/scene-loop.js      one shared rAF loop for the page
 js/scene-NN.js        one IIFE per scene
 js/quiz.js            the end check: question bank, draw, shuffle
+tools/bank-to-content.js   regenerates the bank section of CONTENT.md
 css/quiz.css          the end check only
 ```
 
@@ -178,11 +179,19 @@ with the options shuffled inside each question. 125 sets before shuffling.
 Nothing is stored anywhere, so a reload draws a fresh set, and "Try three more"
 redraws in place.
 
-**The bank is duplicated into `CONTENT.md` and the markdown there is generated
-from this file.** Edit both together. Fifteen explanations is a lot of surface
-for an unverified claim to creep in on, so every one of them may assert only
-what is on the verified list in `CONTENT.md`, and anything from a toy is named
-illustrative.
+**Generation is one way: `js/quiz.js` to `CONTENT.md`, never back.** The bank
+between the markers in `CONTENT.md` is written by `node tools/bank-to-content.js`
+and is overwritten every time it runs, so editing a question there changes
+nothing a reader sees and is lost on the next run. Edit `BANK` in `js/quiz.js`,
+then run the script. The prose above those markers is hand written and is safe
+to edit.
+
+Fifteen explanations is a lot of surface for an unverified claim to creep in on,
+so every one of them may assert only what is on the verified list in
+`CONTENT.md`, and anything from a toy is named illustrative. The overhang slot
+needs the most care, because it is the one place the page says anything about
+risk: keep it to the mechanism and to what is not public, and let it say plainly
+that the size of the thing is unknown rather than implied.
 
 **A wrong answer is not a failure state.** No score, no percentage, no retry
 gate, and the end card shows no total. The correct option is always revealed,

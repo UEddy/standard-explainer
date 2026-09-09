@@ -231,8 +231,16 @@ Every explanation below asserts only things on the verified list further down
 this file. Where a number belongs to a toy rather than to the protocol it is
 named as illustrative.
 
-Edit here and in `js/quiz.js` together. The markdown below is generated from
-that file, so if the two disagree the file is what readers get.
+> ### Generated. Do not edit the questions below.
+>
+> **`js/quiz.js` is the source. Everything between the markers is written by
+> `node tools/bank-to-content.js` and is overwritten every time it runs.**
+> Editing a question, an option or an explanation here changes nothing that a
+> reader sees, and the change is lost on the next run. To change the bank, edit
+> the `BANK` object in `js/quiz.js`, then run the script to bring this file back
+> in line. Generation is one way and there is no path back.
+>
+> The copy above these markers is hand written and is safe to edit.
 
 - **Kicker:** A quick check · Three questions
 - **Headline:** Did any of it land?
@@ -243,6 +251,8 @@ that file, so if the two disagree the file is what readers get.
 - **Close:** Money you can only reach by destroying the thing that earns it. A system that answers late, so corrections pile up and arrive together. And a supply number with claims behind it that are already owed. Everything else on this page is detail.
 - **Close, second line:** Nothing here was stored, so a reload draws three different questions out of fifteen.
 - **Close link:** standardreserve.xyz
+
+<!-- BEGIN GENERATED BANK -->
 
 ### Slot 1: the locked money (scene 10)
 
@@ -356,11 +366,11 @@ that file, so if the two disagree the file is what readers get.
 - That the buyback has been quietly absorbing supply.
 - **(correct)** Very little. Large claims may exist that it does not count yet.
 
-*Why:* Earned balances accrue inside the system and are not counted in totalSupply until they convert. The number can be low precisely because a great deal is waiting outside it.
+*Why:* Earned balances accrue inside the system and are not counted in totalSupply until they convert, so the number can be low precisely because claims are waiting outside it. How much is waiting is not public, so this is a thing to check rather than a thing to assume.
 
 **C3.** Could the buybacks absorb a large conversion arriving all at once?
 
-- **(correct)** Not quickly. They are throttled to a sliver of the pool per hour.
+- **(correct)** Not quickly. They are capped at a fraction of a percent of the pool per hour.
 - Yes. That is exactly what the vault is for.
 - Yes, if the vault is large enough on the day.
 - No, because the protocol does not buy back at all.
@@ -386,6 +396,8 @@ that file, so if the two disagree the file is what readers get.
 *Why:* The cap of 1,000,000,000 holds, and burns only ever lower it, so conversion never breaches it. The claims sit inside that cap already. What changes is how much of it counts as circulating.
 
 Authored position of the correct answer across the bank: 4 / 4 / 4 / 3 for positions 1, 2, 3 and 4. Options are shuffled again at run time, so this is the floor rather than what any reader sees.
+
+<!-- END GENERATED BANK -->
 
 ---
 
