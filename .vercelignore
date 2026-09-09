@@ -1,0 +1,22 @@
+# What must never be uploaded.
+#
+# vercel deploy uploads the working directory, not the git tree, so anything
+# gitignored is still a candidate. standard-reserve-explainer-prompt.md is
+# deliberately kept out of the public repo and must stay out of the deployment
+# too. The other build prompts describe unbuilt work and internal instruction,
+# and the test harnesses are not part of the site.
+
+standard-reserve-explainer-prompt.md
+presentation-quiz-prompt.md
+narrator-prompt.md
+video-capture-prompt.md
+video-capture-amendment.md
+
+_phonetest.html
+_rmtest.html
+
+tools/
+out/
+node_modules/
+.git/
+.vercel/
