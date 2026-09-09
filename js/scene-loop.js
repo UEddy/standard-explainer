@@ -302,7 +302,8 @@
     var box = document.createElement('div');
     box.id = 'scene-loop-debug';
     box.setAttribute('style',
-      'position:fixed;left:6px;right:6px;bottom:6px;z-index:99999;' +
+      'position:fixed;left:6px;right:6px;z-index:99999;' +
+      'bottom:calc(6px + env(safe-area-inset-bottom));' +
       'font:11px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;' +
       'background:rgba(20,16,12,.93);color:#FBF2E2;padding:8px 10px;' +
       'border-radius:10px;pointer-events:none;white-space:pre;');
