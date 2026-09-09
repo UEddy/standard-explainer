@@ -1,0 +1,5 @@
+/* ---- scene 7 only: Branches and dilution ---- */
+
+#scene-7 .dials{display:grid;gap:14px;margin:0 0 4px}
+#scene-7 .dial-row .rowlab{margin-bottom:6px}
+#scene-7 .figures{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 14px}

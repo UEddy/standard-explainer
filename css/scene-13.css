@@ -1,0 +1,42 @@
+/* ---- scene 13 only: where this actually stands ----
+   No animation and no script. A status list, an honest list of what nobody
+   knows, one safety warning, and the close. */
+
+#scene-13 .status{display:grid;gap:9px;margin:0}
+#scene-13 .status-row{
+  display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:start;
+  padding:10px 12px;border:2.5px solid var(--ink);border-radius:14px;background:var(--paper);
+}
+#scene-13 .tag{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
+  padding:4px 8px;border-radius:7px;white-space:nowrap;font-weight:700;
+  border:2px solid var(--ink);
+}
+#scene-13 .tag.no{background:var(--ink);color:var(--paper)}
+#scene-13 .tag.wip{background:#F6E2C4;color:var(--ink)}
+#scene-13 .tag.live{background:#DCEFE4;color:#1F7A4D;border-color:#1F7A4D}
+#scene-13 .status-row p{margin:0;font-size:14.5px;line-height:1.45}
+#scene-13 .status-row b{font-weight:800}
+
+#scene-13 .unknowns{margin:0;padding-left:20px;font-size:15px;line-height:1.6}
+#scene-13 .unknowns li{margin-bottom:6px}
+
+#scene-13 .warn{
+  border:3px solid var(--contract);border-radius:18px;background:#FBE9E6;
+  padding:14px;margin:0 0 18px;box-shadow:4px 4px 0 var(--contract);
+}
+#scene-13 .warn h3{
+  margin:0 0 8px;font-size:15.5px;font-weight:850;color:var(--contract);
+  font-family:var(--sans);letter-spacing:normal;text-transform:none;
+}
+#scene-13 .warn p{margin:0 0 8px;font-size:14.5px;line-height:1.5}
+#scene-13 .warn p:last-child{margin-bottom:0}
+
+#scene-13 .official{
+  display:inline-block;font-weight:800;font-size:16px;
+  padding:13px 18px;border:3px solid var(--ink);border-radius:16px;
+  background:var(--card);color:var(--ink);text-decoration:none;
+  box-shadow:4px 4px 0 var(--ink);
+}
+#scene-13 .official:focus-visible{outline:3px solid var(--locked);outline-offset:3px}
+#scene-13 .asof{font-size:12.5px;color:var(--ink-soft);margin:14px 0 0;line-height:1.5}

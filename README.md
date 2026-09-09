@@ -4,9 +4,7 @@ An independent, animated explainer for The Standard Reserve. Static site, vanill
 HTML, CSS and JavaScript. No build step, no dependencies, no network calls beyond
 the page's own files. Not affiliated with or endorsed by the protocol.
 
-**Status:** 8 of 13 scenes built. Scenes 1 to 5 (the problem, one currency, one
-market, one signal, one authority) and scenes 10 to 12 (the locked money, the
-delay, the overhang). Scenes 6 to 9 and 13 remain.
+**Status:** all 13 scenes built. A polish pass has not been done.
 
 ## Preview locally
 
@@ -117,11 +115,19 @@ card. Scene 3 is a still diagram with no script at all, which is deliberate. It
 gives the page a breath between two animated scenes and the first toy, and it
 costs nothing to run. Not every scene needs a clock.
 
-Scenes 4, 10, 11 and 12 carry an interaction and earn their extra weight.
+Scenes 4, 7, 8, 9, 10, 11 and 12 carry an interaction and earn their extra
+weight. Scenes 1, 2 and 6 are play-once animations. Scenes 3 and 13 have no
+script at all.
 
 ## Still outstanding
 
-- Scenes 6 to 9 and 13.
-- `CONTENT.md`, holding every line of user facing copy in one place.
+- A polish pass across the whole page: pacing, copy edit, and a look at the
+  scenes side by side rather than one at a time.
 - Scene 11 predates `base.css` and still carries a little duplicated shell CSS in
   `css/scene-11.css`. Harmless, worth tidying.
+- Scene 12 has its own copy of the play-once arming logic, written before
+  `sim.playOnce` existed. It works; it could adopt the shared helper.
+- The iPhone test from earlier has not been run against the finished page.
+
+Copy lives in `CONTENT.md`, including which numbers are verified and which are
+illustrative. Edit there first.

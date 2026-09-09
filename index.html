@@ -9,9 +9,13 @@
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/scene-4.css">
 <link rel="stylesheet" href="css/scene-5.css">
+<link rel="stylesheet" href="css/scene-7.css">
+<link rel="stylesheet" href="css/scene-8.css">
+<link rel="stylesheet" href="css/scene-9.css">
 <link rel="stylesheet" href="css/scene-10.css">
 <link rel="stylesheet" href="css/scene-11.css">
 <link rel="stylesheet" href="css/scene-12.css">
+<link rel="stylesheet" href="css/scene-13.css">
 </head>
 <body>
 <div class="wrap">
@@ -21,7 +25,7 @@
   <h1 class="page-title">A bank with nobody in it.</h1>
   <p class="standfirst">The Standard Reserve is one currency, one market, one signal, and about four thousand lines of code that nobody can vote to change. This is a picture book about how that machine behaves. Every idea here has one thing you can touch.</p>
   <p class="disclaimer"><strong>Independent educational project.</strong> Not affiliated with or endorsed by The Standard Reserve. Not financial advice. This page never connects to a wallet and never asks you for anything. For anything real, see <a href="https://www.standardreserve.xyz" rel="noopener noreferrer" target="_blank">standardreserve.xyz</a>.</p>
-  <p class="progress">Eight of the thirteen scenes are built so far. Scenes 6 to 9, on becoming a banker, and scene 13, on where this actually stands today, are still to come.</p>
+  <p class="progress">All thirteen scenes. It takes about ten minutes, and almost every idea has one thing you can touch.</p>
 </header>
 
 <section class="scene" id="scene-1">
@@ -199,6 +203,225 @@ Whatever the code says, happens.</div>
 </section>
 
 <p class="term-line"><b>Verified:</b> roughly 4,000 lines of immutable code, no DAO and no governance votes.</p>
+
+</section>
+
+<section class="scene" id="scene-6">
+
+<header>
+  <p class="kicker">Scene 6 of 13 &middot; You are the bank</p>
+  <h2 class="scene-title">A licence you cannot sell.</h2>
+  <p class="standfirst">A Charter is a banking licence, issued as an NFT that is bound to whoever holds it. Watch what happens when somebody tries to take it away.</p>
+</header>
+
+<section class="card stage-card">
+  <svg id="s6-stage" viewBox="0 0 360 240" role="img"
+       aria-label="A banking Charter card is dragged away from its anchor, is stopped by a tether, and snaps back. It is soulbound and cannot be sold, lent or moved.">
+    <circle cx="60" cy="120" r="13" fill="#241E18"/>
+    <circle cx="60" cy="120" r="5" fill="#FFF8E9"/>
+    <text x="60" y="152" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+          font-size="9" fill="#6E6053" letter-spacing="1.2">YOU</text>
+    <line id="s6-tether" x1="60" y1="120" x2="96" y2="120" stroke="#241E18" stroke-width="5" stroke-linecap="round"/>
+
+    <g id="s6-card">
+      <rect x="96" y="62" width="188" height="116" rx="14" fill="#FFFCF5" stroke="#241E18" stroke-width="4"/>
+      <rect x="96" y="62" width="188" height="26" rx="14" fill="#5B3E9B"/>
+      <rect x="96" y="76" width="188" height="12" fill="#5B3E9B"/>
+      <text x="110" y="81" font-family="ui-monospace,Consolas,monospace" font-size="11"
+            font-weight="700" fill="#FFF8E9" letter-spacing="1.6">CHARTER</text>
+      <text x="110" y="112" font-family="ui-monospace,Consolas,monospace" font-size="9.5"
+            fill="#6E6053" letter-spacing="1.1">BANKING LICENCE</text>
+      <text x="110" y="134" font-family="ui-monospace,Consolas,monospace" font-size="13"
+            font-weight="700" fill="#241E18" letter-spacing=".5">BANKER</text>
+      <circle cx="252" cy="146" r="17" fill="none" stroke="#5B3E9B" stroke-width="3"/>
+      <circle cx="252" cy="146" r="9" fill="#5B3E9B"/>
+      <g id="s6-lock" opacity="0">
+        <path d="M114 157 v-6 a7 7 0 0 1 14 0 v6" fill="none" stroke="#CB3220" stroke-width="3"/>
+        <rect x="110" y="157" width="22" height="16" rx="4" fill="#CB3220"/>
+      </g>
+    </g>
+
+    <text id="s6-bound" x="180" y="212" opacity="0" text-anchor="middle"
+          font-family="ui-monospace,Consolas,monospace" font-size="11" font-weight="700"
+          fill="#241E18" letter-spacing="1.6">SOULBOUND. IT DOES NOT MOVE.</text>
+  </svg>
+</section>
+
+<p class="term-line"><b>Verified:</b> a Charter is a banking licence issued as a soulbound NFT, and holders are called Bankers. 1,000 Genesis Charters are distributed free. After genesis, Charters cost ETH.</p>
+
+</section>
+
+<section class="scene" id="scene-7">
+
+<header>
+  <p class="kicker">Scene 7 of 13 &middot; Branches</p>
+  <h2 class="scene-title">Your slice of the same pie.</h2>
+  <p class="standfirst">New issuance is divided across every open Branch in the system. Open more and you take more of it. So does everybody else, and the slice gets thinner for all of you.</p>
+</header>
+
+<section class="card stage-card">
+  <svg id="s7-stage" viewBox="0 0 360 236" role="img"
+       aria-label="A ring showing all new issuance. Your Branches take one wedge of it and every other Banker takes the rest.">
+    <circle cx="180" cy="118" r="84" fill="none" stroke="#E5D6B8" stroke-width="36"/>
+    <path id="s7-mine" d="" fill="#5B3E9B" stroke="#241E18" stroke-width="2"/>
+    <circle cx="180" cy="118" r="84" fill="none" stroke="#241E18" stroke-width="3"/>
+    <circle cx="180" cy="118" r="48" fill="#FFF8E9" stroke="#241E18" stroke-width="3"/>
+    <text id="s7-share" x="180" y="118" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+          font-size="24" font-weight="700" fill="#5B3E9B">0.8%</text>
+    <text x="180" y="136" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+          font-size="8.5" fill="#6E6053" letter-spacing="1">YOUR SHARE</text>
+    <text x="180" y="226" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+          font-size="10" fill="#6E6053" letter-spacing="1.3">ALL NEW ISSUANCE</text>
+  </svg>
+</section>
+
+<div class="figures">
+  <div class="chip locked">
+    <span class="lab">Your Branches</span>
+    <span class="val" id="s7-mineNum">1</span>
+    <span class="sub">one to ten</span>
+  </div>
+  <div class="chip">
+    <span class="lab">Each Branch gets</span>
+    <span class="val" id="s7-per">0.83%</span>
+    <span class="sub">of all new issuance</span>
+  </div>
+</div>
+
+<section class="card">
+  <div class="dials">
+    <div class="dial-row">
+      <div class="rowlab"><span class="big">Your Branches</span><span class="num" id="s7-mineLbl">1</span></div>
+      <input id="s7-mineSlider" type="range" min="1" max="10" step="1" value="1"
+             aria-label="How many Branches you have open" aria-valuetext="1 Branch">
+      <div class="scale"><span>One</span><span>Ten, the maximum</span></div>
+    </div>
+    <div class="dial-row">
+      <div class="rowlab"><span class="big">Everyone else</span><span class="num" id="s7-otherNum">120</span></div>
+      <input id="s7-otherSlider" type="range" min="20" max="400" step="10" value="120"
+             aria-label="How many Branches every other Banker has open" aria-valuetext="120 Branches held by everyone else">
+      <div class="scale"><span>A quiet system</span><span>Everyone expanding</span></div>
+    </div>
+  </div>
+  <p class="hint" id="s7-hint" aria-live="polite">Issuance is divided across every open Branch. The pie does not grow when you open one.</p>
+</section>
+
+<p class="term-line"><b>Verified:</b> new $STANDARD issuance is divided across all open Branches in the system. Every Charter opens with one Branch and can grow to a maximum of ten. The number of Branches held by everyone else is illustrative.</p>
+
+</section>
+
+<section class="scene" id="scene-8">
+
+<header>
+  <p class="kicker">Scene 8 of 13 &middot; The Dutch auction</p>
+  <h2 class="scene-title">The price falls until someone blinks.</h2>
+  <p class="standfirst">Opening a Branch needs an Expansion Licence, sold once a day at a falling price and paid for in $STANDARD. Wait, and it gets cheaper. Wait too long, and another Banker takes it.</p>
+</header>
+
+<section class="card stage-card">
+  <svg id="s8-stage" viewBox="0 0 360 240" role="img"
+       aria-label="A falling auction price on the left, and a furnace on the right where everything spent is burned rather than banked.">
+    <text x="26" y="28" font-family="ui-monospace,Consolas,monospace" font-size="9.5"
+          fill="#6E6053" letter-spacing="1.3">PRICE NOW</text>
+    <text id="s8-price" x="26" y="50" font-family="ui-monospace,Consolas,monospace"
+          font-size="26" font-weight="700" fill="#E0552F">4,200</text>
+    <rect x="26" y="54" width="52" height="142" rx="6" fill="#F3E4CA" stroke="#241E18" stroke-width="3"/>
+    <rect id="s8-bar" x="29" y="57" width="46" height="136" rx="4" fill="#E0552F"/>
+    <text id="s8-status" x="26" y="220" font-family="ui-monospace,Consolas,monospace"
+          font-size="10" font-weight="700" fill="#E0552F" letter-spacing="1.2">READY</text>
+
+    <path d="M104 150 H186" stroke="#241E18" stroke-width="3"/>
+    <path d="M186 150 l-9 -6 v12 z" fill="#241E18"/>
+    <text x="145" y="140" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+          font-size="9" fill="#6E6053" letter-spacing="1">WHAT YOU PAY</text>
+
+    <rect x="212" y="120" width="120" height="86" rx="12" fill="#FFFDF6" stroke="#241E18" stroke-width="4"/>
+    <rect id="s8-pile" x="218" y="206" width="108" height="0" fill="#CB3220"/>
+    <g id="s8-flame" opacity="0.25">
+      <path d="M272 116 c14 -18 -8 -26 2 -44 c-26 14 -30 34 -18 44 z" fill="#E0552F" stroke="#241E18" stroke-width="3" stroke-linejoin="round"/>
+    </g>
+    <text x="272" y="150" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+          font-size="10" font-weight="700" fill="#241E18" letter-spacing="1.2">BURNED</text>
+    <text x="272" y="172" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+          font-size="9" fill="#6E6053" letter-spacing="1">NOT BANKED</text>
+    <text id="s8-burned" x="272" y="196" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+          font-size="15" font-weight="700" fill="#CB3220">0</text>
+    <text x="272" y="228" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+          font-size="9" fill="#6E6053" letter-spacing="1">TOTAL THIS SESSION</text>
+  </svg>
+</section>
+
+<button type="button" class="go" id="s8-go">Start the auction</button>
+<p class="hint" id="s8-hint" aria-live="polite">The price starts high and falls every second until somebody buys.</p>
+
+<p class="term-line"><b>Verified:</b> Expansion Licences are sold at a daily Dutch auction, paid for in $STANDARD, and 100 percent of what is spent is burned outright. The prices and the rival bidder here are illustrative.</p>
+
+</section>
+
+<section class="scene" id="scene-9">
+
+<header>
+  <p class="kicker">Scene 9 of 13 &middot; Two regimes</p>
+  <h2 class="scene-title">Two regimes, one switch.</h2>
+  <p class="standfirst">The same signal from scene four decides everything. Money coming in, and the protocol buys hard assets. Money going out, and it buys its own token back and burns it, slowly.</p>
+</header>
+
+<section class="card stage-card">
+  <svg id="s9-stage" viewBox="0 0 360 236" role="img"
+       aria-label="Two vaults. The expansion vault stacks bars of hard reserves when money is coming in. The contraction vault fills when money is going out, and drips out into a furnace that burns the token.">
+    <g id="s9-expand">
+      <rect x="16" y="30" width="150" height="176" rx="14" fill="#FFFDF6" stroke="#241E18" stroke-width="4"/>
+      <rect x="16" y="30" width="150" height="26" rx="14" fill="#241E18"/>
+      <rect x="16" y="44" width="150" height="12" fill="#241E18"/>
+      <text x="91" y="48" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+            font-size="10" font-weight="700" fill="#FBF2E2" letter-spacing="1.3">EXPANSION</text>
+      <g id="s9-ingots"></g>
+      <text x="91" y="222" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+            font-size="9" fill="#6E6053" letter-spacing="1">HARD RESERVES</text>
+    </g>
+
+    <g id="s9-contract">
+      <rect x="194" y="30" width="150" height="176" rx="14" fill="#FFFDF6" stroke="#241E18" stroke-width="4"/>
+      <rect x="194" y="30" width="150" height="26" rx="14" fill="#241E18"/>
+      <rect x="194" y="44" width="150" height="12" fill="#241E18"/>
+      <text x="269" y="48" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+            font-size="10" font-weight="700" fill="#FBF2E2" letter-spacing="1.3">CONTRACTION</text>
+      <rect id="s9-vaultFill" x="202" y="192" width="60" height="0" rx="4" fill="#2E6FB7"/>
+      <text x="232" y="204" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+            font-size="8.5" fill="#6E6053" letter-spacing="1">VAULT</text>
+      <path d="M292 150 c11 -14 -6 -20 2 -34 c-20 11 -24 26 -14 34 z" fill="#E0552F"
+            stroke="#241E18" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M280 120 v14 M300 120 v14" stroke="#8FA5B8" stroke-width="2" stroke-dasharray="3 4"/>
+      <text x="292" y="204" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+            font-size="8.5" fill="#6E6053" letter-spacing="1">BURN</text>
+    </g>
+  </svg>
+</section>
+
+<p class="regime-word" id="s9-word">Neither</p>
+
+<div class="readouts">
+  <div class="chip">
+    <span class="lab">Hard reserves</span>
+    <span class="val" id="s9-reserveNum">0</span>
+    <span class="sub">bought during expansion</span>
+  </div>
+  <div class="chip circ">
+    <span class="lab">$STANDARD burned</span>
+    <span class="val" id="s9-burnedNum">0</span>
+    <span class="sub">bought back and destroyed</span>
+  </div>
+</div>
+
+<section class="card">
+  <div class="rowlab"><span class="big">The flow</span><span class="num" id="s9-flowNum">0%</span></div>
+  <input id="s9-flow" type="range" min="-100" max="100" step="1" value="0"
+         aria-label="Net flow of ETH, from money going out to money coming in" aria-valuetext="level, neither regime">
+  <div class="scale"><span>Money out</span><span>Money in</span></div>
+  <p class="throttle" id="s9-throttle">nothing to spend</p>
+</section>
+
+<p class="term-line"><b>Verified:</b> protocol revenue is split 70 / 15 / 15 each epoch, and the 70 percent goes to whichever vault is active. Buybacks are throttled to at most the smaller of 10 percent of the vault balance and 0.2 percent of pool reserves per hour. Revenue, pool size and the clock here are illustrative: one second stands for one hour.</p>
 
 </section>
 
@@ -530,6 +753,61 @@ Whatever the code says, happens.</div>
 
 </section>
 
+<section class="scene" id="scene-13">
+
+<header>
+  <p class="kicker">Scene 13 of 13 &middot; Where this actually stands</p>
+  <h2 class="scene-title">None of this exists yet.</h2>
+  <p class="standfirst">Everything you have just played with describes a design, not a running system. Here is the state of the real thing, as plainly as it can be put.</p>
+</header>
+
+<section class="card">
+  <h3>The state of play</h3>
+  <div class="status">
+    <div class="status-row"><span class="tag no">No</span>
+      <p><b>There is no token.</b> $STANDARD has not launched. Anything trading under that name today is not it.</p></div>
+    <div class="status-row"><span class="tag no">No</span>
+      <p><b>There is no NFT.</b> No Charter has been issued to anybody.</p></div>
+    <div class="status-row"><span class="tag wip">v0.1</span>
+      <p><b>The whitepaper is at v0.1.</b> Several parameters in it are deliberately redacted.</p></div>
+    <div class="status-row"><span class="tag live">Live</span>
+      <p><b>Genesis Charter eligibility checking is live</b> on the official site. Allocations have gone out in batches, with one batch remaining before launch.</p></div>
+    <div class="status-row"><span class="tag wip">Underway</span>
+      <p><b>Audits are in progress.</b> The Uniswap Foundation has funded part of that work. No completed audit report is public.</p></div>
+    <div class="status-row"><span class="tag no">None</span>
+      <p><b>No public contract addresses and no code repository.</b> There is nothing deployed for anyone to read.</p></div>
+    <div class="status-row"><span class="tag live">Stated</span>
+      <p><b>The team has said there will be no surprise launch.</b></p></div>
+  </div>
+</section>
+
+<section class="card">
+  <h3>What nobody knows yet</h3>
+  <ul class="unknowns">
+    <li>The redacted parameters: the exact issuance curve, the epoch length, and the lag between a flow and its effect.</li>
+    <li>How much $STANDARD will accrue inside the system before anybody retires a Branch.</li>
+    <li>How concentrated the Charters, and therefore those accrued balances, turn out to be.</li>
+    <li>How deep the pool will be on the day any of it converts.</li>
+    <li>What the audits find.</li>
+  </ul>
+  <p class="term-line">Those last three are the ones scene 12 depends on. Without them, nobody can tell you whether the overhang matters. Anyone who says otherwise is guessing.</p>
+</section>
+
+<div class="warn">
+  <h3>If you take one thing from this page</h3>
+  <p>The official account has warned about copycat mints and impersonation. There is no token and no NFT, so there is nothing legitimate to mint today.</p>
+  <p><strong>Do not connect a wallet to any site claiming to sell, mint or airdrop this.</strong> Check the official source first, every time. This page will never ask you for anything, and neither should anything else that matters.</p>
+</div>
+
+<section class="card">
+  <h3>Go to the real thing</h3>
+  <p style="margin:0 0 14px;font-size:15px">This explainer is one reading of public material. For anything you intend to act on, go to the source.</p>
+  <p style="margin:0"><a class="official" href="https://www.standardreserve.xyz" rel="noopener noreferrer" target="_blank">standardreserve.xyz</a></p>
+  <p class="asof">Checked against public material in early September 2026. Everything on this page goes stale, and this scene goes stale fastest. If you are reading it later, assume it has changed and check the official site.</p>
+</section>
+
+</section>
+
 <footer>
   <p><strong>Independent educational project.</strong> Not affiliated with or endorsed by The Standard Reserve, and not financial advice. Nothing here connects to a wallet or asks you for anything, and no number on this page is a protocol parameter unless it is marked as verified. Official site: <a href="https://www.standardreserve.xyz" rel="noopener noreferrer" target="_blank">standardreserve.xyz</a>.</p>
 </footer>
@@ -542,8 +820,13 @@ Whatever the code says, happens.</div>
 <!-- scene 3 is a still diagram: no script, no clock, nothing to run -->
 <script src="js/scene-4.js"></script>
 <script src="js/scene-5.js"></script>
+<script src="js/scene-6.js"></script>
+<script src="js/scene-7.js"></script>
+<script src="js/scene-8.js"></script>
+<script src="js/scene-9.js"></script>
 <script src="js/scene-10.js"></script>
 <script src="js/scene-11.js"></script>
 <script src="js/scene-12.js"></script>
+<!-- scene 13 is plain text and links: no script -->
 </body>
 </html>

@@ -1,0 +1,10 @@
+/* ---- scene 8 only: the Dutch auction ---- */
+
+#scene-8 .go{
+  display:block;width:100%;font:inherit;font-size:16px;font-weight:800;cursor:pointer;
+  padding:15px 10px;border:3px solid var(--ink);border-radius:16px;
+  background:var(--circ-soft);color:var(--ink);box-shadow:4px 4px 0 var(--ink);
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+}
+#scene-8 .go:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+#scene-8 .go:focus-visible{outline:3px solid var(--locked);outline-offset:3px}
