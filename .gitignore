@@ -7,3 +7,9 @@ node_modules/
 # keeping these untracked keeps them out of the published site.
 _phonetest.html
 _rmtest.html
+
+.vercel
+
+# capture artefacts and tooling deps
+out/
+node_modules/

@@ -21,6 +21,23 @@ To stop the server, press Ctrl+C in that window.
 
 ## Deploy
 
+Two places, same content.
+
+- **GitHub Pages**, https://ueddy.github.io/standard-explainer/ , served from `main`.
+  Assets are cached about 10 minutes.
+- **Vercel**, https://standard-explainer.vercel.app , the link to share and the
+  one the demo capture records. `vercel.json` declares no framework and no build,
+  and sets `must-revalidate` on `css/` and `js/` because the filenames are not
+  content hashed and the default long cache reproduces the "my change did not
+  land" confusion. `.vercelignore` keeps the build prompts and the test harnesses
+  out of the upload, which matters because `vercel deploy` uploads the working
+  directory rather than the git tree, and one of those prompts is deliberately
+  not in the public repo.
+
+  The per deployment URL is behind Vercel SSO and returns a 302. The alias above
+  is the public one. Redeploy with `vercel deploy --prod --yes`.
+
+
 The repo is the site. It is deployed on **GitHub Pages** and that is the only
 target: push to `main` and it goes live at
 <https://ueddy.github.io/standard-explainer/>. No build command, no output
@@ -300,6 +317,52 @@ play and no device testing is being done, so anything that can only be settled o
 hardware is settled by reasoning and by keeping to safe ground: `dvh` rather than
 `vh`, no reliance on iOS-only behaviour, and no gestures that fight Android
 Chrome's back-swipe from the left edge.
+
+## The demo capture
+
+`node capture.js` drives real Chrome through the live Vercel site, records it,
+and writes `out/demo-framed.mp4` (1080 x 1920, in a generated phone body),
+`out/demo-raw.mp4` (780 x 1688, full bleed) and four stills. About 26 seconds, no
+audio, roughly 4 MB each. Needs `npm install` first; the browser is not
+downloaded, `channel: 'chrome'` uses the installed one.
+
+**All shot timings are in `CFG` at the top of the file.** Nothing below it needs
+reading to retime a shot.
+
+**What the snapping layout did to the shot list.** At the two positions the
+presentation layer naturally produces, a snap point or one page down, none of the
+three shots frames: scene 11 at its snap point shows the shower with 75px of the
+dial, and one page down shows the dial with the shower gone. So each shot seats
+at an intermediate framing computed from the elements that have to share the
+frame, which is a legitimate reading position because proximity assists and never
+grabs. The scrolls are programmatic and eased, which also keeps them from
+re-engaging snapping.
+
+**Three timing dependencies that are easy to break.**
+
+- *The reveal race.* Scene 12's stage arms its reveal at 40 percent visible and
+  fires 1.0s later. The descent is therefore two legs, a transit and then a
+  sprint that must cover the last stretch inside that second, or the reveal plays
+  off screen mid scroll. Measured and checked every run; it lands around 710ms.
+- *The empty vault.* Scene 10 accrues 9 a second against a column worth 900, so a
+  column needs 100 seconds and arriving cold makes the vault read as an empty
+  box. Its clock only runs while it is on screen, so `preAccrueMs` sits on scene
+  10 before the first shot. That happens inside the lead-in, which is trimmed, so
+  it costs the clip nothing.
+- *The lead-in itself.* Page load, the pre-accrue dwell and seating are all in the
+  recording, about 45 seconds of it. It is trimmed by measurement rather than a
+  guessed constant, so the clip opens on the shower and never on a masthead.
+
+**The check worth keeping.** Scene 12's arrival narration, "You closed one to get
+paid. Now everyone.", only fires because shot 3 retires a Branch before shot 4
+arrives at scene 12. Reorder the shots and the narrator quietly falls back to the
+generic line with no other symptom. `verify()` asserts that line by name, and
+also asserts the generic one never appeared. It is checked against a trace of
+every line said during the take, not against the final line, because by the end
+the narrator has rightly moved on to the slider line.
+
+A take that fails any check is discarded whole and re-recorded, up to
+`maxTakes`. Nothing half broken gets written.
 
 ## Known untested
 

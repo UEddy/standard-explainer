@@ -20,3 +20,6 @@ out/
 node_modules/
 .git/
 .vercel/
+capture.js
+package.json
+package-lock.json
