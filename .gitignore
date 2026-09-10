@@ -3,8 +3,9 @@ standard-reserve-explainer-prompt.md
 .vercel/
 node_modules/
 
-# Local test harnesses. Never deployed: GitHub Pages serves tracked files, so
-# keeping these untracked keeps them out of the published site.
+# Local test harnesses. Kept untracked so they stay out of the repo, and named
+# in .vercelignore as well, because vercel deploy uploads the working directory
+# rather than the git tree.
 _phonetest.html
 _rmtest.html
 

@@ -19,35 +19,38 @@ directly from the filesystem also works, though some browsers restrict `file://`
 
 To stop the server, press Ctrl+C in that window.
 
-## Deploy
+## Where it lives
 
-Two places, same content.
+**https://standard-explainer.vercel.app** is the canonical URL. It is the link to
+share, the one `<link rel="canonical">` points at, and the one `capture.js`
+records. There is one address on purpose; if you change it, change it here, in
+`CFG.url` at the top of `capture.js`, and in the canonical tag in `index.html`,
+and nowhere else needs to know.
 
-- **GitHub Pages**, https://ueddy.github.io/standard-explainer/ , served from `main`.
-  Assets are cached about 10 minutes.
-- **Vercel**, https://standard-explainer.vercel.app , the link to share and the
-  one the demo capture records. `vercel.json` declares no framework and no build,
-  and sets `must-revalidate` on `css/` and `js/` because the filenames are not
-  content hashed and the default long cache reproduces the "my change did not
-  land" confusion. `.vercelignore` keeps the build prompts and the test harnesses
-  out of the upload, which matters because `vercel deploy` uploads the working
-  directory rather than the git tree, and one of those prompts is deliberately
-  not in the public repo.
+Vercel is connected to the GitHub repo, so a push to `main` deploys production.
+Deploying from a working directory with `vercel deploy --prod` also works and is
+how the project was created, but prefer the push: the repo is then the only thing
+that decides what is live.
 
-  The per deployment URL is behind Vercel SSO and returns a 302. The alias above
-  is the public one. Redeploy with `vercel deploy --prod --yes`.
+`vercel.json` declares no framework and no build, since the site is static, and
+sets `must-revalidate` on `css/` and `js/` because the filenames are not content
+hashed and the default long cache reproduces the "my change did not land"
+confusion. `.vercelignore` keeps the build prompts, the test harnesses and the
+capture tooling out of the upload, which matters because `vercel deploy` uploads
+the working directory rather than the git tree, and one of those prompts is
+deliberately not in the public repo.
 
+Note that the per deployment URLs, the ones with a hash in them, sit behind
+Vercel SSO and return a 302 to a login. Only the alias above is public. Verified
+from a clean browser with no cookies: 200, no redirect, no cookies set, all
+assets 200, no console errors.
 
-The repo is the site. It is deployed on **GitHub Pages** and that is the only
-target: push to `main` and it goes live at
-<https://ueddy.github.io/standard-explainer/>. No build command, no output
-directory, nothing to configure. Vercel was considered and dropped.
-
-**A caching note.** GitHub Pages serves assets with a ten minute max-age, so
-after a push a returning reader can run new HTML against an old `js/scene-NN.js`
-for a few minutes. This bit repeatedly during development and produced changes
-that appeared not to work. If you are checking a change and it looks like it did
-not land, hard reload before believing it.
+**GitHub Pages is retired.** It served https://ueddy.github.io/standard-explainer/
+from `main` until Vercel became canonical. It was turned off rather than left
+running: both copies were fed by `main` so they could not actually drift, but two
+public addresses for one page splits links and invites the wrong one being
+shared. It can be turned back on from the repository settings in a few seconds if
+Vercel is ever unavailable.
 
 ## Layout
 
