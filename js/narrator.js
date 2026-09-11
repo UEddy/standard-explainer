@@ -32,6 +32,15 @@
   var IDLE = 9;        /* seconds on an interactive scene before one nudge */
   var SKIM = 7;        /* under this and the reader did nothing: they skipped it */
 
+  /* A skim line beats the arrival line of wherever the reader went, which is
+     right once and wrong nine times. With every scene narrated, somebody moving
+     at a brisk pace trips the skim test on all of them and gets a column of
+     "Skipped:" lines instead of the connective tissue, which is nagging and is
+     the one tone this is not allowed to take. Say it twice, then stop and let
+     the arrival lines through. */
+  var MAX_SKIMS = 2;
+  var skimsSaid = 0;
+
   /* ------------------------------------------------------------------
      The lines. Copy also lives in CONTENT.md with its triggers, and the
      two files have to be edited together. Keep them short: one sentence
@@ -50,6 +59,62 @@
      Skim lines survive because they fire on the way into another narrated scene
      and win precedence there, which is exactly where they are worth having. */
   var LINES = {
+
+    /* Scenes 1 to 9 and 13, written second. None of them gets an idle nudge:
+       every one already carries an on screen hint that points at its own
+       control, and a second voice saying the same thing is the restatement this
+       whole file exists to avoid. What they get is the connective tissue, which
+       is the thing no single scene can say about itself. */
+
+    'scene-1': {
+      arrive: 'The rest of the page is a reply to this.',
+      skim:   'Skipped: the number is set once, then never.'
+    },
+
+    'scene-2': {
+      arrive: 'That one prints forever. This one cannot.',
+      skim:   'Skipped: a ceiling that only ever falls.'
+    },
+
+    /* No skim line, and there could not be one: scene 3 runs no JavaScript, so
+       it has no clock and dwell cannot be measured. Arrival only, which suits a
+       scene that exists to be a rest anyway. */
+    'scene-3': {
+      arrive: 'One place. Everything after this follows.'
+    },
+
+    'scene-4': {
+      arrive: 'Everything later is downstream of this needle.',
+      skim:   'Skipped: net flow in or out is the only input.'
+    },
+
+    'scene-5': {
+      arrive: 'Nothing above it can overrule that needle.',
+      skim:   'Skipped: there is no vote, and no override.'
+    },
+
+    'scene-6': {
+      arrive: 'You were watching. Now you hold one.',
+      skim:   'Skipped: the licence cannot leave your hands.'
+    },
+
+    'scene-7': {
+      arrive: 'You have one bank. It can become ten.',
+      skim:   'Skipped: more Branches, thinner slice each.'
+    },
+
+    'scene-8': {
+      arrive: 'Growing is not free. This is the bill.',
+      skim:   'Skipped: you pay to expand, and it is burned.'
+    },
+
+    'scene-9': {
+      arrive: 'That burn was one licence. Here it is policy.',
+      /* not "it defends slowly": steady state throughput is the same either
+         way, and the asymmetry is that money in is spent on arrival while money
+         out pools first and leaves in capped steps */
+      skim:   'Skipped: money out leaves in capped steps.'
+    },
 
     'scene-10': {
       arrive:  'Scene 9 was money leaving. This has not.',
@@ -75,6 +140,13 @@
       skim:        'Skipped: the number leaves out real claims.'
     },
 
+    /* Scene 12's parting thought, recorded in CONTENT.md as belonging here.
+       Scene 13 runs no JavaScript either, so this is arrival only and it has no
+       clock to fade itself on. */
+    'scene-13': {
+      arrive: 'Three numbers decide it. None are public.'
+    },
+
     /* The quiz is where the reader speaks, so the narrator hands over and then
        stays out of it. One line as it opens, one at the very end, nothing
        between questions. */
@@ -84,7 +156,9 @@
     }
   };
 
-  var WATCHED = ['scene-10', 'scene-11', 'scene-12', 'scene-quiz'];
+  var WATCHED = ['scene-1', 'scene-2', 'scene-3', 'scene-4', 'scene-5',
+                 'scene-6', 'scene-7', 'scene-8', 'scene-9',
+                 'scene-10', 'scene-11', 'scene-12', 'scene-13', 'scene-quiz'];
 
   /* Scenes where the line is a handover rather than company: say it, then fade
      out and leave the screen alone. The quiz is the whole list, because it is
@@ -253,7 +327,10 @@
     if(sim && st.backTimer !== null){ sim.clear(st.backTimer); st.backTimer = null; }
     st.enteredAt = null;
 
-    if(!st.acted && dwell < SKIM && st.lines.skim) return st.lines.skim;
+    if(!st.acted && dwell < SKIM && st.lines.skim && skimsSaid < MAX_SKIMS){
+      skimsSaid++;
+      return st.lines.skim;
+    }
     return null;
   }
 

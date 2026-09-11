@@ -262,6 +262,19 @@ the other ten get written. On any scene without lines the bar is hushed, and
 hushed means `visibility:hidden` rather than just faded, so its live region does
 not leave a stale line for a screen reader to find.
 
+**Scenes 3 and 13 are narrated and still run no JavaScript.** The narrator is a
+page level module that watches sections from outside with an IntersectionObserver
+and reads `__sceneLoop` off a root only if one is there, so neither scene is
+registered with the loop and neither gains a script. What that costs them is
+timing: with no clock there is no idle nudge, no dwell measurement and so no skim
+line, and no way for a line to fade itself out. Arrival lines only, which suits
+both, one being a rest and the other the close.
+
+**Skim lines are capped at two a session.** A skim line takes precedence over the
+arrival line of wherever the reader went, which is right once and wrong nine
+times; without the cap a brisk reader gets a column of "Skipped:" lines instead
+of the thread between scenes.
+
 **There are no departure lines and there should not be.** Leaving one scene and
 arriving at the next resolve in the same observer callback, so a parting line is
 always overwritten by the arrival line of wherever the reader went. Skim lines
@@ -399,9 +412,8 @@ preferences: piece 1 changes the layout every later piece sits in.
    Done. Fifteen questions, five variants per slot, drawn and shuffled per run.
    See "The end check" above.
 4. ~~**Piece 4, the narrator**~~ (`narrator-prompt.md`, plus the amendment at
-   its foot). System done, with lines for scenes 10, 11 and 12 and the two the
-   quiz gets. The other ten scenes are silent and their lines are the next piece
-   of writing. See "The narrator" above.
+   its foot). Done. System plus lines for all fourteen sections, written in two
+   passes. See "The narrator" above.
 5. **Video capture** (`video-capture-prompt.md` plus
    `video-capture-amendment.md`). Explicitly waits for piece 1 to ship, because
    the shot list assumes vertical scrolling and would need rewriting as scene

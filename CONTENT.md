@@ -253,8 +253,54 @@ somebody skipped.
 Every line must fit one row at 412px, which is about 45 characters. Two rows is
 the hard ceiling on a narrow screen.
 
-**This pass covers scenes 10, 11 and 12 only, plus the quiz.** The other ten
-scenes are silent on purpose and their lines are not written yet.
+**All fourteen sections now have lines**, written in two passes: scenes 10, 11
+and 12 plus the quiz first, then 1 to 9 and 13.
+
+### Scenes 1 to 9, the connective tissue
+
+None of these gets an idle nudge. Each already carries an on screen hint that
+points at its own control, and a second voice saying the same thing is the
+restatement this whole section exists to avoid. What they get is the thread
+between scenes, which is the one thing no single scene can say about itself.
+
+Read in order at reading pace, the arrival lines are the argument in miniature:
+
+| Scene | Arriving | If it was skipped inside seven seconds |
+| --- | --- | --- |
+| 1, the problem | The rest of the page is a reply to this. | Skipped: the number is set once, then never. |
+| 2, one currency | That one prints forever. This one cannot. | Skipped: a ceiling that only ever falls. |
+| 3, one market | One place. Everything after this follows. | none, see below |
+| 4, one signal | Everything later is downstream of this needle. | Skipped: net flow in or out is the only input. |
+| 5, one authority | Nothing above it can overrule that needle. | Skipped: there is no vote, and no override. |
+| 6, you are the bank | You were watching. Now you hold one. | Skipped: the licence cannot leave your hands. |
+| 7, Branches | You have one bank. It can become ten. | Skipped: more Branches, thinner slice each. |
+| 8, the Dutch auction | Growing is not free. This is the bill. | Skipped: you pay to expand, and it is burned. |
+| 9, two regimes | That burn was one licence. Here it is policy. | Skipped: money out leaves in capped steps. |
+
+Scene 9's skim line deliberately does not say the system defends itself slowly.
+Steady state throughput is the same in both directions; the asymmetry is that
+money in is spent on arrival while money out pools first and leaves in capped
+steps. That error was made once in the scene copy already and corrected.
+
+### Scene 13, where this actually stands
+
+| Trigger | Line |
+| --- | --- |
+| Arriving | Three numbers decide it. None are public. |
+
+This is scene 12's parting thought, moved here as recorded. One caveat worth
+knowing: scene 13's own "What nobody knows yet" card closes on the same idea in
+fuller words, and because scene 13 runs no JavaScript the line has no clock to
+fade itself on, so it stays on the bar while the reader scrolls down to that
+card. Arrival only, and no skim line, for the same reason.
+
+### At most two skim lines in a session
+
+A skim line beats the arrival line of wherever the reader went, which is right
+once and wrong nine times. With every scene narrated, somebody moving briskly
+trips the skim test on all of them and gets a column of "Skipped:" lines instead
+of the thread, which is nagging. After two, skim is suppressed and the arrival
+lines come through.
 
 ### Scene 10, the locked money
 
