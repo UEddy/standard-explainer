@@ -6,10 +6,15 @@
    entrance and the progress marks both ride IntersectionObserver, and the
    keyboard handler only runs when a key is pressed.
 
-   Vertical snapping was chosen over pinned horizontal because only five of the
-   thirteen scenes fit a phone screen and the three tentpoles run to roughly two
-   and a half each. Horizontal would also have fought scene 11's rotary drag and
-   scene 12's slider, which both need the horizontal axis for themselves.
+   Vertical was chosen over pinned horizontal because only a third of the
+   sections fit a phone screen and the three tentpoles run to roughly two and a
+   half each. Horizontal would also have fought scene 11's rotary drag and scene
+   12's slider, which both need the horizontal axis for themselves.
+
+   This once drove CSS scroll snapping as well. That was removed after it was
+   reported yanking mid read on a phone; see the note in base.css. Nothing here
+   depended on it: the keys below scroll to a section, which works the same
+   either way.
    --------------------------------------------------------------------------- */
 
 (function (global) {

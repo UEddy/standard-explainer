@@ -12,16 +12,17 @@
 
    Two things about this site that shaped the script:
 
-   1. The page snaps. Every section is a full viewport with a proximity snap
-      point at its top, and scenes 10, 11 and 12 run to 1.8, 2.35 and 2.57
-      screens. At the two positions the presentation layer naturally produces,
-      the snap point or one page down, none of the three shots frames. Scene 11
-      at its snap point shows the shower with only 75px of the dial; one page
-      down shows the dial with the shower gone. So each shot seats at an
-      intermediate framing, computed from the elements that have to share the
-      frame. That is a legitimate reading position, because proximity snapping
-      assists and never grabs, and the eased scrolls below are programmatic and
-      do not re-engage snapping.
+   1. Every section is a full viewport tall, and scenes 10, 11 and 12 run to
+      1.8, 2.35 and 2.57 screens. Neither the top of a scene nor one page down
+      from it frames any of the three shots: scene 11 at its top shows the shower
+      with only 75px of the dial, and one page down shows the dial with the
+      shower gone. So each shot seats at an intermediate framing computed from
+      the elements that have to share the frame.
+
+      These framings were worked out while the page still used scroll snapping,
+      which has since been removed. They did not depend on it and still hold; the
+      only thing that changed is that there is no longer anything that could pull
+      a seated frame off its mark.
 
    2. Scene 12's arrival narration is the best moment in the clip and it is
       order dependent. "You closed one to get paid. Now everyone." only fires

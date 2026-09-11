@@ -67,22 +67,34 @@ h1,.scene-title{
 }
 
 /* ---------- the presentation layer ----------
-   Scenes arrive one at a time and settle. Vertical snapping, never horizontal:
-   the horizontal axis belongs to the instruments, scene 11's dial and scene 12's
-   slider, and Android Chrome's back swipe owns the left edge.
+   Scenes arrive one at a time and settle. Full viewport sections, a lateral
+   entrance, progress marks and keyboard advance. dvh, so the Android URL bar
+   collapsing does not resize a scene mid scroll.
 
-   Snapping is PROXIMITY, not mandatory. Four scenes are taller than a phone
-   screen, the tallest at about two and a half, so a reader must be able to stop
-   anywhere inside one and stay there. Proximity assists on approach and lets go
-   the rest of the time. dvh, so the Android URL bar collapsing does not resize a
-   scene mid scroll. */
-html{scroll-snap-type:y proximity}
+   THERE IS NO SCROLL SNAPPING, AND IT SHOULD NOT BE PUT BACK.
+
+   It was here, as `scroll-snap-type: y proximity` with `scroll-snap-align: start`
+   on every section, and it was removed after it was reported yanking mid read on
+   a real phone. The reason is structural rather than a matter of tuning. Nine of
+   the fourteen sections are taller than the viewport, and a section taller than
+   the screen has no correct resting position, so the only snap point it can
+   offer is its own top. What then pulls a reader out of a paragraph is the
+   snap point of the section they are approaching, which no amount of weakening
+   the current section's alignment can prevent.
+
+   Snapping only the sections that fit does not fix it either. That leaves the
+   short ones still pulling a reader off the bottom of the tall one before them.
+
+   Everything snapping was added for survives without it: the sections are still
+   a viewport tall, content still arrives laterally, the marks still say where
+   you are, and the arrow and page keys still move scene to scene. The one thing
+   lost is the settle at the end of a flick on the five sections that fit, which
+   is a small price for never fighting a thumb. */
 @media (prefers-reduced-motion: no-preference){ html{scroll-behavior:smooth} }
 
 .masthead,.scene{
   min-height:100vh;
   min-height:100dvh;
-  scroll-snap-align:start;
   display:grid;
   /* safe centring: a scene taller than the screen falls back to top aligned
      rather than overflowing off both ends where the top becomes unreachable */

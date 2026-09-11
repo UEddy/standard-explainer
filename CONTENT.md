@@ -297,21 +297,20 @@ steps. That error was made once in the scene copy already and corrected.
 
 ### Scene 13, where this actually stands
 
-| Trigger | Line |
-| --- | --- |
-| Arriving, before 14 September | Three numbers decide it. None are public. |
-| Arriving, from 14 September | Three numbers decide it. You can see them now. |
+**Silent, on purpose.** It is the only section with copy that gets no narrator
+line.
 
-This is scene 12's parting thought, moved here as recorded. It carried the same
-expiry as the scene's copy: all three of those numbers become observable on
-chain the moment the system is live, so "none are public" is true of a design
-and false of a running protocol. It reads the same `data-prelaunch` attribute
-scene 13 does, so there is one source of truth and they cannot disagree.
+Scene 12's parting thought, "Three numbers decide it. None are public.", was
+moved here and then taken back out. Scene 13's own "What nobody knows yet" card
+closes on the same idea in fuller words, and because scene 13 has no SceneLoop
+clock the line cannot fade: it would sit unmoving on the bar while the reader
+scrolls down to the paragraph that says it better, which is the worst place on
+the page for a repetition.
 
-One caveat worth knowing: scene 13's own "What nobody knows yet" card closes on
-the same idea in fuller words, and the line has no clock to fade itself on, so it
-stays on the bar while the reader scrolls down to that card. Arrival only, and no
-skim line, because scene 13 has no SceneLoop clock to measure dwell with.
+A handover line does not work either. Anything of the shape "that was the design,
+this is the state of it" restates the standfirst, which says exactly that
+already. Silence suits a close, and it leaves the safety warning without a voice
+in the margin.
 
 ### At most two skim lines in a session
 

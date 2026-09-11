@@ -141,11 +141,23 @@ children get the lateral entrance the first time the section is seen, staggered
 by `nth-child`. A mark is added to the progress bar for every `.scene`, so a new
 scene needs no registration.
 
-**Snapping is `proximity`, never `mandatory`.** Eight of the fourteen sections
-are taller than a phone screen, scene 12 at about 2.7 of them. Mandatory snapping
-would make the bottom of those unreachable. Proximity assists on approach and
-lets go otherwise, which is also how a tall scene exempts itself: it simply never
-gets pulled.
+**There is no scroll snapping, and it should not be put back.** It was here as
+`scroll-snap-type: y proximity` and was removed after it was reported yanking mid
+read on a real phone.
+
+The reason is structural, not a matter of tuning. Nine of the fourteen sections
+are taller than the viewport, and a section taller than the screen has no correct
+resting position, so the only snap point it can offer is its own top. What pulls
+a reader out of a paragraph is the snap point of the section they are
+*approaching*, which nothing done to the current section can prevent. Snapping
+only the sections that fit does not fix that either: the short ones still pull a
+reader off the bottom of the tall one before them, and on this page that includes
+the end of scene 13.
+
+Everything the snapping was added for survives without it. The sections are still
+a viewport tall, content still arrives laterally, the marks still say where you
+are, and the arrow and page keys still move scene to scene. The only loss is the
+settle at the end of a flick on the five sections that fit.
 
 **`padding-block` on `.masthead, .scene` is 0 and must stay there.** `min-height`
 is border box, so padding comes straight out of the content box. Scenes 2 and 6
@@ -188,6 +200,8 @@ the more cautious copy rather than the more accurate one.
 
 The narrator reads the same attribute for its scene 13 line, so the two cannot
 disagree about what day it is.
+
+The narrator has no line on scene 13, so nothing else reads this attribute.
 
 **Prefer rewording over dating.** Two quiz explanations carried the same expiry,
 saying the overhang's three numbers were "not public", which is true of a design
@@ -265,14 +279,18 @@ reads as scene 9's expansion regime.
 
 **Height is the constraint that shaped the interaction.** The explanation is the
 payoff and it has to be on screen with the way forward, on a phone, without a
-scroll. Two things that do not work: keeping all four options visible, which put
-the explanation below the fold in 13 of 15 questions and the Next button below
-it in all 15; and calling `scrollIntoView` to fix that, which moves nothing at
-all, because the section sits on its own snap point and proximity snapping pulls
-the page straight back. What works is the card being shorter: the options nobody
-picked fold away, and the standfirst folds on the first answer. All 60
-combinations of 15 questions by 4 picks now fit one screen at 412 x 780 and at
-320 x 780.
+scroll. Keeping all four options visible put the explanation below the fold in 13
+of 15 questions and the Next button below it in all 15. What works is the card
+being shorter: the options nobody picked fold away, and the standfirst folds on
+the first answer. All 60 combinations of 15 questions by 4 picks fit one screen
+at 412 x 780 and at 320 x 780.
+
+Scrolling the explanation into view is the obvious alternative and it is still
+the wrong one. When this was built it could not have worked at all, because
+scroll snapping pulled the page straight back; the snapping is gone now and it
+would work, but moving the page under somebody who has just tapped is worse than
+showing them a shorter card, and the shorter card is the clearer comparison
+anyway.
 
 ## The narrator
 
@@ -296,18 +314,24 @@ the other ten get written. On any scene without lines the bar is hushed, and
 hushed means `visibility:hidden` rather than just faded, so its live region does
 not leave a stale line for a screen reader to find.
 
-**Scene 3 is narrated and still runs no JavaScript. Scene 13 is the exception.** The narrator is a
-page level module that watches sections from outside with an IntersectionObserver
-and reads `__sceneLoop` off a root only if one is there, so neither scene is
-registered with the loop. What that costs them is timing: with no clock there is
-no idle nudge, no dwell measurement and so no skim line, and no way for a line to
-fade itself out. Arrival lines only, which suits both, one being a rest and the
-other the close.
+**Scene 3 is narrated and still runs no JavaScript. Scene 13 is silent.**
 
-Scene 13 does now run one script, `js/launch-date.js`, and it is the only scene
-that does anything outside the shared loop. See "The launch date switch" below
-for why that exception exists. It still is not registered with SceneLoop: it has
-no clock, no simulation and no render, and reads a date once.
+Scene 13 gets no narrator line at all, and it is the only section with copy that
+gets none. Scene 12's parting thought was moved there and taken back out: scene
+13's own "What nobody knows yet" card closes on the same idea in fuller words,
+and with no clock the line cannot fade, so it would sit unmoving on the bar while
+the reader scrolls down to the paragraph that says it better. A handover line
+does not work either, since anything of that shape restates the standfirst.
+Silence suits a close, and it leaves the safety warning without a voice beside
+it.
+
+Scene 13 does still run `js/launch-date.js`, which is a different thing and has
+its own section below. The narrator is a
+page level module that watches sections from outside with an IntersectionObserver
+and reads `__sceneLoop` off a root only if one is there, so scene 3 is not
+registered with the loop and gains no script. What that costs it is timing: with
+no clock there is no idle nudge, no dwell measurement and so no skim line, and no
+way for a line to fade itself out. An arrival line only, which suits a rest.
 
 **Skim lines are capped at two a session.** A skim line takes precedence over the
 arrival line of wherever the reader went, which is right once and wrong nine

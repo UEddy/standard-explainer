@@ -140,19 +140,21 @@
       skim:        'Skipped: the number leaves out real claims.'
     },
 
-    /* Scene 12's parting thought, recorded in CONTENT.md as belonging here.
-       Arrival only: scene 13 has no SceneLoop clock, so there is nothing to fade
-       the line on and no dwell to measure.
+    /* Scene 13 is deliberately silent, and it is the only section with copy that
+       gets none.
 
-       It carries the same expiry as scene 13's copy. "None are public" is true
-       of a system that has not launched and false of one that has, because all
-       three of those numbers become observable on chain the moment it is live.
-       Same attribute, same single source of truth, set by launch-date.js. */
-    'scene-13': {
-      arrive: (document.documentElement.getAttribute('data-prelaunch') === 'false')
-        ? 'Three numbers decide it. You can see them now.'
-        : 'Three numbers decide it. None are public.'
-    },
+       Scene 12's parting thought was moved here and taken back out again. Scene
+       13's own "What nobody knows yet" card closes on the same idea in fuller
+       words, and because this scene has no clock the line cannot fade: it would
+       sit on the bar, unmoving, while the reader scrolls down to the paragraph
+       that says it better. That is the worst possible place on the page for a
+       repetition.
+
+       A handover line does not work either. Anything that says "that was the
+       design, this is the state of it" restates the standfirst, which already
+       says exactly that. There is nothing left for the narrator to add, and
+       silence suits a close: the page stops talking and lets somebody read the
+       safety warning without a voice in the margin. */
 
     /* The quiz is where the reader speaks, so the narrator hands over and then
        stays out of it. One line as it opens, one at the very end, nothing
@@ -163,9 +165,10 @@
     }
   };
 
+  /* scene-13 is not here on purpose. See the note where its lines used to be. */
   var WATCHED = ['scene-1', 'scene-2', 'scene-3', 'scene-4', 'scene-5',
                  'scene-6', 'scene-7', 'scene-8', 'scene-9',
-                 'scene-10', 'scene-11', 'scene-12', 'scene-13', 'scene-quiz'];
+                 'scene-10', 'scene-11', 'scene-12', 'scene-quiz'];
 
   /* Scenes where the line is a handover rather than company: say it, then fade
      out and leave the screen alone. The quiz is the whole list, because it is

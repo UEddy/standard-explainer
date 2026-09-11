@@ -305,11 +305,13 @@
 
     nextEl.hidden = false;
 
-    /* Note for anyone tempted to solve the fold with a scroll instead: it does
-       not work here. scrollIntoView on the Next button moves nothing, because
-       the section sits exactly on its own snap point and proximity snapping
-       pulls the page straight back. The fold has to be won by the card being
-       shorter, which is what folding the unpicked options away does. */
+    /* The fold is won by the card being shorter rather than by scrolling, which
+       is what folding the unpicked options away does. When this was written a
+       scroll could not have fixed it anyway: scroll snapping pulled the page
+       straight back to the section's own snap point. The snapping is gone now
+       and a scroll would work, but it is still the wrong fix. Moving the page
+       under somebody who has just tapped is worse than showing them a shorter
+       card, and the shorter card is the clearer comparison regardless. */
   }
 
   nextEl.addEventListener('click', function(){
