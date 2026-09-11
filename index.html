@@ -808,27 +808,36 @@ Whatever the code says, happens.</div>
 
 <header>
   <p class="kicker">Scene 13 of 13 &middot; Where this actually stands</p>
-  <h2 class="scene-title">None of this exists yet. On 14 September it does.</h2>
-  <p class="standfirst">Everything you have just played with describes a design, not a running system. That changes on 14 September 2026, which the team announced three days ahead. Here is the state of the real thing, as plainly as it can be put.</p>
+  <h2 class="scene-title"><span data-when="before">None of this exists yet. On 14 September it does.</span><span data-when="after">It exists now.</span></h2>
+  <p class="standfirst" data-when="before">Everything you have just played with describes a design, not a running system. That changes on 14 September 2026, which the team announced three days ahead. Here is the state of the real thing, as plainly as it can be put.</p>
+  <p class="standfirst" data-when="after">Everything you have just played with described a design. As of 14 September 2026 it is a running system. Here is the state of the real thing, as plainly as it can be put.</p>
 </header>
 
 <section class="card">
   <h3>The state of play</h3>
   <div class="status">
-    <div class="status-row"><span class="tag live">14 Sep</span>
+    <div class="status-row" data-when="before"><span class="tag live">14 Sep</span>
       <p><b>Launch is announced for 14 September 2026.</b> The date is on the front of the official site and on the whitepaper.</p></div>
-    <div class="status-row"><span class="tag no">Not yet</span>
+    <div class="status-row" data-when="after"><span class="tag live">Launched</span>
+      <p><b>Launch was 14 September 2026.</b> Everything below this line was written before that day and has not been checked since.</p></div>
+    <div class="status-row" data-when="before"><span class="tag no">Not yet</span>
       <p><b>There is no token yet.</b> $STANDARD has not launched. Anything trading under that name today is not it.</p></div>
-    <div class="status-row"><span class="tag no">Not yet</span>
+    <div class="status-row" data-when="after"><span class="tag live">Live</span>
+      <p><b>$STANDARD has launched.</b> There is now a real contract, which means there is now a real address to get wrong. Take it from the official site and nowhere else.</p></div>
+    <div class="status-row" data-when="before"><span class="tag no">Not yet</span>
       <p><b>There is no NFT yet.</b> No Charter has been issued to anybody. The 1,000 Founding Charters are minted at genesis, on launch day.</p></div>
+    <div class="status-row" data-when="after"><span class="tag live">Live</span>
+      <p><b>The Charter NFT exists.</b> The 1,000 Founding Charters were minted at genesis. Any other collection using the name is not it.</p></div>
     <div class="status-row"><span class="tag wip">v0.1</span>
       <p><b>The whitepaper is at v0.1.</b> Several parameters in it are deliberately redacted.</p></div>
     <div class="status-row"><span class="tag live">Live</span>
       <p><b>Genesis Charter eligibility checking is live</b> on the official site, which says whitelist spots are still available.</p></div>
     <div class="status-row"><span class="tag live">Clear</span>
       <p><b>Both audits came back with no critical findings,</b> and the team says the reports go public before launch. That is their announcement, not something anyone outside can check yet. The Uniswap Foundation funded part of the work.</p></div>
-    <div class="status-row"><span class="tag no">None</span>
+    <div class="status-row" data-when="before"><span class="tag no">None</span>
       <p><b>No public contract addresses and no code repository yet.</b> There is nothing deployed for anyone to read before launch day.</p></div>
+    <div class="status-row" data-when="after"><span class="tag wip">Check</span>
+      <p><b>Contract addresses exist now.</b> This page deliberately does not print one, because a wrong address on a page you found by accident is exactly how people lose money. Get it from the official site.</p></div>
     <div class="status-row"><span class="tag live">Stated</span>
       <p><b>The team said there would be no surprise launch,</b> and gave three days of notice.</p></div>
   </div>
@@ -849,15 +858,22 @@ Whatever the code says, happens.</div>
 
 <div class="warn">
   <h3>If you take one thing from this page</h3>
-  <p>The official account has warned about copycat mints and impersonation. There is no token and no NFT, so there is nothing legitimate to mint today.</p>
-  <p><strong>Do not connect a wallet to any site claiming to sell, mint or airdrop this.</strong> Check the official source first, every time. This page will never ask you for anything, and neither should anything else that matters.</p>
+  <div data-when="before">
+    <p>The official account has warned about copycat mints and impersonation. There is no token and no NFT, so there is nothing legitimate to mint today.</p>
+    <p><strong>Do not connect a wallet to any site claiming to sell, mint or airdrop this.</strong> Check the official source first, every time. This page will never ask you for anything, and neither should anything else that matters.</p>
+  </div>
+  <div data-when="after">
+    <p>The official account has warned about copycat mints and impersonation. A launch is when that risk is highest, not lowest: fakes are timed to land when people are expecting something real, and now there is a real thing for them to imitate.</p>
+    <p><strong>Verify the contract address against the official site before you connect a wallet to anything.</strong> Not an address from a reply, a DM, a search result, an advert or this page. This page will never ask you for anything, and neither should anything else that matters.</p>
+  </div>
 </div>
 
 <section class="card">
   <h3>Go to the real thing</h3>
   <p style="margin:0 0 14px;font-size:15px">This explainer is one reading of public material. For anything you intend to act on, go to the source.</p>
   <p style="margin:0"><a class="official" href="https://www.standardreserve.xyz" rel="noopener noreferrer" target="_blank">standardreserve.xyz</a></p>
-  <p class="asof">Checked against public material on 11 September 2026. Everything on this page goes stale, and this scene goes stale fastest: most of it is written for the days before launch and stops being true on 14 September. If you are reading it after that, assume it has changed and check the official site.</p>
+  <p class="asof" data-when="before">Checked against public material on 11 September 2026. Everything on this page goes stale, and this scene goes stale fastest: most of it is written for the days before launch and stops being true on 14 September. If you are reading it after that, assume it has changed and check the official site.</p>
+    <p class="asof" data-when="after">Checked against public material on 11 September 2026, before launch. This scene switched itself to its launched form on 14 September, but nobody has re-checked the facts since that date. Treat all of it as stale and go to the official site.</p>
 </section>
 
 </section>
@@ -897,6 +913,7 @@ Whatever the code says, happens.</div>
 
 </div>
 
+<script src="js/launch-date.js"></script>
 <script src="js/presentation.js"></script>
 <script src="js/scene-loop.js"></script>
 <script src="js/poke.js"></script>

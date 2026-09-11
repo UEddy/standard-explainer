@@ -141,10 +141,17 @@
     },
 
     /* Scene 12's parting thought, recorded in CONTENT.md as belonging here.
-       Scene 13 runs no JavaScript either, so this is arrival only and it has no
-       clock to fade itself on. */
+       Arrival only: scene 13 has no SceneLoop clock, so there is nothing to fade
+       the line on and no dwell to measure.
+
+       It carries the same expiry as scene 13's copy. "None are public" is true
+       of a system that has not launched and false of one that has, because all
+       three of those numbers become observable on chain the moment it is live.
+       Same attribute, same single source of truth, set by launch-date.js. */
     'scene-13': {
-      arrive: 'Three numbers decide it. None are public.'
+      arrive: (document.documentElement.getAttribute('data-prelaunch') === 'false')
+        ? 'Three numbers decide it. You can see them now.'
+        : 'Three numbers decide it. None are public.'
     },
 
     /* The quiz is where the reader speaks, so the narrator hands over and then

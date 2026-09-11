@@ -1,6 +1,7 @@
 /* ---- scene 13 only: where this actually stands ----
-   No animation and no script. A status list, an honest list of what nobody
-   knows, one safety warning, and the close. */
+   No animation, and the only script is the date switch at the foot of this
+   file. A status list, an honest list of what nobody knows, one safety warning,
+   and the close. */
 
 #scene-13 .status{display:grid;gap:9px;margin:0}
 #scene-13 .status-row{
@@ -40,3 +41,23 @@
 }
 #scene-13 .official:focus-visible{outline:3px solid var(--locked);outline-offset:3px}
 #scene-13 .asof{font-size:12.5px;color:var(--ink-soft);margin:14px 0 0;line-height:1.5}
+
+/* ---- the launch date switch ----
+   Both forms of the dated copy live in the markup; js/launch-date.js sets
+   data-prelaunch on the root and this decides which one is on the page.
+
+   The LAUNCHED form is the default and the pre-launch form is the exception,
+   which is the wrong way round until you look at what each failure does. With
+   scripting off before launch the reader is told to check the contract address
+   slightly before there is one to check: premature, harmless. With scripting off
+   after launch the other way round, the reader would be told there is nothing
+   legitimate to mint on the day there is, which describes the real mint as a
+   fake. Defaults should fail in the harmless direction. */
+#scene-13 [data-when="before"]{display:none}
+#scene-13 span[data-when="after"]{display:inline}
+#scene-13 .status-row[data-when="after"]{display:grid}
+
+html[data-prelaunch="true"] #scene-13 [data-when="after"]{display:none}
+html[data-prelaunch="true"] #scene-13 [data-when="before"]{display:block}
+html[data-prelaunch="true"] #scene-13 span[data-when="before"]{display:inline}
+html[data-prelaunch="true"] #scene-13 .status-row[data-when="before"]{display:grid}

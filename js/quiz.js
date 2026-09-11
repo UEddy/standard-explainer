@@ -154,7 +154,7 @@
             'That the buyback has been quietly absorbing supply.',
             'Very little. Large claims may exist that it does not count yet.'],
         c: 3,
-        why: 'Earned balances accrue inside the system and are not counted in totalSupply until they convert, so the number can be low precisely because claims are waiting outside it. How much is waiting is not public, so this is a thing to check rather than a thing to assume.'
+        why: 'Earned balances accrue inside the system and are not counted in totalSupply until they convert, so the number can be low precisely because claims are waiting outside it. How much is waiting is not something that number tells you, so it is a thing to check rather than a thing to assume.'
       },
       {
         q: 'Could the buybacks absorb a large conversion arriving all at once?',
@@ -166,13 +166,13 @@
         why: 'Buybacks are throttled to at most the smaller of 10 percent of the vault balance and 0.2 percent of pool reserves per hour, roughly no more than 5 percent of pool depth per day at launch. Support at that rate cannot meet a rush in an afternoon.'
       },
       {
-        q: 'Which three unknowns decide whether the overhang matters at all?',
+        q: 'Which three things decide whether the overhang matters at all?',
         o: ['The hard cap, the burn rate and the epoch length.',
             'How much has accrued, how few hands hold it, how deep the pool is.',
             'The number of Charters issued and the price they went for.',
             'The team share, the revenue split and the resolution fee.'],
         c: 1,
-        why: 'Those three are the unknowns the page ends on, and none of them is public: how much has accrued, how concentrated it is, and how deep the pool will be on the day it converts.'
+        why: 'Those three are what the page ends on: how much has accrued, how concentrated it is, and how deep the pool is on the day it converts. None of them is settled by the supply figure.'
       },
       {
         q: 'Does the hard cap protect you from the overhang?',

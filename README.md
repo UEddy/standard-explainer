@@ -58,6 +58,7 @@ Vercel is ever unavailable.
 index.html            the whole page: masthead, one <section> per scene, footer
 css/base.css          palette, type, cards, controls. Shared by every scene
 css/scene-NN.css      only what that one scene needs
+js/launch-date.js     scene 13's date switch, the one script outside the loop
 js/presentation.js    scroll-snap navigation, entrances, progress marks
 js/poke.js            shared ambient touch: drag, press, SVG coordinates
 js/scene-loop.js      one shared rAF loop for the page
@@ -162,6 +163,39 @@ scene 7's Branch slots and scene 9's lever, lets paging through. If a new contro
 needs a key, declare it in `consumesKey`; do not call `preventDefault` in the
 scene.
 
+## The launch date switch
+
+Scene 13 is the only scene whose copy has a date attached to it, and it switches
+itself. `js/launch-date.js` compares the reader's local date against 14 September
+2026 and sets `data-prelaunch` on the root element. Both forms of the dated copy
+live in the markup and `css/scene-13.css` decides which is on the page.
+
+**This is the one place a scene runs script outside the shared loop.** It is not
+registered with SceneLoop and has no clock, no simulation and no render. It reads
+a date once and sets one attribute. Scene 3 still runs nothing at all.
+
+Nothing is fetched. A local clock that is wrong by a few hours either side of
+midnight costs nothing here; a page that is wrong for a week because somebody
+forgot to edit it is the failure this exists to prevent.
+
+**The launched form is the default, and that is deliberate.** With scripting off
+before launch the reader is told to check the contract address slightly before
+there is one to check: premature, harmless. The other way round, the reader would
+be told there is nothing legitimate to mint on the day there is, which describes
+the real mint as a fake and invites them to discount the whole warning.
+Defaults have to fail in the harmless direction, which here means defaulting to
+the more cautious copy rather than the more accurate one.
+
+The narrator reads the same attribute for its scene 13 line, so the two cannot
+disagree about what day it is.
+
+**Prefer rewording over dating.** Two quiz explanations carried the same expiry,
+saying the overhang's three numbers were "not public", which is true of a design
+and false of a running protocol. They were reworded to be true on both sides of
+the date instead of being given date logic of their own. Date switching is for
+copy that genuinely has to say two different things; everything else should just
+be written so it does not go stale.
+
 ## Ambient touch
 
 `js/poke.js` is the shared half of piece 2, for the same reason the scene loop is
@@ -262,13 +296,18 @@ the other ten get written. On any scene without lines the bar is hushed, and
 hushed means `visibility:hidden` rather than just faded, so its live region does
 not leave a stale line for a screen reader to find.
 
-**Scenes 3 and 13 are narrated and still run no JavaScript.** The narrator is a
+**Scene 3 is narrated and still runs no JavaScript. Scene 13 is the exception.** The narrator is a
 page level module that watches sections from outside with an IntersectionObserver
 and reads `__sceneLoop` off a root only if one is there, so neither scene is
-registered with the loop and neither gains a script. What that costs them is
-timing: with no clock there is no idle nudge, no dwell measurement and so no skim
-line, and no way for a line to fade itself out. Arrival lines only, which suits
-both, one being a rest and the other the close.
+registered with the loop. What that costs them is timing: with no clock there is
+no idle nudge, no dwell measurement and so no skim line, and no way for a line to
+fade itself out. Arrival lines only, which suits both, one being a rest and the
+other the close.
+
+Scene 13 does now run one script, `js/launch-date.js`, and it is the only scene
+that does anything outside the shared loop. See "The launch date switch" below
+for why that exception exists. It still is not registered with SceneLoop: it has
+no clock, no simulation and no render, and reads a date once.
 
 **Skim lines are capped at two a session.** A skim line takes precedence over the
 arrival line of wherever the reader went, which is right once and wrong nine
@@ -310,8 +349,8 @@ costs nothing to run. Not every scene needs a clock.
 
 Scenes 4, 7, 8, 9, 10, 11 and 12 carry an interaction and earn their extra
 weight. Scenes 1, 2 and 6 open on a play-once animation and then answer a finger
-without ever requiring one. Scenes 3 and 13 have no script at all, which is the
-one thing about them that must not change.
+without ever requiring one. Scene 3 has no script at all and that must not
+change. Scene 13 has exactly one, the launch date switch, and nothing else.
 
 ## Testing
 

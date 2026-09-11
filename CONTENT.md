@@ -187,22 +187,47 @@ illustrative on screen.
 
 ## Scene 13: Where this actually stands
 
-*Rewritten 11 September 2026 for the launch announcement. This scene is the one
-that goes stale fastest and most of it is written for the days before 14
-September.*
+*Rewritten 11 September 2026 for the launch announcement. This is the only scene
+whose copy has a date attached, and it now switches itself: `js/launch-date.js`
+compares the reader's local date against 14 September 2026 and sets
+`data-prelaunch` on the root, and both forms below live in the markup.*
 
-- **Kicker:** Scene 13 of 13 · Where this actually stands
+**The launched form is the default.** With scripting off before launch a reader
+is told to check the contract address slightly before there is one, which is
+premature and harmless. The other way round, they would be told there is nothing
+legitimate to mint on the day there is, which describes the real mint as a fake.
+Defaults fail in the harmless direction.
+
+- **Kicker:** Scene 13 of 13 - Where this actually stands
+
+### Before 14 September
+
 - **Headline:** None of this exists yet. On 14 September it does.
 - **Standfirst:** Everything you have just played with describes a design, not a running system. That changes on 14 September 2026, which the team announced three days ahead. Here is the state of the real thing, as plainly as it can be put.
-- **Card label:** The state of play
-  - **14 Sep** · Launch is announced for 14 September 2026. The date is on the front of the official site and on the whitepaper.
-  - **Not yet** · There is no token yet. $STANDARD has not launched. Anything trading under that name today is not it.
-  - **Not yet** · There is no NFT yet. No Charter has been issued to anybody. The 1,000 Founding Charters are minted at genesis, on launch day.
-  - **v0.1** · The whitepaper is at v0.1. Several parameters in it are deliberately redacted.
-  - **Live** · Genesis Charter eligibility checking is live on the official site, which says whitelist spots are still available.
-  - **Clear** · Both audits came back with no critical findings, and the team says the reports go public before launch. That is their announcement, not something anyone outside can check yet. The Uniswap Foundation funded part of the work.
-  - **None** · No public contract addresses and no code repository yet. There is nothing deployed for anyone to read before launch day.
-  - **Stated** · The team said there would be no surprise launch, and gave three days of notice.
+- **14 Sep** - Launch is announced for 14 September 2026. The date is on the front of the official site and on the whitepaper.
+- **Not yet** - There is no token yet. $STANDARD has not launched. Anything trading under that name today is not it.
+- **Not yet** - There is no NFT yet. No Charter has been issued to anybody. The 1,000 Founding Charters are minted at genesis, on launch day.
+- **None** - No public contract addresses and no code repository yet. There is nothing deployed for anyone to read before launch day.
+- **Warning box:** The official account has warned about copycat mints and impersonation. There is no token and no NFT, so there is nothing legitimate to mint today. / **Do not connect a wallet to any site claiming to sell, mint or airdrop this.** Check the official source first, every time. This page will never ask you for anything, and neither should anything else that matters.
+- **As of:** Checked against public material on 11 September 2026. Everything on this page goes stale, and this scene goes stale fastest: most of it is written for the days before launch and stops being true on 14 September. If you are reading it after that, assume it has changed and check the official site.
+
+### From 14 September
+
+- **Headline:** It exists now.
+- **Standfirst:** Everything you have just played with described a design. As of 14 September 2026 it is a running system. Here is the state of the real thing, as plainly as it can be put.
+- **Launched** - Launch was 14 September 2026. Everything below this line was written before that day and has not been checked since.
+- **Live** - $STANDARD has launched. There is now a real contract, which means there is now a real address to get wrong. Take it from the official site and nowhere else.
+- **Live** - The Charter NFT exists. The 1,000 Founding Charters were minted at genesis. Any other collection using the name is not it.
+- **Check** - Contract addresses exist now. This page deliberately does not print one, because a wrong address on a page you found by accident is exactly how people lose money. Get it from the official site.
+- **Warning box:** The official account has warned about copycat mints and impersonation. A launch is when that risk is highest, not lowest: fakes are timed to land when people are expecting something real, and now there is a real thing for them to imitate. / **Verify the contract address against the official site before you connect a wallet to anything.** Not an address from a reply, a DM, a search result, an advert or this page. This page will never ask you for anything, and neither should anything else that matters.
+- **As of:** Checked against public material on 11 September 2026, before launch. This scene switched itself to its launched form on 14 September, but nobody has re-checked the facts since that date. Treat all of it as stale and go to the official site.
+
+### The same on both sides of the date
+
+- **v0.1** - The whitepaper is at v0.1. Several parameters in it are deliberately redacted.
+- **Live** - Genesis Charter eligibility checking is live on the official site, which says whitelist spots are still available.
+- **Clear** - Both audits came back with no critical findings, and the team says the reports go public before launch. That is their announcement, not something anyone outside can check yet. The Uniswap Foundation funded part of the work.
+- **Stated** - The team said there would be no surprise launch, and gave three days of notice.
 - **Card label:** What nobody knows yet
   - The redacted parameters: the exact issuance curve, the epoch length, and the lag between a flow and its effect.
   - How much $STANDARD will accrue inside the system before anybody retires a Branch.
@@ -211,21 +236,9 @@ September.*
   - The final launch parameters. The whitepaper still says they will be announced closer to launch.
   - What the audit reports say in full, until they are published.
   - *Closing line:* Those last three are the ones scene 12 depends on. Without them, nobody can tell you whether the overhang matters. Anyone who says otherwise is guessing.
-- **Warning box, unchanged and to be left alone until it is deliberately revised:** If you take one thing from this page. / The official account has warned about copycat mints and impersonation. There is no token and no NFT, so there is nothing legitimate to mint today. / **Do not connect a wallet to any site claiming to sell, mint or airdrop this.** Check the official source first, every time. This page will never ask you for anything, and neither should anything else that matters.
-
-  > **This box expires on 14 September.** "There is nothing legitimate to mint
-  > today" is true until launch and false after it, and "do not connect a wallet
-  > to any site claiming to sell or mint this" will, after launch, also describe
-  > the real mint. Left exactly as written on instruction, because it matters
-  > most in the days before launch. It needs revising on the day, not deleting:
-  > the copycat risk goes up at launch, not down, and the useful form of the
-  > warning becomes "check the address against the official site" rather than
-  > "there is nothing to mint".
-
 - **Card label:** Go to the real thing
   - This explainer is one reading of public material. For anything you intend to act on, go to the source.
   - *Link:* standardreserve.xyz
-  - *As of:* Checked against public material on 11 September 2026. Everything on this page goes stale, and this scene goes stale fastest: most of it is written for the days before launch and stops being true on 14 September. If you are reading it after that, assume it has changed and check the official site.
 
 ---
 
@@ -286,13 +299,19 @@ steps. That error was made once in the scene copy already and corrected.
 
 | Trigger | Line |
 | --- | --- |
-| Arriving | Three numbers decide it. None are public. |
+| Arriving, before 14 September | Three numbers decide it. None are public. |
+| Arriving, from 14 September | Three numbers decide it. You can see them now. |
 
-This is scene 12's parting thought, moved here as recorded. One caveat worth
-knowing: scene 13's own "What nobody knows yet" card closes on the same idea in
-fuller words, and because scene 13 runs no JavaScript the line has no clock to
-fade itself on, so it stays on the bar while the reader scrolls down to that
-card. Arrival only, and no skim line, for the same reason.
+This is scene 12's parting thought, moved here as recorded. It carried the same
+expiry as the scene's copy: all three of those numbers become observable on
+chain the moment the system is live, so "none are public" is true of a design
+and false of a running protocol. It reads the same `data-prelaunch` attribute
+scene 13 does, so there is one source of truth and they cannot disagree.
+
+One caveat worth knowing: scene 13's own "What nobody knows yet" card closes on
+the same idea in fuller words, and the line has no clock to fade itself on, so it
+stays on the bar while the reader scrolls down to that card. Arrival only, and no
+skim line, because scene 13 has no SceneLoop clock to measure dwell with.
 
 ### At most two skim lines in a session
 
@@ -507,7 +526,7 @@ named as illustrative.
 - That the buyback has been quietly absorbing supply.
 - **(correct)** Very little. Large claims may exist that it does not count yet.
 
-*Why:* Earned balances accrue inside the system and are not counted in totalSupply until they convert, so the number can be low precisely because claims are waiting outside it. How much is waiting is not public, so this is a thing to check rather than a thing to assume.
+*Why:* Earned balances accrue inside the system and are not counted in totalSupply until they convert, so the number can be low precisely because claims are waiting outside it. How much is waiting is not something that number tells you, so it is a thing to check rather than a thing to assume.
 
 **C3.** Could the buybacks absorb a large conversion arriving all at once?
 
@@ -518,14 +537,14 @@ named as illustrative.
 
 *Why:* Buybacks are throttled to at most the smaller of 10 percent of the vault balance and 0.2 percent of pool reserves per hour, roughly no more than 5 percent of pool depth per day at launch. Support at that rate cannot meet a rush in an afternoon.
 
-**C4.** Which three unknowns decide whether the overhang matters at all?
+**C4.** Which three things decide whether the overhang matters at all?
 
 - The hard cap, the burn rate and the epoch length.
 - **(correct)** How much has accrued, how few hands hold it, how deep the pool is.
 - The number of Charters issued and the price they went for.
 - The team share, the revenue split and the resolution fee.
 
-*Why:* Those three are the unknowns the page ends on, and none of them is public: how much has accrued, how concentrated it is, and how deep the pool will be on the day it converts.
+*Why:* Those three are what the page ends on: how much has accrued, how concentrated it is, and how deep the pool is on the day it converts. None of them is settled by the supply figure.
 
 **C5.** Does the hard cap protect you from the overhang?
 
@@ -562,4 +581,5 @@ this list is illustrative and must stay labelled as such on screen.
 - Withdrawals are never paused or queued at any fee level. Every withdrawal pays a resolution fee that rises with 7-day system-wide exit pressure, half burned and half paid to Bankers who stayed.
 - Launch is announced for 14 September 2026. Confirmed directly: the banner reads "Standard is launching on September 14th" on both the front page and the whitepaper, and the whitepaper still says final parameters will be announced closer to launch.
 - Status as of 11 September 2026: no token yet, no NFT yet, whitepaper v0.1, eligibility checking live with whitelist spots still available, no public addresses or repository, no surprise launch, copycats circulating.
+- Two quiz explanations used to say the overhang's three numbers were "not public". That was true of a design and false of a running protocol, so they were reworded to be true on both sides of launch rather than given date logic. Prefer rewording over dating wherever it works.
 - **Sourced to the team's announcement, not independently checkable:** both audits came back with no critical findings and the reports are to be published before launch. This is the one claim on the page that rests on the team's word alone, and it is labelled that way on screen.
