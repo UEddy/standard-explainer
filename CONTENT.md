@@ -187,29 +187,45 @@ illustrative on screen.
 
 ## Scene 13: Where this actually stands
 
+*Rewritten 11 September 2026 for the launch announcement. This scene is the one
+that goes stale fastest and most of it is written for the days before 14
+September.*
+
 - **Kicker:** Scene 13 of 13 · Where this actually stands
-- **Headline:** None of this exists yet.
-- **Standfirst:** Everything you have just played with describes a design, not a running system. Here is the state of the real thing, as plainly as it can be put.
+- **Headline:** None of this exists yet. On 14 September it does.
+- **Standfirst:** Everything you have just played with describes a design, not a running system. That changes on 14 September 2026, which the team announced three days ahead. Here is the state of the real thing, as plainly as it can be put.
 - **Card label:** The state of play
-  - **No** · There is no token. $STANDARD has not launched. Anything trading under that name today is not it.
-  - **No** · There is no NFT. No Charter has been issued to anybody.
+  - **14 Sep** · Launch is announced for 14 September 2026. The date is on the front of the official site and on the whitepaper.
+  - **Not yet** · There is no token yet. $STANDARD has not launched. Anything trading under that name today is not it.
+  - **Not yet** · There is no NFT yet. No Charter has been issued to anybody. The 1,000 Founding Charters are minted at genesis, on launch day.
   - **v0.1** · The whitepaper is at v0.1. Several parameters in it are deliberately redacted.
-  - **Live** · Genesis Charter eligibility checking is live on the official site. Allocations have gone out in batches, with one batch remaining before launch.
-  - **Underway** · Audits are in progress. The Uniswap Foundation has funded part of that work. No completed audit report is public.
-  - **None** · No public contract addresses and no code repository. There is nothing deployed for anyone to read.
-  - **Stated** · The team has said there will be no surprise launch.
+  - **Live** · Genesis Charter eligibility checking is live on the official site, which says whitelist spots are still available.
+  - **Clear** · Both audits came back with no critical findings, and the team says the reports go public before launch. That is their announcement, not something anyone outside can check yet. The Uniswap Foundation funded part of the work.
+  - **None** · No public contract addresses and no code repository yet. There is nothing deployed for anyone to read before launch day.
+  - **Stated** · The team said there would be no surprise launch, and gave three days of notice.
 - **Card label:** What nobody knows yet
   - The redacted parameters: the exact issuance curve, the epoch length, and the lag between a flow and its effect.
   - How much $STANDARD will accrue inside the system before anybody retires a Branch.
   - How concentrated the Charters, and therefore those accrued balances, turn out to be.
   - How deep the pool will be on the day any of it converts.
-  - What the audits find.
+  - The final launch parameters. The whitepaper still says they will be announced closer to launch.
+  - What the audit reports say in full, until they are published.
   - *Closing line:* Those last three are the ones scene 12 depends on. Without them, nobody can tell you whether the overhang matters. Anyone who says otherwise is guessing.
-- **Warning box:** If you take one thing from this page. / The official account has warned about copycat mints and impersonation. There is no token and no NFT, so there is nothing legitimate to mint today. / **Do not connect a wallet to any site claiming to sell, mint or airdrop this.** Check the official source first, every time. This page will never ask you for anything, and neither should anything else that matters.
+- **Warning box, unchanged and to be left alone until it is deliberately revised:** If you take one thing from this page. / The official account has warned about copycat mints and impersonation. There is no token and no NFT, so there is nothing legitimate to mint today. / **Do not connect a wallet to any site claiming to sell, mint or airdrop this.** Check the official source first, every time. This page will never ask you for anything, and neither should anything else that matters.
+
+  > **This box expires on 14 September.** "There is nothing legitimate to mint
+  > today" is true until launch and false after it, and "do not connect a wallet
+  > to any site claiming to sell or mint this" will, after launch, also describe
+  > the real mint. Left exactly as written on instruction, because it matters
+  > most in the days before launch. It needs revising on the day, not deleting:
+  > the copycat risk goes up at launch, not down, and the useful form of the
+  > warning becomes "check the address against the official site" rather than
+  > "there is nothing to mint".
+
 - **Card label:** Go to the real thing
   - This explainer is one reading of public material. For anything you intend to act on, go to the source.
   - *Link:* standardreserve.xyz
-  - *As of:* Checked against public material in early September 2026. Everything on this page goes stale, and this scene goes stale fastest. If you are reading it later, assume it has changed and check the official site.
+  - *As of:* Checked against public material on 11 September 2026. Everything on this page goes stale, and this scene goes stale fastest: most of it is written for the days before launch and stops being true on 14 September. If you are reading it after that, assume it has changed and check the official site.
 
 ---
 
@@ -498,4 +514,6 @@ this list is illustrative and must stay labelled as such on screen.
 - Buybacks are throttled to at most the smaller of 10 percent of the vault balance and 0.2 percent of pool reserves per hour, described as roughly no more than 5 percent of pool depth per day under launch parameters.
 - Earned $STANDARD accrues inside the system and is claimed only by retiring a Branch, which cannot be reopened. Those balances are not counted in totalSupply until they convert.
 - Withdrawals are never paused or queued at any fee level. Every withdrawal pays a resolution fee that rises with 7-day system-wide exit pressure, half burned and half paid to Bankers who stayed.
-- Status as of early September 2026: no token, no NFT, whitepaper v0.1, eligibility checking live, audits underway with Uniswap Foundation funding, no public addresses or repository, no surprise launch, copycats circulating.
+- Launch is announced for 14 September 2026. Confirmed directly: the banner reads "Standard is launching on September 14th" on both the front page and the whitepaper, and the whitepaper still says final parameters will be announced closer to launch.
+- Status as of 11 September 2026: no token yet, no NFT yet, whitepaper v0.1, eligibility checking live with whitelist spots still available, no public addresses or repository, no surprise launch, copycats circulating.
+- **Sourced to the team's announcement, not independently checkable:** both audits came back with no critical findings and the reports are to be published before launch. This is the one claim on the page that rests on the team's word alone, and it is labelled that way on screen.
